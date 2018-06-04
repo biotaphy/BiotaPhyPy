@@ -27,18 +27,17 @@
           along with this program; if not, write to the Free Software 
           Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
           02110-1301, USA.
+          
+@note: Assumes that dendropy is available for validating trees
 """
+import dendropy
 import logging
-try:
-   import dendropy
-   doValidate = True
-except:
-   doValidate = False
-   
 import unittest
 
 from open_tree import get_ottids_from_gbifids, induced_subtree, LABEL_FORMAT
 
+# Testing constants
+# ....................................
 GOOD_OTT_IDS = [292466, 267845, 316878, 102710]
 BAD_OTT_IDS = [999999999, 8888888888, 7777777777]
 
@@ -119,24 +118,27 @@ class TestGetTreeFromGBIFIds(unittest.TestCase):
       
       newick = resp['newick']
       
-      if doValidate:
-         tree = dendropy.Tree.get(data=newick, schema='newick')
-         
-         # TODO: Check with Stephen to make sure this is valid for these not to
-         #          be the same
-         #self.assertEqual(len(tree.taxon_namespace), len(id_map.keys()))
-         print id_map.keys()
-         for taxon in tree.taxon_namespace:
-            # Id map contains integers as of now, check to make sure each tip
-            #    is in mapping
-            # Taxon labels look like 'ott{ottid}'
-            search_label = taxon.label.strip('ott')
-            self.assertTrue(id_map.has_key(search_label))
+      tree = dendropy.Tree.get(data=newick, schema='newick')
       
-      # TODO: Add additional testing for backup
-      self.assertTrue(newick)
-   
-
+      # Number of labels in the tree plus the number of unmatched should
+      #    be less than or equal the number of keys in id_map.  Less than if
+      #    one of the ids matches somewhere other than a tiop
+      
+      self.assertLessEqual(
+         len(tree.taxon_namespace) + len(resp['unmatched_ott_ids']), 
+         len(id_map.keys()))
+      
+      for taxon in tree.taxon_namespace:
+         # Id map contains integers as of now, check to make sure each tip
+         #    is in mapping
+         # Taxon labels look like 'ott{ottid}'
+         search_label = taxon.label.strip('ott')
+         self.assertTrue(id_map.has_key(search_label))
+         
+      # Make sure any unmatched ids are in mapping
+      for unmatched in resp['unmatched_ott_ids']:
+         self.assertTrue(id_map.has_key(str(unmatched)))
+      
 # .............................................................................
 class TestGetOTTIdsFromGBIFIds(unittest.TestCase):
    """
@@ -203,13 +205,11 @@ class TestInducedSubtree(unittest.TestCase):
       """
       resp = induced_subtree(BAD_OTT_IDS, label_format=LABEL_FORMAT.ID)
       newick = resp['newick']
-      if doValidate:
-         # Should fail if bad newick
-         tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Should fail if bad newick
+      tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Make sure tree is not None
+      self.assertTrue(tree)
       
-      # TODO: Add additional testing for backup
-      self.assertTrue(newick)
-   
    # ...........................
    def test_all_good_ottids(self):
       """
@@ -218,13 +218,11 @@ class TestInducedSubtree(unittest.TestCase):
       """
       resp = induced_subtree(GOOD_OTT_IDS, label_format=LABEL_FORMAT.ID)
       newick = resp['newick']
-      if doValidate:
-         # Should fail if bad newick
-         tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Should fail if bad newick
+      tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Make sure tree is not None
+      self.assertTrue(tree)
       
-      # TODO: Add additional testing for backup
-      self.assertTrue(newick)
-   
    # ...........................
    def test_some_bad_ottids(self):
       """
@@ -236,13 +234,11 @@ class TestInducedSubtree(unittest.TestCase):
       
       resp = induced_subtree(test_ids, label_format=LABEL_FORMAT.ID)
       newick = resp['newick']
-      if doValidate:
-         # Should fail if bad newick
-         tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Should fail if bad newick
+      tree = dendropy.Tree.get(data=newick, schema='newick')
+      # Make sure tree is not None
+      self.assertTrue(tree)
       
-      # TODO: Add additional testing for backup
-      self.assertTrue(newick)
-
 # .............................................................................
 def get_test_suites():
    """
