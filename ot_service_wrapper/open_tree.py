@@ -56,7 +56,11 @@ def get_ottids_from_gbifids(gbif_ids):
         OTTIDS_FROM_GBIFIDS_URL, data=json.dumps(request_body).encode('utf-8'),
         headers=headers)
 
-    resp = json.load(urlopen(req))
+    # Note: This is done for those versions of Python 3 where urlopen requires
+    #    bytes and json can't handle bytes.  Could be changed if support for
+    #    Python 3.4 and 3.5 is dropped
+    resp_str = urlopen(req).read().decode('utf-8')
+    resp = json.loads(resp_str)
     unmatchedIds = resp['unmatched_gbif_ids']
 
     id_map = resp['gbif_ott_id_map']
@@ -95,5 +99,5 @@ def induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME):
         data=json.dumps(request_body).encode('utf-8'),
         headers=headers)
 
-    resp_str = urlopen(req).read()
+    resp_str = urlopen(req).read().decode('utf-8')
     return json.loads(resp_str)
