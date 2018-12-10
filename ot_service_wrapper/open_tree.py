@@ -4,8 +4,10 @@
 """
 import json
 try:
+    # Python 2
     from urllib2 import Request, urlopen
 except:
+    # Python 3
     from urllib.request import Request, urlopen
 
 DEV_SERVER = 'http://141.211.236.35:10999'
