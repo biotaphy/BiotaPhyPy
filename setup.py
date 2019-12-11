@@ -8,7 +8,7 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='biotaphy_analyses',
+    name='biotaphypy',
     version='2.0.0',
     description='Biotaphy package for various computations',
     long_description=readme,
