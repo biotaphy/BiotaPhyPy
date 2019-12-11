@@ -47,7 +47,6 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
 .hypothesis/
 .pytest_cache/
 
@@ -127,3 +126,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Eclipse
+.project
+.pydevproject
+.settings
+
+# Ignore Mac DS_Store files
+**/.DS_Store
