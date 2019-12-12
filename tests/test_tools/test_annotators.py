@@ -8,7 +8,7 @@ import pytest
 
 from lmpy import Matrix, TreeWrapper
 
-import analyses.tools.annotators as annotators
+import biotaphy.analyses.tools.annotators as annotators
 
 
 # .............................................................................

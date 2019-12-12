@@ -11,10 +11,10 @@ import os
 
 from lmpy import TreeWrapper
 
-from analyses.ancestral_state import anc_dp
-import analyses.tools.annotators as annotators
-import analyses.tools.plots as tree_plots
-from analyses.helpers import data_readers
+from biotaphy.analyses.ancestral_state import anc_dp
+import biotaphy.analyses.tools.annotators as annotators
+import biotaphy.analyses.tools.plots as tree_plots
+from biotaphy.analyses.helpers import data_readers
 
 DESCRIPTION = """\
 Generates ancestral distribution estimations based on the environmental

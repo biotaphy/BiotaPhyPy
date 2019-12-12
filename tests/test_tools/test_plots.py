@@ -10,7 +10,7 @@ import pytest
 
 from lmpy import Matrix, TreeWrapper
 
-from analyses.tools.plots import create_distribution_plots
+from biotaphy.analyses.tools.plots import create_distribution_plots
 
 
 # .............................................................................

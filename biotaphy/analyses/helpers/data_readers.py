@@ -12,7 +12,7 @@ import numpy as np
 
 from lmpy import Matrix
 
-from analyses.helpers.sequence import Sequence
+from biotaphy.analyses.helpers.sequence import Sequence
 
 
 # .............................................................................

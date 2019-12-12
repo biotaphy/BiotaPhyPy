@@ -9,7 +9,7 @@ Note:
 import dendropy
 import pytest
 
-from ot_service_wrapper import open_tree
+from biotaphy.client.ot_service_wrapper import open_tree
 
 # Testing constants
 # ....................................

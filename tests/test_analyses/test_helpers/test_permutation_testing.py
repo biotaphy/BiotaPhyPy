@@ -8,7 +8,7 @@ import pytest
 
 from lmpy import Matrix
 
-import analyses.helpers.permutation_testing as perm_testing
+import biotaphy.analyses.helpers.permutation_testing as perm_testing
 
 
 # .............................................................................

@@ -5,7 +5,7 @@ Note:
 """
 import pytest
 
-from analyses.helpers import sequence
+from biotaphy.analyses.helpers import sequence
 
 
 # .............................................................................

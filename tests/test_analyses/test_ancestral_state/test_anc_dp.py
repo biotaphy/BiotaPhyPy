@@ -15,8 +15,8 @@ import pytest
 
 from lmpy import TreeWrapper
 
-from analyses.ancestral_state import anc_dp
-import analyses.helpers.data_readers as data_readers
+from biotaphy.analyses.ancestral_state import anc_dp
+import biotaphy.analyses.helpers.data_readers as data_readers
 
 
 # .............................................................................

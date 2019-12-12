@@ -6,7 +6,7 @@ ARGS:
 2) file location of the tree associsated with PAM
 3) phylo beta diversity family to use
 4) file location to write output
-5) (optional) the number of permuatations to perform 
+5) (optional) the number of permuatations to perform
 6) (optional) alpha value to determine significance (defaul = 0.05)
 
 Todo:
@@ -18,17 +18,13 @@ import argparse
 import os
 import numpy as np
 
-# import data_readers
-# from tree import TreeWrapper
-# import phylo_beta_diversity
+from biotaphy.analyses.lm_objects.tree import TreeWrapper
+from biotaphy.analyses.helpers import data_readers
+from biotaphy.analyses.phylo_beta_diversity import phylo_beta_diversity
 
-
-from analyses.lm_objects.tree import TreeWrapper
-from analyses.helpers import data_readers
-from analyses.phylo_beta_diversity import phylo_beta_diversity
-
-DESCRIPTION = """\
-Computes phylogenetic & ecological beta diversity components for Sorensen and Jaccard Indices."""
+DESCRIPTION = """
+Computes phylogenetic & ecological beta diversity components for Sorensen and
+Jaccard Indices."""
 
 
 # .............................................................................
@@ -53,7 +49,7 @@ if __name__ == '__main__':
     # Plots
     # Matrix csv
 
-# Might use this for nodal beta diversity 
+    # Might use this for nodal beta diversity
 
     # parser.add_argument(
     #     'out_tree_filename', type=str,
@@ -79,17 +75,17 @@ if __name__ == '__main__':
         help='Write the output of beta diversity calculations to this folder')
 
     parser.add_argument(
-        '-n', '--number_permutations', 
+        '-n', '--number_permutations',
         help='The number of permuatations to calculate')
 
     parser.add_argument(
-        '-a', '--alpha',
-        help='The alpha value to determine significance') # make default = 0.05
+        '-a', '--alpha', default=0.05,
+        help='The alpha value to determine significance')
 
     args = parser.parse_args()
 
     # Number of iterations
-    if args.number_permutations == None:
+    if args.number_permutations is None:
         nrand = 10
     else:
         nrand = int(args.number_permutations)
@@ -114,7 +110,7 @@ if __name__ == '__main__':
                 in_file)
     elif args.data_format == 'phylip':
         with open(args.pam_filename) as in_file:
-            sequences = data_readers.read_phylip_alignment_flo(in_file) 
+            sequences = data_readers.read_phylip_alignment_flo(in_file)
         headers = None
     elif args.data_format == 'table':
         with open(args.pam_filename) as in_file:
@@ -140,7 +136,8 @@ if __name__ == '__main__':
     #                 ' index.')
 
     # Convert data to PAM format
-    pam = data_readers.get_character_matrix_from_sequences_list(sequences, headers)
+    pam = data_readers.get_character_matrix_from_sequences_list(
+        sequences, headers)
 
     # Read the tree
     tree = TreeWrapper.get(
@@ -148,11 +145,17 @@ if __name__ == '__main__':
 
     # Run analysis
     if args.family_name == 'jaccard':
-        results = phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard(pam, tree)
-        res_names = ['beta_jtu', 'phylo_beta_jtu', 'beta_jne', 'phylo_beta_jne', 'beta_jac', 'phylo_beta_jac']
+        results = phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard(
+            pam, tree)
+        res_names = [
+            'beta_jtu', 'phylo_beta_jtu', 'beta_jne', 'phylo_beta_jne',
+            'beta_jac', 'phylo_beta_jac']
     elif args.family_name == 'sorensen':
-        results = phylo_beta_diversity.calculate_phylo_beta_diversity_sorensen(pam, tree)
-        res_names = ['beta_sim', 'phylo_beta_sim', 'beta_sne', 'phylo_beta_sne', 'beta_sor', 'phylo_beta_sor']
+        results = phylo_beta_diversity.calculate_phylo_beta_diversity_sorensen(
+            pam, tree)
+        res_names = [
+            'beta_sim', 'phylo_beta_sim', 'beta_sne', 'phylo_beta_sne',
+            'beta_sor', 'phylo_beta_sor']
     else:
         raise Exception('Could not find family name')
 
@@ -170,16 +173,19 @@ if __name__ == '__main__':
     # Write results to folder
     if not os.path.exists(args.out_foldername):
         os.makedirs(args.out_foldername)
-        
+
     for table in range(len(results)):
         # print table, res_names[table], "\n", results[table].data, "\n"
-        with open(os.path.join(args.out_foldername, '{}.csv'.format(res_names[table])), 'w') as out_csv_f:
+        with open(
+            os.path.join(args.out_foldername, '{}.csv'.format(
+                res_names[table])), 'w') as out_csv_f:
             results[table].write_csv(out_csv_f)
-       
+
     # Test randomization:
     # List of lists: 0:JTU; 1:JNE; 2:JAC.
-    print (res_names[5])
-    x = phylo_beta_diversity.calc_phylo_jac_distr(pam, tree, obs = results[5], metric = "jne", nrand = nrand)
+    print(res_names[5])
+    x = phylo_beta_diversity.calc_phylo_jac_distr(
+        pam, tree, obs=results[5], metric="jne", nrand=nrand)
     print(x.data)
     # print x[1].data[0]#[1][0]
     # print x[1].data[1][0]
