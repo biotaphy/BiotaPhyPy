@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/biotaphy/BiotaPhyPy.svg?branch=master)](https://travis-ci.org/biotaphy/BiotaPhyPy) [![Coverage Status](https://coveralls.io/repos/github/biotaphy/BiotaPhyPy/badge.svg?branch=master)](https://coveralls.io/github/biotaphy/BiotaPhyPy?branch=master)
 [![License Badge](https://img.shields.io/github/license/biotaphy/BiotaPhyPy.svg)](https://github.com/biotaphy/BiotaPhyPy/blob/master/LICENSE)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 BiotaPhy Python library for API access and analysis
 
