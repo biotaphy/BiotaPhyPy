@@ -1,12 +1,12 @@
-.. BioaPhy Analyses documentation master file, created by
+.. BioaPhy Python documentation master file, created by
    sphinx-quickstart on Wed Feb 20 17:46:26 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to BiotaPhy Analyses documentation!
-============================================
+Welcome to BiotaPhy Python Library documentation!
+=================================================
 
-The BiotaPhy Analyses repository contains various bio- and phylo- diversity
+The BiotaPhy Python repository contains various bio- and phylo- diversity
 metrics for provided data.  These computations utilize Lifemapper objects so
 that they can then be deployed in high-throughput environments such as a 
 `Rocks Cluster <http://www.rocksclusters.org/>`_ or even an 
