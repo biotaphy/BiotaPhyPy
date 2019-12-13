@@ -15,6 +15,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "foxgiteeb",
+      "name": "foxgiteeb",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/35574990?v=4",
+      "profile": "https://github.com/foxgiteeb",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
