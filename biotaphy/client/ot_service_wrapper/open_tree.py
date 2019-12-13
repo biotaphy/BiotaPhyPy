@@ -3,10 +3,10 @@
 """Module for Open Tree of Life client
 """
 import json
-try:
+try:  # pragma: no cover
     # Python 2
     from urllib2 import Request, urlopen
-except:
+except:  # pragma: no cover
     # Python 3
     from urllib.request import Request, urlopen
 
