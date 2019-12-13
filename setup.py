@@ -10,14 +10,14 @@ with open('LICENSE') as f:
 setup(
     name='biotaphy',
     version='2.0.0',
-    description='Biotaphy package for various computations',
+    description='BiotaPhy Python Package',
     long_description=readme,
     author='Biotaphy Team',
     author_email='cjgrady@ku.edu',
-    url='https://github.com/biotaphy/analyses',
+    url='https://github.com/biotaphy/BiotaPhyPy',
     license=license,
     packages=find_packages(exclude=('tests', 'docs', 'sample_data')),
-    scripts=['bin/ancestral_distribution.py'],
+    scripts=['bin/ancestral_distribution.py', 'bin/phylo_beta_diversity.py'],
     install_requires=[
         'dendropy>=4.0.0',
         'matplotlib',

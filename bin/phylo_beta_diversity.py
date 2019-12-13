@@ -18,7 +18,8 @@ import argparse
 import os
 import numpy as np
 
-from biotaphy.analyses.lm_objects.tree import TreeWrapper
+from lmpy import TreeWrapper
+
 from biotaphy.analyses.helpers import data_readers
 from biotaphy.analyses.phylo_beta_diversity import phylo_beta_diversity
 
@@ -136,6 +137,7 @@ if __name__ == '__main__':
     #                 ' index.')
 
     # Convert data to PAM format
+    # TODO: CJG - This should use our Matrix class to read a csv or matrix lmm
     pam = data_readers.get_character_matrix_from_sequences_list(
         sequences, headers)
 
