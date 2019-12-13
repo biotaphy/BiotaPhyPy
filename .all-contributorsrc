@@ -15,6 +15,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "brunkgr2",
+      "name": "brunkgr2",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/48328418?v=4",
+      "profile": "https://github.com/brunkgr2",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
