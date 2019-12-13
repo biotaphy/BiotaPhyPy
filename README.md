@@ -40,6 +40,9 @@ A this time, the easiest way to get help is to [file a bug report](https://githu
   <tr>
     <td align="center"><a href="http://lifemapper.org"><img src="https://avatars0.githubusercontent.com/u/1719147?v=4" width="100px;" alt=""/><br /><sub><b>CJ Grady</b></sub></a><br /><a href="#infra-cjgrady" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=cjgrady" title="Tests">⚠️</a> <a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=cjgrady" title="Code">💻</a></td>
     <td align="center"><a href="http://hannahmarx.com"><img src="https://avatars3.githubusercontent.com/u/2374443?v=4" width="100px;" alt=""/><br /><sub><b>Hannah E Marx</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=hmarx" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/foxgiteeb"><img src="https://avatars2.githubusercontent.com/u/35574990?v=4" width="100px;" alt=""/><br /><sub><b>foxgiteeb</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=foxgiteeb" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/brunkgr2"><img src="https://avatars1.githubusercontent.com/u/48328418?v=4" width="100px;" alt=""/><br /><sub><b>brunkgr2</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=brunkgr2" title="Code">💻</a></td>
+    <td align="center"><a href="http://ryanafolk.weebly.com/"><img src="https://avatars3.githubusercontent.com/u/15200892?v=4" width="100px;" alt=""/><br /><sub><b>Ryan A. Folk</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=ryanafolk" title="Documentation">📖</a></td>
   </tr>
 </table>
 
