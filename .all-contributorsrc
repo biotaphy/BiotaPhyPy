@@ -15,6 +15,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "hmarx",
+      "name": "Hannah E Marx",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2374443?v=4",
+      "profile": "http://hannahmarx.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
