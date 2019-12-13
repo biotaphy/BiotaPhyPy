@@ -2,7 +2,7 @@
 About
 =====
 
-The BiotaPhy Analyses repository is an open source project, initially,
+The BiotaPhy Python repository is an open source project, initially,
 containing tools generated as part of the BiotaPhy project.  BiotaPhy is a
 collaboration between `iDigBio <https://idigbio.org>`_ at The University of
 Florida, `Lifemapper <http://lifemapper.org>`_ at The University of Kansas, and
