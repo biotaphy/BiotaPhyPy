@@ -15,6 +15,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "ryanafolk",
+      "name": "Ryan A. Folk",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15200892?v=4",
+      "profile": "http://ryanafolk.weebly.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
