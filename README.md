@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/biotaphy/BiotaPhyPy.svg?branch=master)](https://travis-ci.org/biotaphy/BiotaPhyPy) [![Coverage Status](https://coveralls.io/repos/github/biotaphy/BiotaPhyPy/badge.svg?branch=master)](https://coveralls.io/github/biotaphy/BiotaPhyPy?branch=master)
 [![License Badge](https://img.shields.io/github/license/biotaphy/BiotaPhyPy.svg)](https://github.com/biotaphy/BiotaPhyPy/blob/master/LICENSE)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 BiotaPhy Python library for API access and analysis
 
@@ -44,6 +44,7 @@ A this time, the easiest way to get help is to [file a bug report](https://githu
     <td align="center"><a href="https://github.com/foxgiteeb"><img src="https://avatars2.githubusercontent.com/u/35574990?v=4" width="100px;" alt=""/><br /><sub><b>foxgiteeb</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=foxgiteeb" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/brunkgr2"><img src="https://avatars1.githubusercontent.com/u/48328418?v=4" width="100px;" alt=""/><br /><sub><b>brunkgr2</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=brunkgr2" title="Code">💻</a></td>
     <td align="center"><a href="http://ryanafolk.weebly.com/"><img src="https://avatars3.githubusercontent.com/u/15200892?v=4" width="100px;" alt=""/><br /><sub><b>Ryan A. Folk</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=ryanafolk" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/zzeppozz"><img src="https://avatars3.githubusercontent.com/u/555996?v=4" width="100px;" alt=""/><br /><sub><b>zzeppozz</b></sub></a><br /><a href="https://github.com/biotaphy/BiotaPhyPy/commits?author=zzeppozz" title="Code">💻</a></td>
   </tr>
 </table>
 
