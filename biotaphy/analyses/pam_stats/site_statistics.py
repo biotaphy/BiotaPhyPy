@@ -3,6 +3,9 @@ from copy import copy
 
 import numpy as np
 
+import lmpy
+
+
 # .............................................................................
 def calculate_tree_site_statistics(pam, tree):
     """Calculate tree statistics for each site in a PAM.

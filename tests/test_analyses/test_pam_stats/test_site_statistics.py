@@ -54,6 +54,8 @@ class Test_calculate_tree_site_statistics:
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 ]))
+        tmp = calculate_tree_site_statistics(pam, tree)
+        print(tmp)
         assert np.all(
             np.isclose(test_stats, calculate_tree_site_statistics(pam, tree)))
 
@@ -73,7 +75,7 @@ class Test_calculate_tree_statistics:
         tree = TreeWrapper.get(data=tree_str, schema='newick')
         assert calculate_tree_statistics(tree) == (
             35.0, 35.0, 20.75, 27.5, 42.5, 49.25,
-            23.75, 20.0, 10.0, 10.0, 32.5, 48.25)
+            32.0, 30.0, 20.0, 20.0, 40.0, 49.0)
 
 
 # .............................................................................
@@ -125,6 +127,8 @@ class Test_get_subtree:
         subtree = get_subtree(tree, [tip[1] for tip in keep_tips], 'squid')
         # Go through subtree tips and make sure they match keep tips
         kept_labels = [taxon.label for taxon in tree.taxon_namespace]
+        print(kept_labels)
+        print(keep_tips)
         assert len(kept_labels) == len(keep_tips)
         for tip in keep_tips:
             assert tip[0] in kept_labels
