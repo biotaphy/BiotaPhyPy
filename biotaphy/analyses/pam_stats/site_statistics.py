@@ -15,12 +15,22 @@ def calculate_tree_site_statistics(pam, tree):
         Matrix - A site by statistic matrix of tree pam statistics.
     """
     tree_stats_mtx = lmpy.Matrix(
-        np.zeros((pam.shape[0], 6), dtype=np.float),
+        np.zeros((pam.shape[0], 12), dtype=np.float),
         headers={
             '0': pam.get_row_headers(),
-            '1': ['Median Node Height', 'Node Height 75th percentile',
-                  'Node Height 90th percentile', 'Median Tip Length',
-                  'Tip Length 75th percentile', 'Tip Length 90th percentile']})
+            '1': [
+                'Mean Node Height',
+                'Median Node Height',
+                'Node Height 2.5th percentile',
+                'Node Height 25th percentile',
+                'Node Height 75th percentile',
+                'Node Height 97.5th percentile',
+                'Mean Tip Length',
+                'Median Tip Length',
+                'Tip Length 2.5th percentile',
+                'Tip Length 25th percentile',
+                'Tip Length 75th percentile',
+                'Tip Length 97.5th percentile']})
 
     squids = pam.get_column_headers()
     for site_index in range(pam.shape[0]):
@@ -49,9 +59,18 @@ def calculate_tree_statistics(tree):
         if node.is_leaf():
             tip_lengths.append(node.edge_length)
     return (
-        np.median(node_heights), np.percentile(node_heights, 75),
-        np.percentile(node_heights, 90), np.median(tip_lengths),
-        np.percentile(tip_lengths, 75), np.percentile(tip_lengths, 90))
+        np.mean(node_heights),
+        np.median(node_heights),
+        np.percentile(node_heights, 2.5),
+        np.percentile(node_heights, 25),
+        np.percentile(node_heights, 75),
+        np.percentile(node_heights, 97.5),
+        np.mean(tip_lengths),
+        np.median(tip_lengths),
+        np.percentile(tip_lengths, 2.5),
+        np.percentile(tip_lengths, 25),
+        np.percentile(tip_lengths, 75),
+        np.percentile(tip_lengths, 97.5))
 
 
 # .............................................................................
