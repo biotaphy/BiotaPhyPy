@@ -61,8 +61,8 @@ class Test_calculate_tree_site_statistics:
                 ]))
         tmp = calculate_tree_site_statistics(pam, tree)
         print(tmp)
-        assert np.all(
-            np.isclose(test_stats, calculate_tree_site_statistics(pam, tree)))
+        print(test_stats)
+        assert np.all(np.isclose(test_stats, tmp))
 
 
 # .............................................................................
