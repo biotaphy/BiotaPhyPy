@@ -90,7 +90,7 @@ def get_subtree(tree, present_squids, squid_attribute):
     prune_taxa = []
     for taxon in subtree.taxon_namespace:
         squid = taxon.annotations.get_value(squid_attribute)
-        if val is None or val not in present_squids:
+        if squid is None or squid not in present_squids:
             prune_taxa.append(taxon)
     subtree.prune_taxa(prune_taxa)
     subtree.purge_taxon_namespace()

@@ -57,6 +57,7 @@ class Test_calculate_tree_site_statistics:
         assert np.all(
             np.isclose(test_stats, calculate_tree_site_statistics(pam, tree)))
 
+
 # .............................................................................
 class Test_calculate_tree_statistics:
     """Test calculate_tree_statistics."""
