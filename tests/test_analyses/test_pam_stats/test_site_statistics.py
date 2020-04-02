@@ -52,12 +52,12 @@ class Test_calculate_tree_site_statistics:
                     36.66666667, 30.0, 30.0, 30.0, 40.0, 49.0],
                 [45.0, 45.0, 40.25, 42.5, 47.5, 49.75,
                     43.33333333, 40.0, 40.0, 40.0, 45.0, 49.5],
-                [30.0, 30.0, 20.5, 25.0, 35.0, 39.5,
-                    27.5, 25.0, 20.0, 20.0, 32.5, 39.25],
-                [35.0, 35.0, 20.75, 27.5, 42.5, 49.25,
-                    32.0, 30.0, 20.0, 20.0, 40.0, 49.0],
-                [35.0, 35.0, 20.75, 27.5, 42.5, 49.25,
-                    32.0, 30.0, 20.0, 20.0, 40.0, 49.0]
+                [40.0, 40.0, 40.0, 40.0, 40.0, 40.0,
+                    40.0, 40.0, 40.0, 40.0, 40.0, 40.0],
+                [40.0, 40.0, 30.5, 35.0, 45.0, 49.5,
+                    37.5, 35.0, 30.0, 30.0, 42.5, 49.25],
+                [25.0, 25.0, 20.25, 22.5, 27.5, 29.75,
+                    23.33333333, 20.0, 20.0, 20.0, 25.0, 29.5]
                 ]))
         tmp = calculate_tree_site_statistics(pam, tree)
         print(tmp)
@@ -131,7 +131,7 @@ class Test_get_subtree:
         # Get subtree
         subtree = get_subtree(tree, [tip[1] for tip in keep_tips], 'squid')
         # Go through subtree tips and make sure they match keep tips
-        kept_labels = [taxon.label for taxon in tree.taxon_namespace]
+        kept_labels = [taxon.label for taxon in subtree.taxon_namespace]
         print(kept_labels)
         print(keep_tips)
         assert len(kept_labels) == len(keep_tips)
