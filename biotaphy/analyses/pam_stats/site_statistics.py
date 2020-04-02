@@ -1,5 +1,5 @@
 """Module containing functions for computing site statistics."""
-from copy import copy
+from copy import deepcopy
 
 import numpy as np
 
@@ -37,12 +37,19 @@ def calculate_tree_site_statistics(pam, tree):
 
     squids = pam.get_column_headers()
     for site_index in range(pam.shape[0]):
-        present_species = np.where(pam[site_index] == 1)[0]
-        present_squids = []
-        for squid_idx in present_species:
-            present_squids.append(squids[squid_idx])
-        subtree = get_subtree(tree, present_squids, 'squid')
-        tree_stats_mtx[site_index] = calculate_tree_statistics(subtree)
+        try:
+            present_species = np.where(pam[site_index] == 1)[0]
+            present_squids = []
+            if len(present_species) > 1:
+                for squid_idx in present_species:
+                    present_squids.append(squids[squid_idx])
+                subtree = get_subtree(tree, present_squids, 'squid')
+                if len(subtree.taxon_namespace) >= 2:
+                    tree_stats_mtx[site_index] = calculate_tree_statistics(
+                        subtree)
+        except Exception as err:
+            print(err)
+            raise err
     return tree_stats_mtx
 
 
@@ -89,7 +96,7 @@ def get_subtree(tree, present_squids, squid_attribute):
         TreeWrapper: A subtree that only includes the tips specified by the
             squids.
     """
-    subtree = copy(tree)
+    subtree = deepcopy(tree)
     prune_taxa = []
     for taxon in subtree.taxon_namespace:
         squid = taxon.annotations.get_value(squid_attribute)
