@@ -47,7 +47,7 @@ def calculate_tree_site_statistics(pam, tree):
                 if len(subtree.taxon_namespace) >= 2:
                     tree_stats_mtx[site_index] = calculate_tree_statistics(
                         subtree)
-        except Exception as err:
+        except Exception as err:  # pragma: no cover
             print(err)
             raise err
     return tree_stats_mtx
