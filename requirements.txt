@@ -1,7 +1,7 @@
 dendropy>=4.0.0
 scipy>=1.0.0
 numpy>=1.11.0
-coverate==4.5.4
+coverage==4.5.4
 python-coveralls
 pytest
 pytest-cov>=2.4.0,<2.6
