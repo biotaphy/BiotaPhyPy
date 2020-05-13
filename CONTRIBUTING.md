@@ -48,7 +48,7 @@ $ py.test-3 tests/ --pep8 biotaphy -v --cov biotaphy --cov-report term-missing
 * If you update in-line documentation, make sure to rebuild the API doc RST files
 
 ```
-$ sphinx-apidoc -o ./_sphinx_config/source ./biotaphy/
+$ sphinx-apidoc -o ./_sphinx_config/source ./biotaphy/*
 ```
 
 * If you edit any RST docs (or update API docs), rebuild the html pages
