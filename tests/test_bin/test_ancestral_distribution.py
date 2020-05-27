@@ -68,8 +68,8 @@ class Test_ancestral_distribution(object):
         csv_filename = os.path.join(tmpdir.dirname, 'test_out.csv')
         out_tree_filename = os.path.join(tmpdir.dirname, 'test_out.nex')
         print(sys.path)
-        cmd = '{} -c {} {} {} {} {} {} nexus'.format(
-            self.script_path, csv_filename, tree_filename,
+        cmd = '{} {} -c {} {} {} {} {} {} nexus'.format(
+            sys.executable, self.script_path, csv_filename, tree_filename,
             tree_schema, alignment_filename, alignment_format,
             out_tree_filename)
 
