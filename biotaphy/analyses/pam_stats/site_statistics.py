@@ -26,7 +26,7 @@ def mean_node_height(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.mean(node_heights))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -37,7 +37,7 @@ def median_node_height(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.median(node_heights))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -48,7 +48,7 @@ def node_height_percentile_2_5(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.percentile(node_heights, 2.5))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -59,7 +59,7 @@ def node_height_percentile_25(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.percentile(node_heights, 25))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -70,7 +70,7 @@ def node_height_percentile_75(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.percentile(node_heights, 75))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -81,7 +81,7 @@ def node_height_percentile_97_5(tree):
         node_heights = tree.internal_node_ages(
             ultrametricity_precision=TOLERANCE)
         return float(np.percentile(node_heights, 97.5))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -91,7 +91,7 @@ def mean_tip_length(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.mean(tip_lengths))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -101,7 +101,7 @@ def median_tip_length(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.median(tip_lengths))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -111,7 +111,7 @@ def tip_length_percentile_2_5(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.percentile(tip_lengths, 2.5))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -121,7 +121,7 @@ def tip_length_percentile_25(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.percentile(tip_lengths, 25))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -131,7 +131,7 @@ def tip_length_percentile_75(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.percentile(tip_lengths, 75))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
@@ -141,7 +141,7 @@ def tip_length_percentile_97_5(tree):
     try:
         tip_lengths = get_tip_lengths(tree)
         return float(np.percentile(tip_lengths, 97.5))
-    except:
+    except:  # pragma: no cover
         return 0.0
 
 
