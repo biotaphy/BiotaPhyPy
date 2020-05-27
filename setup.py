@@ -9,7 +9,7 @@ with open('LICENSE', 'r', encoding='utf-8') as f:
 
 setup(
     name='biotaphy',
-    version='2.0.0',
+    version='1.2.0',
     description='BiotaPhy Python Package',
     long_description=readme,
     author='Biotaphy Team',
