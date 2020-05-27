@@ -11,7 +11,12 @@ import pytest
 from lmpy import Matrix, TreeWrapper
 
 from biotaphy.analyses.pam_stats.site_statistics import (
-    calculate_tree_site_statistics, calculate_tree_statistics, get_subtree)
+    get_tip_lengths, mean_node_height, median_node_height,
+    node_height_percentile_2_5, node_height_percentile_25,
+    node_height_percentile_75, node_height_percentile_97_5,
+    mean_tip_length, median_tip_length, tip_length_percentile_2_5,
+    tip_length_percentile_25, tip_length_percentile_75,
+    tip_length_percentile_97_5, calculate_tree_site_statistics)
 
 
 # .............................................................................
@@ -48,17 +53,20 @@ class Test_calculate_tree_site_statistics:
                 '1': ['squidA', 'squidB', 'squidC', 'squidD', 'squidE']})
         test_stats = Matrix(
             np.array([
-                [40.0, 40.0, 30.5, 35.0, 45.0, 49.5,
-                    36.66666667, 30.0, 30.0, 30.0, 40.0, 49.0],
-                [45.0, 45.0, 40.25, 42.5, 47.5, 49.75,
-                    43.33333333, 40.0, 40.0, 40.0, 45.0, 49.5],
-                [40.0, 40.0, 40.0, 40.0, 40.0, 40.0,
-                    40.0, 40.0, 40.0, 40.0, 40.0, 40.0],
-                [40.0, 40.0, 30.5, 35.0, 45.0, 49.5,
-                    37.5, 35.0, 30.0, 30.0, 42.5, 49.25],
-                [25.0, 25.0, 20.25, 22.5, 27.5, 29.75,
-                    23.33333333, 20.0, 20.0, 20.0, 25.0, 29.5]
-                ]))
+                [3.0, 0.6, 9.0, 0.6, 0.0, 40.0, 40.0, 30.5, 30.5, 45.0, 49.5,
+                    36.6666667, 30.0, 30.0, 30.0, 40.0, 49.0, 73.3333333,
+                    86.6666667, 260.0, 1.0],
+                [3.0, 0.6, 9.0, 0.6, 0.0, 45.0, 45.0, 40.25, 40.25, 47.5,
+                    49.75, 43.3333333, 40.0, 40.0, 40.0, 45.0, 49.5,
+                    86.6666667, 93.3333333, 280.0, 1.0],
+                [2.0, 0.4, 6.0, 0.6, 90.0, 40.0, 40.0, 40.0, 40.0, 40.0, 40.0,
+                    40.0, 40.0, 40.0, 40.0, 40.0, 40.0, 80.0, 80.0, 80.0, 0.0],
+                [4.0, 0.8, 12.0, 0.6, 0.0, 40.0, 40.0, 30.5, 30.5, 45.0, 49.5,
+                    37.5, 35.0, 30.0, 30.0, 42.5, 49.25, 75.0, 86.6666667,
+                    520.0, 0.2],
+                [3.0, 0.6, 9.0, 0.6, 100.0, 25.0, 25.0, 20.25, 20.25, 27.5,
+                    29.75, 23.3333333, 20.0, 20.0, 20.0, 25.0, 29.5,
+                    46.6666667, 53.3333333, 160.000000, 1.0]]))
         tmp = calculate_tree_site_statistics(pam, tree)
         print(tmp)
         print(test_stats)
@@ -66,74 +74,54 @@ class Test_calculate_tree_site_statistics:
 
 
 # .............................................................................
-class Test_calculate_tree_statistics:
-    """Test calculate_tree_statistics."""
+class Test_individual_statss:
+    """Test individual stats."""
     # ................................
-    def test_calculate_tree_statistics_simple(self):
-        """Perform a simple test of calculate_tree_statistics.
-
-        This is a simple test of the calculate_tree_statistics function.  It
-        creates a simple tree with known metric values and ensures the results
-        are what are expected.
-        """
+    def test_get_tip_lengths(self):
+        """Simple test of get_tip_lengths."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert calculate_tree_statistics(tree) == (
-            35.0, 35.0, 20.75, 27.5, 42.5, 49.25,
-            32.0, 30.0, 20.0, 20.0, 40.0, 49.0)
+        tip_lengths = get_tip_lengths(tree)
+        assert sorted(tip_lengths) == sorted([50, 40, 30, 20, 20])
 
-
-# .............................................................................
-class Test_get_subtree:
-    """Tests the get_subtree function"""
     # ................................
-    def test_get_subtree_simple(self):
-        """Perform a simple test of get_subtree.
-
-        This is a simple test that will create a tree with squids at some of
-        the tips and some tips without.  The test will then subset tree and
-        check that the resulting tree only includes the tips with the specified
-        squids.
-        """
-        keep_percentage = 0.5
-        # Tip pool
-        tip_pool = [
-            ('A', 'squid_A'),
-            ('B', 'squid_B'),
-            ('C', None),
-            ('D', 'squid_D'),
-            ('E', 'squid_E'),
-            ('F', None),
-            ('G', 'squid_G'),
-            ('H', 'squid_H'),
-            ('I', None),
-            ('J', 'squid_J')
-            ]
-        # Build a tree
-        tree_str = '({});'.format(','.join([tip[0] for tip in tip_pool]))
+    def test_mean_node_height(self):
+        """Simple test of mean_node_height."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        tree.resolve_polytomies()
-        # Add some squids
-        squid_dict = {}
-        for tip_name, squid in tip_pool:
-            if squid is not None:
-                squid_dict[tip_name] = squid
-        tree.annotate_tree_tips('squid', squid_dict)
+        assert mean_node_height(tree) == 35
 
-        # Determine which tips to keep
-        keep_tips = []
-        while len(keep_tips) < 3:
-            keep_tips = []
-            for tip_idx in np.where(
-                    np.random.random((len(tip_pool),)) < keep_percentage)[0]:
-                if tip_pool[tip_idx][1] is not None:
-                    keep_tips.append(tip_pool[tip_idx])
-        # Get subtree
-        subtree = get_subtree(tree, [tip[1] for tip in keep_tips], 'squid')
-        # Go through subtree tips and make sure they match keep tips
-        kept_labels = [taxon.label for taxon in subtree.taxon_namespace]
-        print(kept_labels)
-        print(keep_tips)
-        assert len(kept_labels) == len(keep_tips)
-        for tip in keep_tips:
-            assert tip[0] in kept_labels
+    # ................................
+    def test_median_node_height(self):
+        """Simple test of median_node_height."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert median_node_height(tree) == 35
+
+    # ................................
+    def test_node_height_percentile_2_5(self):
+        """Simple test of node_height_percentile_2_5."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert node_height_percentile_2_5(tree) == 20.75
+
+    # ................................
+    def test_node_height_percentile_25(self):
+        """Simple test of node_height_percentile_25."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert node_height_percentile_25(tree) == 27.5
+
+    # ................................
+    def test_node_height_percentile_75(self):
+        """Simple test of node_height_percentile_75."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert node_height_percentile_75(tree) == 42.5
+
+    # ................................
+    def test_node_height_percentile_97_5(self):
+        """Simple test of node_height_percentile_97_5."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert node_height_percentile_97_5(tree) == 49.25
