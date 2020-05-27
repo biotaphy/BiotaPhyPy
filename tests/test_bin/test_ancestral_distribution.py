@@ -6,6 +6,8 @@ import pytest
 import subprocess
 import sys
 
+import lmpy
+
 
 # .............................................................................
 class Test_ancestral_distribution(object):
@@ -66,13 +68,14 @@ class Test_ancestral_distribution(object):
         csv_filename = os.path.join(tmpdir.dirname, 'test_out.csv')
         out_tree_filename = os.path.join(tmpdir.dirname, 'test_out.nex')
         print(sys.path)
-        cmd = '{} -c {} {} {} {} {} {} nexus'.format(
-            self.script_path, csv_filename, tree_filename,
+        cmd = '{} {} -c {} {} {} {} {} {} nexus'.format(
+            sys.executable, self.script_path, csv_filename, tree_filename,
             tree_schema, alignment_filename, alignment_format,
             out_tree_filename)
 
         # Call process
-        cmd2 = 'export PYTHONPATH={}; {}'.format(self.base_dir, cmd)
+        py_path = '{}:{}/..'.format(self.base_dir, lmpy.__path__[0])
+        cmd2 = 'export PYTHONPATH={}; {}'.format(py_path, cmd)
         res = subprocess.check_call(cmd2, shell=True)
 
         assert res == 0
