@@ -37,7 +37,7 @@ def create_distribution_plots(lm_tree, node_matrix, output_directory):
         # TODO(CJ) : Variable figure size
         plt.figure(figsize=(6, 4))
         # TODO(CJ) : Variable alpha
-        plt.plot(x_grid, node_matrix[i, :, 0], alpha=0.05)
+        plt.plot(x_grid, node_matrix[i, :, 0], alpha=0.55)
         if np.any(node_matrix[i, :, 1] > 0.0):
             # TODO(CJ) : Options for high and low value lines
             high_vals = node_matrix[i, :, 0] + node_matrix[i, :, 1]
