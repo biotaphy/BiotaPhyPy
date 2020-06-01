@@ -18,3 +18,30 @@ script:
   - py.test tests/ --pep8 biotaphy -v --cov biotaphy --cov-report term-missing
 after_success:
   - coveralls
+jobs:
+  include:
+  - stage: deploy
+    python: '3.7'
+    before_install:
+    - sudo add-apt-repository --yes ppa:ubuntugis/ppa
+    - sudo apt-get --quiet update
+    - sudo apt-get install --yes libgdal-dev gdal-bin python-gdal
+    - export CPLUS_INCLUDE_PATH=/usr/include/gdal
+    - export C_INCLUDE_PATH=/usr/include/gdal
+    install:
+    - pip install GDAL==`gdal-config --version`
+    - pip install -r requirements.txt
+    before_deploy:
+    - python setup.py sdist bdist_wheel
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      api_key:
+        secure: cAqg3WtNj6A1huS7nhObhcOCCfuK+jrlsOkcKaBZ6CFWEllF3P4d3pIGDJRD0Bri+Si4zQFmWTqr5Z7J+v5j5UittbM4wyiqrR3qvWCQYCWGl0pIx56UfGc/QzSgibTyJz+O1GM5mq0HfTO3QHXXeNNhSyhqDY5m+GPQK1RNx8XvxDgd+PnGm9IjY8Wnh5Td/8A4izuY0j08DC9/HdUwPedyIXuc9wGSxOYykiQS156n8XD+f7ewd77903K7hTu+1Z80btrfEiXfT6iG4QH3eGfR79hT4BtTCcq5Y82g4iqx75dFIEFWV/Z7R72LBIWt03cMe7jaPlr5lsD1WzDlsoa9N99l3R5GbeZmYp3nd/9ZvfWufchJkUAbqtLI/A9UEHxtD4sXU1TUKmNCnJgcCAosKi4rWtRuiGT/UGmyChzuDnjdLVGn1MeIWhuUopUr7dQTHk5vjPsxy4acv3YlLxT5rHrxU0Lw3vEQ0Olb/FUuh9fgB0ENxknq45CGbtZxXMYtvzea/mpVJ31kP+Ca4XbT3hWoefoo5o/A4huhEAlo5qL7d1lHQMmNCdmbhiN9txlmWlC6qyd7C31GWIuBdrKwE/u3dbk+pm76s4HXqvgcWrGm6xcUgiODvumJ80O6s6ZHMaEfdjLCS0/eHFpOZVK68gxqw1TPo1dolV9bpBs=
+      file_glob: true
+      file: dist/*
+      on:
+        tags: true
+        repo: biotaphy/BiotaPhyPy
+      skip_cleanup: 'true'
+
