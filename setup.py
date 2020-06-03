@@ -8,8 +8,8 @@ with open('LICENSE', 'r', encoding='utf-8') as f:
     license = f.read()
 
 setup(
-    name='biotaphy',
-    version='1.2.1',
+    name='biotaphypy',
+    version='1.2.2',
     description='BiotaPhy Python Package',
     long_description=readme,
     author='Biotaphy Team',
