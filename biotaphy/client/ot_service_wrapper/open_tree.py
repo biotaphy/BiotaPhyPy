@@ -4,6 +4,7 @@
 import json
 from urllib.request import Request, urlopen
 
+
 PRODUCTION_SERVER = 'https://api.opentreeoflife.org/v3/tree_of_life'
 INDUCED_SUBTREE_BASE_URL = '{}/induced_subtree'.format(PRODUCTION_SERVER)
 OTTIDS_FROM_GBIFIDS_URL = '{}/ottids_from_gbifids'.format(PRODUCTION_SERVER)
@@ -11,8 +12,7 @@ OTTIDS_FROM_GBIFIDS_URL = '{}/ottids_from_gbifids'.format(PRODUCTION_SERVER)
 
 # .............................................................................
 class LABEL_FORMAT(object):
-    """Represents the label format constants used when calling induced subtree
-    """
+    """Represents the label format constants used when calling induced subtree."""
     NAME = 'name'
     ID = 'id'
     NAME_AND_ID = 'name_and_id'
@@ -20,7 +20,7 @@ class LABEL_FORMAT(object):
 
 # .............................................................................
 def get_ottids_from_gbifids(gbif_ids):
-    """Retrieves a GBIF ID : OTT_ID mapping dictionary
+    """Retrieves a GBIF ID : OTT_ID mapping dictionary.
 
     Calls the Open Tree 'ottids_from_gbifids' service to retrieve a mapping
     dictionary from the Open Tree service where each key is one of the provided
@@ -28,13 +28,13 @@ def get_ottids_from_gbifids(gbif_ids):
 
     Args:
         gbif_ids (list) : A list of GBIF taxon ids.  They will be converted to
-            integers in the request
+            integers in the request.
 
     Note:
         * Any GBIF taxon id that was not found will have a value of None
 
     Returns:
-        Mapping dictionary
+        Mapping dictionary.
     """
     # Ids need to be integers
     processed_ids = [int(gid) for gid in gbif_ids]
@@ -67,7 +67,7 @@ def get_ottids_from_gbifids(gbif_ids):
 
 # .............................................................................
 def induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME):
-    """Retrieves a Newick tree containing the nodes represented by the ids
+    """Retrieves a Newick tree containing the nodes represented by the ids.
 
     Calls the Open Tree 'induced_subtree' service to retrieve a tree, in Newick
     format, containing the nodes represented by the provided Open Tree IDs.
@@ -77,6 +77,9 @@ def induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME):
             integers in the request.
         label_format (str) : The label string format to use when creating the
             tree on the server. (see: LABEL_FORMAT)
+
+    Returns:
+        dict: A dictionary of the subtree response after JSON processing.
     """
     # Ids need to be integers
     processed_ids = [int(ottid) for ottid in ott_ids]

@@ -1,15 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Test module for Open Tree of Life client
+"""Test module for Open Tree of Life client.
 
 Note:
      * Assumes that dendropy is available for validating trees
-     * Uses pytest style testing
 """
 import dendropy
-import pytest
 
 from biotaphy.client.ot_service_wrapper import open_tree
+
 
 # Testing constants
 # ....................................
@@ -71,17 +70,16 @@ GBIF_ID_MAP = {
     '8280496': 6044341,  # Heuchera ×brizoides
     '8365087': 1035572   # Heuchera micrantha
 }
+
 BAD_GBIF_IDS = ['999999', '1231312222222', '8888888']
 
 
 # .............................................................................
-class Test_get_tree_from_gbif_ids(object):
-    """Tests that a tree can be retrieved starting with a set of GBIF ids
-    """
+class Test_get_tree_from_gbif_ids:
+    """Tests that a tree can be retrieved starting with a set of GBIF ids."""
     # ...........................
     def test_good_gbif_ids(self):
-        """Tests that tree can be retrieved when input is set of GBIF ids
-        """
+        """Tests that tree can be retrieved when input is set of GBIF ids."""
         gbif_ids = GBIF_ID_MAP.keys()
         id_map = open_tree.get_ottids_from_gbifids(gbif_ids)
         # Make sure we haven't lost any ids
@@ -105,7 +103,7 @@ class Test_get_tree_from_gbif_ids(object):
             # Id map contains integers as of now, check to make sure each tip
             #     is in mapping
             # Taxon labels look like 'ott{ottid}'
-            search_label = taxon.label.strip('ott')
+            search_label = taxon.label.replace('ott', '')
             assert search_label in id_map.keys()
 
         # Make sure any unmatched ids are in mapping
@@ -115,8 +113,7 @@ class Test_get_tree_from_gbif_ids(object):
 
 # .............................................................................
 class Test_get_ottids_from_gbif_ids(object):
-    """Test the Open Tree of Life function for retrieving ottids from GBIF ids
-    """
+    """Test the Open Tree of Life function for retrieving ottids from GBIF ids."""
     # ...........................
     def test_all_bad_gbif_ids(self):
         """Test that the service responds correctly to "bad" GBIF ids.
@@ -126,14 +123,13 @@ class Test_get_ottids_from_gbif_ids(object):
                 entry is None
         """
         id_map = open_tree.get_ottids_from_gbifids(BAD_GBIF_IDS)
-        for gid, ottid in id_map.items():
+        for _, ottid in id_map.items():
             # Value should be None
             assert not ottid
 
     # ...........................
     def test_all_good_gbif_ids(self):
-        """Test that he service responds correctly and values match test values
-        """
+        """Test that he service responds correctly and values match test values."""
         test_gbif_ids = GBIF_ID_MAP.keys()
 
         id_map = open_tree.get_ottids_from_gbifids(test_gbif_ids)
@@ -144,8 +140,7 @@ class Test_get_ottids_from_gbif_ids(object):
 
     # ...........................
     def test_some_bad_gbif_ids(self):
-        """Test that the service responds correctly to a mix of inputs.
-        """
+        """Test that the service responds correctly to a mix of inputs."""
         test_gbif_ids = list(GBIF_ID_MAP.keys())
         test_gbif_ids.extend(BAD_GBIF_IDS)
 
@@ -161,12 +156,10 @@ class Test_get_ottids_from_gbif_ids(object):
 
 # .............................................................................
 class Test_induced_subtree(object):
-    """Test that the induced subtree service returns the tree we expect.
-    """
+    """Test that the induced subtree service returns the tree we expect."""
     # ...........................
     def test_all_bad_ottids(self):
-        """Test that the service responds appropriately when given bad data
-        """
+        """Test that the service responds appropriately when given bad data."""
         resp = open_tree.induced_subtree(
             BAD_OTT_IDS, label_format=open_tree.LABEL_FORMAT.ID)
         newick = resp['newick']
@@ -177,8 +170,7 @@ class Test_induced_subtree(object):
 
     # ...........................
     def test_all_good_ottids(self):
-        """Test that the service responds correctly when only good ids are used
-        """
+        """Test that the service responds correctly when only good ids are used."""
         resp = open_tree.induced_subtree(
             GOOD_OTT_IDS, label_format=open_tree.LABEL_FORMAT.ID)
         newick = resp['newick']
@@ -189,8 +181,7 @@ class Test_induced_subtree(object):
 
     # ...........................
     def test_some_bad_ottids(self):
-        """Test that the service handles a mix of good and bad ott ids
-        """
+        """Test that the service handles a mix of good and bad ott ids."""
         test_ids = GOOD_OTT_IDS
         test_ids.extend(BAD_OTT_IDS)
 

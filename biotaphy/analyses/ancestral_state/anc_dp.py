@@ -1,7 +1,5 @@
-"""Module containing code for calculating ancestral states.
-"""
+"""Module containing code for calculating ancestral states."""
 import math
-import sys
 
 import numpy as np
 import scipy.linalg as la
@@ -42,14 +40,20 @@ def calculate_ancestral_distributions(tree, char_mtx):
             * depth: first is the calculated value, second layer is standard
                 error if desired
     """
-    return calculate_continuous_ancestral_states(tree, char_mtx,
-                                                 sum_to_one=True,
-                                                 calc_std_err=True)
+    return calculate_continuous_ancestral_states(
+        tree, char_mtx,
+        sum_to_one=True,
+        calc_std_err=True
+    )
 
 
 # .............................................................................
-def calculate_continuous_ancestral_states(tree, char_mtx, sum_to_one=False,
-                                          calc_std_err=False):
+def calculate_continuous_ancestral_states(
+        tree,
+        char_mtx,
+        sum_to_one=False,
+        calc_std_err=False
+):
     """Calculates the continuous ancestral states for the nodes in a tree.
 
     Args:
@@ -61,6 +65,9 @@ def calculate_continuous_ancestral_states(tree, char_mtx, sum_to_one=False,
             for each variable.  Defaults to False.
         sum_to_one (:obj:`bool`, optional): If True, standardize the character
             matrix so that the values in a row sum to one. Defaults to False.
+
+    Raises:
+        ValueError: Raised if none of the tree tips were found in the character data.
 
     Returns:
         A matrix of character data with the following dimensions:
@@ -94,8 +101,7 @@ def calculate_continuous_ancestral_states(tree, char_mtx, sum_to_one=False,
             keep_taxon_labels.append(label)
 
     if len(keep_taxon_labels) == 0:
-        raise Exception(
-            'None of the tree tips were found in the character data')
+        raise ValueError('None of the tree tips were found in the character data')
 
     tree.prune_taxa(prune_taxa)
     tree.purge_taxon_namespace()

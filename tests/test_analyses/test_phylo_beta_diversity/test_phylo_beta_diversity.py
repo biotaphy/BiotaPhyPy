@@ -1,8 +1,4 @@
-"""This module is used for testing phylogenetic beta diversity
-
-Notes:
-    * Uses pytest style testing.
-"""
+"""This module is used for testing phylogenetic beta diversity."""
 import numpy as np
 
 from lmpy import Matrix, TreeWrapper
@@ -11,12 +7,15 @@ from biotaphy.analyses.phylo_beta_diversity import phylo_beta_diversity as pbd
 
 
 # .............................................................................
-class Test_phylo_beta_diversity_jaccard(object):
-    """Test phylogenetic beta diversity using the jaccard index family
-    """
+class Test_phylo_beta_diversity_jaccard:
+    """Test phylogenetic beta diversity using the jaccard index family."""
     # .....................................
     def test_valid(self, valid_phylo_beta_diversity_package):
-        """Test the method with valid data
+        """Test the method with valid data.
+
+        Args:
+            valid_phylo_beta_diversity_package (tuple): A tuple of information that
+                together forms a valid phylogenetic beta diversity package.
 
         Note:
             * Test values were determined from example at
@@ -59,22 +58,17 @@ class Test_phylo_beta_diversity_jaccard(object):
         assert np.allclose(beta_jac, test_beta_jac)
         assert np.allclose(phylo_beta_jac, test_phylo_beta_jac)
 
-    # .....................................
-    def test_extra_species_in_pam(self):
-        pass
-
-    # .....................................
-    def test_extra_species_in_tree(self):
-        pass
-
 
 # .............................................................................
-class Test_phylo_beta_diversity_sorensen(object):
-    """Test phylogenetic beta diversity using the sorensen index family
-    """
+class Test_phylo_beta_diversity_sorensen:
+    """Test phylogenetic beta diversity using the sorensen index family."""
     # .....................................
     def test_valid(self, valid_phylo_beta_diversity_package):
-        """Test the method with valid data
+        """Test the method with valid data.
+
+        Args:
+            valid_phylo_beta_diversity_package (tuple): A tuple of information that
+                together forms a valid phylogenetic beta diversity package.
 
         Note:
             * Test values were determined from example at
@@ -117,11 +111,3 @@ class Test_phylo_beta_diversity_sorensen(object):
         assert np.allclose(phylo_beta_sne, test_phylo_beta_sne)
         assert np.allclose(beta_sor, test_beta_sor)
         assert np.allclose(phylo_beta_sor, test_phylo_beta_sor)
-
-    # .....................................
-    def test_extra_species_in_pam(self):
-        pass
-
-    # .....................................
-    def test_extra_species_in_tree(self):
-        pass

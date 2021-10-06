@@ -1,12 +1,5 @@
-"""Module for testing site statistic computations.
-
-Notes:
-    * Uses pytest style testing.
-"""
-import os
-
+"""Module for testing site statistic computations."""
 import numpy as np
-import pytest
 
 from lmpy import Matrix, TreeWrapper
 
@@ -16,7 +9,8 @@ from biotaphy.analyses.pam_stats.site_statistics import (
     node_height_percentile_75, node_height_percentile_97_5,
     mean_tip_length, median_tip_length, tip_length_percentile_2_5,
     tip_length_percentile_25, tip_length_percentile_75,
-    tip_length_percentile_97_5, calculate_tree_site_statistics)
+    tip_length_percentile_97_5, calculate_tree_site_statistics
+)
 
 
 # .............................................................................
@@ -74,7 +68,7 @@ class Test_calculate_tree_site_statistics:
 
 
 # .............................................................................
-class Test_individual_statss:
+class Test_individual_stats:
     """Test individual stats."""
     # ................................
     def test_get_tip_lengths(self):
@@ -125,3 +119,45 @@ class Test_individual_statss:
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
         assert node_height_percentile_97_5(tree) == 49.25
+
+    # ................................
+    def test_mean_tip_length(self):
+        """Simple test of mean_tip_length."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert mean_tip_length(tree) == 35
+
+    # ................................
+    def test_median_tip_length(self):
+        """Simple test of median_tip_length."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert median_tip_length(tree) == 35
+
+    # ................................
+    def test_tip_length_percentile_2_5(self):
+        """Simple test of tip_length_percentile_2_5."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert tip_length_percentile_2_5(tree) == 20.75
+
+    # ................................
+    def test_tip_length_percentile_25(self):
+        """Simple test of tip_length_percentile_25."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert tip_length_percentile_25(tree) == 27.5
+
+    # ................................
+    def test_tip_length_percentile_75(self):
+        """Simple test of tip_length_percentile_75."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert tip_length_percentile_75(tree) == 42.5
+
+    # ................................
+    def test_tip_length_percentile_97_5(self):
+        """Simple test of tip_length_percentile_97_5."""
+        tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
+        tree = TreeWrapper.get(data=tree_str, schema='newick')
+        assert tip_length_percentile_97_5(tree) == 49.25

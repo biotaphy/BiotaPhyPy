@@ -81,11 +81,10 @@ if __name__ == '__main__':
                 in_file)
     elif args.data_format == 'json':
         with open(args.data_filename) as in_file:
-            sequences, headers = data_readers.read_json_alginment_flo(
-                inf_file)
+            sequences, headers = data_readers.read_json_alignment_flo(in_file)
     elif args.data_format == 'phylip':
         with open(args.data_filename) as in_file:
-            sequences = data_reders.read_phylip_alignment_flo(in_file)
+            sequences = data_readers.read_phylip_alignment_flo(in_file)
         headers = None
     elif args.data_format == 'table':
         with open(args.data_filename) as in_file:
@@ -100,11 +99,11 @@ if __name__ == '__main__':
         try:
             # Try looking for the string
             label_column = headers.index(args.annotate_labels)
-        except:
+        except Exception:
             try:
                 # Treat it as an integer
                 label_column = int(args.annotate_labels)
-            except:
+            except Exception:
                 raise Exception(
                     'Could not find column to use for labels.  '
                     'Check the name to make sure it matches or use column'

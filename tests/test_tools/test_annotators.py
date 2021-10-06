@@ -1,10 +1,5 @@
-"""This module contains classes and functions for testing annotators.
-
-Note:
-    * Uses pytest style testing.
-"""
+"""This module contains classes and functions for testing annotators."""
 import numpy as np
-import pytest
 
 from lmpy import Matrix, TreeWrapper
 
@@ -12,13 +7,11 @@ import biotaphy.analyses.tools.annotators as annotators
 
 
 # .............................................................................
-class Test_add_all_annotations(object):
-    """Test class for the add_all_annotations method.
-    """
+class Test_add_all_annotations:
+    """Test class for the add_all_annotations method."""
     # .....................................
     def test_valid(self):
-        """Test the function with valid inputs.
-        """
+        """Test the function with valid inputs."""
         # Create a tree
         tree = TreeWrapper.get(data='(A,(B,((C,D),(E,F))));', schema='newick')
         mtx = Matrix(
@@ -31,12 +24,10 @@ class Test_add_all_annotations(object):
 
 # .............................................................................
 class Test_annotate_tree_with_label(object):
-    """Test class for the annotate_tree_with_label method.
-    """
+    """Test class for the annotate_tree_with_label method."""
     # .....................................
     def test_valid(self):
-        """Test the function with valid inputs.
-        """
+        """Test the function with valid inputs."""
         # Create a tree
         tree = TreeWrapper.get(data='(A,(B,((C,D),(E,F))));', schema='newick')
         mtx = Matrix(

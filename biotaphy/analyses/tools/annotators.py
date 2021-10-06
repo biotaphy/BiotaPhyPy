@@ -1,5 +1,4 @@
-"""Module containing tools for annotating trees with ancestral trait data.
-"""
+"""Module containing tools for annotating trees with ancestral trait data."""
 
 
 # .............................................................................

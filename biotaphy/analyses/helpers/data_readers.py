@@ -6,7 +6,6 @@ Todo:
 import csv
 import json
 import os
-import sys
 
 import numpy as np
 
@@ -17,14 +16,13 @@ from biotaphy.analyses.helpers.sequence import Sequence
 
 # .............................................................................
 class AlignmentIOError(Exception):
-    """Wrapper class for alignment errors.
-    """
+    """Wrapper class for alignment errors."""
     pass
 
 
 # .............................................................................
 def create_sequence_list_from_dict(values_dict):
-    """Creates a list of sequences from a dictionary
+    """Creates a list of sequences from a dictionary.
 
     Args:
         values_dict (dict) : A dictionary of taxon name keys and a list of
@@ -37,9 +35,8 @@ def create_sequence_list_from_dict(values_dict):
                 "{taxon_name}" : [{values}]
             }
 
-
     Returns:
-        A list of Sequence objects and None for headers.
+        list: A list of Sequence objects and None for headers.
 
     Raises:
         AlignmentIOError: If a dictionary value is not a list.
@@ -86,7 +83,7 @@ def get_character_matrix_from_sequences_list(sequences, var_headers=None):
 
 # .............................................................................
 def load_alignment_from_filename(filename):
-    """Attempts to load an alignment from a file path by guessing schema
+    """Attempts to load an alignment from a file path by guessing schema.
 
     Args:
         filename (str): The file location containing the alignment
@@ -115,7 +112,7 @@ def load_alignment_from_filename(filename):
         ret = load_method(align_file)
     try:
         sequences, headers = ret
-    except:
+    except Exception:
         sequences = ret
         headers = None
     return sequences, headers

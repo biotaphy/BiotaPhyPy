@@ -1,21 +1,13 @@
-"""This module tests the sequence module.
-
-Note:
-    * This module uses pytest style tests for the sequence module.
-"""
-import pytest
-
+"""This module tests the sequence module."""
 from biotaphy.analyses.helpers import sequence
 
 
 # .............................................................................
 class Test_Sequence(object):
-    """Test the Sequence class.
-    """
+    """Test the Sequence class."""
     # .....................................
     def test_set_cont_values(self):
-        """Test the set_cont_values method.
-        """
+        """Test the set_cont_values method."""
         seq = sequence.Sequence(name='test')
         new_vals = [1, 2, 3, 4, 5]
         seq.set_cont_values(new_vals)
@@ -71,8 +63,7 @@ class Test_Sequence(object):
 
     # .....................................
     def test_get_fasta(self):
-        """Test the get_fasta method.
-        """
+        """Test the get_fasta method."""
         name = 'test_name'
         seq_str = 'abcdefg'
         seq = sequence.Sequence(name=name, seq=seq_str)
@@ -80,8 +71,7 @@ class Test_Sequence(object):
 
     # .....................................
     def test_get_fastq(self):
-        """Test the get_fastq method.
-        """
+        """Test the get_fastq method."""
         name = 'test_name'
         seq_str = 'abcdefg'
         qual_str = 'abcdefg'
@@ -92,8 +82,7 @@ class Test_Sequence(object):
 
     # .....................................
     def test_constructor(self):
-        """Test Sequence construction.
-        """
+        """Test Sequence construction."""
         _ = sequence.Sequence(name='test', seq='aaa')
         _ = sequence.Sequence(name='test')
         _ = sequence.Sequence(seq='aaa')

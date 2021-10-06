@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Setup module for BiotaPhyPy."""
 from setuptools import setup, find_packages
 
 with open('README.md', 'r', encoding='utf-8') as f:
@@ -22,5 +23,6 @@ setup(
         'dendropy>=4.0.0',
         'matplotlib',
         'numpy>=1.11.0',
-        'scipy>=1.0.0']
+        'scipy>=1.0.0'
+    ]
 )
