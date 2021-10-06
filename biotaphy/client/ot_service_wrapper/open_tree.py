@@ -1,13 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Module for Open Tree of Life client
-"""
+"""Module for Open Tree of Life client."""
 import json
 from urllib.request import Request, urlopen
 
-DEV_SERVER = 'http://141.211.236.35:10999'
-INDUCED_SUBTREE_BASE_URL = '{}/induced_subtree'.format(DEV_SERVER)
-OTTIDS_FROM_GBIFIDS_URL = '{}/ottids_from_gbifids'.format(DEV_SERVER)
+PRODUCTION_SERVER = 'https://api.opentreeoflife.org/v3/tree_of_life'
+INDUCED_SUBTREE_BASE_URL = '{}/induced_subtree'.format(PRODUCTION_SERVER)
+OTTIDS_FROM_GBIFIDS_URL = '{}/ottids_from_gbifids'.format(PRODUCTION_SERVER)
 
 
 # .............................................................................
