@@ -5,23 +5,23 @@ Phylogenetic Beta Diversity
 Description
 ===========
 The ancestral distribution tool (`bin/ancestral_distribution.py`) uses a novel
-approach developed by S.A. Smith and B. O'Meara. Given a set of histograms for 
-species, representing occupancy of environmental space in terms of common bins 
-(i.e., a PNO or predicted niche occupancy profile), this approach reconstructs 
-ancestral histograms of occupancy of climate space. 
+approach developed by S.A. Smith and B. O'Meara. Given a set of histograms for
+species, representing occupancy of environmental space in terms of common bins
+(i.e., a PNO or predicted niche occupancy profile), this approach reconstructs
+ancestral histograms of occupancy of climate space.
 
-This approach is different from those used previously, based either on (1) summary 
-statistics (mean, median, maximum, 95th percentile, etc.), or (2) sampling 
-statistically from present day environmental space. Instead of sampling environmental 
-space, probabilities of climate occupancy per bin are explicitly reconstructed. 
-Likewise, unlike summary statistic approaches, which result either in a point 
-estimate (mean/median) or a minimum and maximum constraint on ancestral 
-reconstructions (min/max coding), a distribution is explicitly reconstructed 
-here, revealing the potential shape of ancestral climate space. A key advantage 
-of this approach is the ability to reconstruct multimodal ancestral 
-distributions, whereas sampling-based approaches tend to result in normally 
-distributed ancestral reconstructions regardless of extant species 
-distributions. 
+This approach is different from those used previously, based either on (1) summary
+statistics (mean, median, maximum, 95th percentile, etc.), or (2) sampling
+statistically from present day environmental space. Instead of sampling environmental
+space, probabilities of climate occupancy per bin are explicitly reconstructed.
+Likewise, unlike summary statistic approaches, which result either in a point
+estimate (mean/median) or a minimum and maximum constraint on ancestral
+reconstructions (min/max coding), a distribution is explicitly reconstructed
+here, revealing the potential shape of ancestral climate space. A key advantage
+of this approach is the ability to reconstruct multimodal ancestral
+distributions, whereas sampling-based approaches tend to result in normally
+distributed ancestral reconstructions regardless of extant species
+distributions.
 
 Input species data must have common bins or results will be meaningless.
 
@@ -30,15 +30,15 @@ Using
 =====
 
  ::
- 
+
     usage: phylo_beta_diversity.py [-h] [-n NUMBER_PERMUTATIONS] [-a ALPHA]
                                    in_tree_filename {newick,nexml,nexus}
                                    pam_filename {csv,json,phylip,table}
                                    {sorensen,jaccard} out_foldername
-    
+
     Computes phylogenetic & ecological beta diversity components for Sorensen and
     Jaccard Indices.
-    
+
     positional arguments:
       in_tree_filename      Path to the tree file
       {newick,nexml,nexus}  The format of the tree
@@ -48,7 +48,7 @@ Using
       {sorensen,jaccard}    Beta diversity family metric to calculate
       out_foldername        Write the output of beta diversity calculations to
                             this folder
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -n NUMBER_PERMUTATIONS, --number_permutations NUMBER_PERMUTATIONS
@@ -59,15 +59,15 @@ Using
 Data formats
 ============
 
-Alignment data can be provided as CSV [pages/format_csv]_, JSON 
+Alignment data can be provided as CSV [pages/format_csv]_, JSON
 [pages/format_csv]_, Phylip [pages/format_phylip]_, or an alignment table.
 Tree data can be provided as Newick [pages/format_newick]_, NeXML
 [pages/format_nexml]_, or Nexus [pages/format_nexus].
 
 CSV
 ---
-For CSV data, the first row can contain headers for the columns in the file.  
-Each row should have a header for the taxon that it represents.  An example CSV 
+For CSV data, the first row can contain headers for the columns in the file.
+Each row should have a header for the taxon that it represents.  An example CSV
 alignment file looks like ::
 
     , var_1, var_2, var_3, var_4, var_5, var_6
@@ -219,7 +219,7 @@ resulting tree be formatted as Nexus.  An example Nexus file looks like ::
             F
       ;
     END;
-    
+
     BEGIN TREES;
         TREE 1 = (A:2.9999,((B:0.1,C:0.1):0.1,(G:0.2,(D:0.1,(E:0.1,F:0.1):0.1):0.1):0.1):0.1);
     END;
@@ -227,7 +227,7 @@ resulting tree be formatted as Nexus.  An example Nexus file looks like ::
 
 Executable
 ==========
-The phylogenetic beta diversity executable can be found at 
+The phylogenetic beta diversity executable can be found at
 `bin/phylo_beta_diversity.py`
 
 Output

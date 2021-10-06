@@ -16,7 +16,7 @@ Example
 =======
 
  ::
- 
+
        3        15
     Rabbit    GCCCAACGTN NNATC
     Squirrel  CGAGGCTANA TATGG
