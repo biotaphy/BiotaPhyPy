@@ -3,7 +3,7 @@
  - [ ] New Feature
  - [ ] Documentation
  - [ ] Other
- 
+
 ## Status
  - [ ] Ready
  - [ ] In development
@@ -29,4 +29,3 @@ If this is for a new feature, describe how it should be tested.  What do the inp
 
 ## Sample Data
 What files contain sample data for testing?  Which are inputs, which are outputs?
-
