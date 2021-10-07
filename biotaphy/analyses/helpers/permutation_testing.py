@@ -1,5 +1,4 @@
-"""Module containing functions for permutation testing
-"""
+"""Module containing functions for permutation testing."""
 from copy import deepcopy
 import numpy as np
 
@@ -8,34 +7,43 @@ from lmpy import Matrix
 
 # .............................................................................
 def compare_absolute_values(obs, rand):
-    """Compares the absolute value of the observed data and the random data
+    """Compares the absolute value of the observed data and the random data.
 
     Args:
         obs (:obj: `Numpy array`): A numpy array of observed values
         rand (:obj: `Numpy array`): A numpy array of random values
+
+    Returns:
+        bool: Indication if absolute(rand) is greater than absolute(obs).
     """
     return np.abs(rand) > np.abs(obs)
 
 
 # .............................................................................
 def compare_signed_values(obs, rand):
-    """Compares the signed value of the observed data and the random data
+    """Compares the signed value of the observed data and the random data.
 
     Args:
         obs (:obj: `Numpy array`): A numpy array of observed values
         rand (:obj: `Numpy array`): A numpy array of random values
+
+    Returns:
+        bool: Indication if rand is greater than obs.
     """
     return rand > obs
 
 
 # .............................................................................
 def correct_p_values(p_values_matrix, false_discovery_rate=0.05):
-    """Perform P-value correction
+    """Perform P-value correction.
 
     Args:
         p_values_matrix (:obj: `Matrix`): A Matrix of p-values to correct
         false_discovery_rate (:obj: `float`): An acceptable false discovery
             rate (alpha) value to declare a cell significant
+
+    Returns:
+        Matrix: A matrix object of significant values.
 
     Todo:
         * Enable other correction types
@@ -72,9 +80,8 @@ def correct_p_values(p_values_matrix, false_discovery_rate=0.05):
 
 
 # .............................................................................
-def get_p_values(observed_matrix, test_matrices,
-                 compare_func=compare_absolute_values):
-    """Gets p-values by comparing the observed and random data
+def get_p_values(observed_matrix, test_matrices, compare_func=compare_absolute_values):
+    """Gets p-values by comparing the observed and random data.
 
     Args:
         observed_matrix (:obj: `Matrix`): A Matrix object with observed values
@@ -82,6 +89,9 @@ def get_p_values(observed_matrix, test_matrices,
             obtained through permutations
         compare_func (:obj: `function`): A function that, when given two
             values, returns True if the second meets the condition
+
+    Returns:
+        numpy.ndarray: An array of p-values.
 
     Todo:
         * Take optional clip values

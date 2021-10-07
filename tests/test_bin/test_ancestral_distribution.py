@@ -1,8 +1,6 @@
-"""This module tests the ancestral_distribution executable script
-"""
+"""This module tests the ancestral_distribution executable script."""
 import numpy as np
 import os
-import pytest
 import subprocess
 import sys
 
@@ -10,9 +8,8 @@ import lmpy
 
 
 # .............................................................................
-class Test_ancestral_distribution(object):
-    """Test ancestral distribution reconstruction
-    """
+class Test_ancestral_distribution:
+    """Test ancestral distribution reconstruction."""
     base_dir = os.path.join(
         os.path.abspath(os.path.dirname(__file__)), '../..')
     script_path = os.path.join(base_dir, 'bin/ancestral_distribution.py')

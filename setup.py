@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Setup module for BiotaPhyPy."""
 from setuptools import setup, find_packages
 
 with open('README.md', 'r', encoding='utf-8') as f:
@@ -9,7 +10,7 @@ with open('LICENSE', 'r', encoding='utf-8') as f:
 
 setup(
     name='biotaphypy',
-    version='1.2.2',
+    version='1.3.0',
     description='BiotaPhy Python Package',
     long_description=readme,
     author='Biotaphy Team',
@@ -22,5 +23,6 @@ setup(
         'dendropy>=4.0.0',
         'matplotlib',
         'numpy>=1.11.0',
-        'scipy>=1.0.0']
+        'scipy>=1.0.0'
+    ]
 )

@@ -8,7 +8,7 @@ Description
 JSON (JavaScript Object Notation) [#f1]_ is a text-based data format designed
 to be easy for humans and machines to read and understand.  It has a simple
 schema of objects, arrays, and values that can be nested.  It is compatible
-with a Python dictionary. 
+with a Python dictionary.
 
 Example
 =======

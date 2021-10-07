@@ -1,15 +1,5 @@
-"""This module contains classes and functions for testing data readers.
-
-Note:
-    * Uses pytest style testing.
-"""
-try:
-    from StringIO import StringIO
-    string_formats = (basestring)
-except:
-    # Python 3
-    from io import StringIO
-    string_formats = (str)
+"""This module contains classes and functions for testing data readers."""
+from io import StringIO
 
 import pytest
 
@@ -19,14 +9,12 @@ import biotaphy.analyses.helpers.data_readers as dr
 from biotaphy.analyses.helpers.sequence import Sequence
 
 
-# .............................................................................
-class Test_create_sequence_list_from_dict(object):
-    """Test class for the create_sequence_list_from_dict method.
-    """
+# .....................................................................................
+class Test_create_sequence_list_from_dict:
+    """Test class for the create_sequence_list_from_dict method."""
     # .....................................
     def test_invalid_dict(self):
-        """Tests that function fails with a dict that has the wrong structure.
-        """
+        """Tests that function fails with a dict that has the wrong structure."""
         test_dict = {
             "name1": [1, 2, 3],
             "name2": "bad value"
@@ -36,8 +24,7 @@ class Test_create_sequence_list_from_dict(object):
 
     # .....................................
     def test_valid_dict(self):
-        """Tests that the function operates correctly with valid input data.
-        """
+        """Tests that the function operates correctly with valid input data."""
         test_dict = {
             "A": [0.9, 0.2, 0.2, 0.3, 0.4, 0.4],
             "B": [0.01, 0.1, 0.2, 0.3, 0.4, 0.4],
@@ -50,18 +37,16 @@ class Test_create_sequence_list_from_dict(object):
         sequence_list, headers = dr.create_sequence_list_from_dict(test_dict)
         for i in sequence_list:
             assert isinstance(i, Sequence)
-            assert isinstance(i.name, string_formats)
+            assert isinstance(i.name, str)
             assert len(i.cont_values) > 0
 
 
-# .............................................................................
-class Test_get_character_matrix_from_sequences_list(object):
-    """Test class for get_character_matrix_from_sequences_list method.
-    """
+# .....................................................................................
+class Test_get_character_matrix_from_sequences_list:
+    """Test class for get_character_matrix_from_sequences_list method."""
     # .....................................
     def test_valid_no_headers(self):
-        """Test the function with valid Sequences and no variable headers.
-        """
+        """Test the function with valid Sequences and no variable headers."""
         seq1 = Sequence(name='seq1')
         seq1.set_cont_values([1.0, 2.0, 3.0])
         seq2 = Sequence(name='seq2')
@@ -72,8 +57,7 @@ class Test_get_character_matrix_from_sequences_list(object):
 
     # .....................................
     def test_valid_with_headers(self):
-        """Test the function with valid Sequences and include headers.
-        """
+        """Test the function with valid Sequences and include headers."""
         seq1 = Sequence(name='seq1')
         seq1.set_cont_values([1.0, 2.0, 3.0])
         seq2 = Sequence(name='seq2')
@@ -87,9 +71,8 @@ class Test_get_character_matrix_from_sequences_list(object):
 
 
 # .............................................................................
-class Test_load_alignment_from_filename(object):
-    """Tests the dr.load_alignment_from_filename method.
-    """
+class Test_load_alignment_from_filename:
+    """Tests the dr.load_alignment_from_filename method."""
     # .....................................
     def test_csv_file(self, valid_csv_alignment):
         """Tests that a valid CSV file can be loaded into an alignment.
@@ -104,13 +87,12 @@ class Test_load_alignment_from_filename(object):
         assert len(sequences) > 0
         for i in sequences:
             assert isinstance(i, Sequence)
-            assert isinstance(i.name, string_formats)
+            assert isinstance(i.name, str)
             assert len(i.cont_values) > 0
 
     # .....................................
     def test_invalid_file(self):
-        """Tests that an invalid file fails properly on load.
-        """
+        """Tests that an invalid file fails properly on load."""
         with pytest.raises(RuntimeError):
             dr.load_alignment_from_filename('./file_with_bad_ext.bad')
 
@@ -129,7 +111,7 @@ class Test_load_alignment_from_filename(object):
         assert len(sequences) > 0
         for i in sequences:
             assert isinstance(i, Sequence)
-            assert isinstance(i.name, string_formats)
+            assert isinstance(i.name, str)
             assert len(i.cont_values) > 0
 
     # .....................................
@@ -146,7 +128,7 @@ class Test_load_alignment_from_filename(object):
         assert len(sequences) > 0
         for i in sequences:
             assert isinstance(i, Sequence)
-            assert isinstance(i.name, string_formats)
+            assert isinstance(i.name, str)
             assert i.seq is not None
 
     # .....................................
@@ -163,14 +145,13 @@ class Test_load_alignment_from_filename(object):
         assert len(sequences) > 0
         for i in sequences:
             assert isinstance(i, Sequence)
-            assert isinstance(i.name, string_formats)
+            assert isinstance(i.name, str)
             assert len(i.cont_values) > 0
 
 
-# .............................................................................
-class Test_read_csv_alignment_flo(object):
-    """Tests the dr.read_csv_alignment_flo method.
-    """
+# .....................................................................................
+class Test_read_csv_alignment_flo:
+    """Tests the dr.read_csv_alignment_flo method."""
     # .....................................
     def test_file_invalid(self, invalid_csv_alignment):
         """Tests that the invalid alignment files fail properly.
@@ -190,6 +171,9 @@ class Test_read_csv_alignment_flo(object):
         Args:
             valid_csv_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid csv alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_csv_alignment) as in_csv:
             try:
@@ -198,11 +182,11 @@ class Test_read_csv_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
     # .....................................
     def test_stringio_invalid(self, invalid_csv_alignment):
@@ -232,6 +216,9 @@ class Test_read_csv_alignment_flo(object):
         Args:
             valid_csv_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid csv alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_csv_alignment) as in_csv:
             csv_stringio = StringIO()
@@ -244,17 +231,16 @@ class Test_read_csv_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
 
-# .............................................................................
-class Test_read_json_alignment_flo(object):
-    """Test class for the dr.read_json_alignment_flo method.
-    """
+# .....................................................................................
+class Test_read_json_alignment_flo:
+    """Test class for the dr.read_json_alignment_flo method."""
     # .....................................
     def test_file_invalid(self, invalid_json_alignment):
         """Tests that the invalid alignment files fail properly.
@@ -274,6 +260,9 @@ class Test_read_json_alignment_flo(object):
         Args:
             valid_json_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid json alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_json_alignment) as in_json:
             try:
@@ -284,11 +273,11 @@ class Test_read_json_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
     # .....................................
     def test_stringio_invalid(self, invalid_json_alignment):
@@ -318,6 +307,9 @@ class Test_read_json_alignment_flo(object):
         Args:
             valid_json_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid json alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_json_alignment) as in_json:
             json_stringio = StringIO()
@@ -331,17 +323,16 @@ class Test_read_json_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
 
-# .............................................................................
-class Test_read_phylip_alignment_flo(object):
-    """Test class for the dr.read_phylip_alignment_flo method.
-    """
+# .....................................................................................
+class Test_read_phylip_alignment_flo:
+    """Test class for the dr.read_phylip_alignment_flo method."""
     # .....................................
     def test_file_invalid(self, invalid_phylip_alignment):
         """Tests that the invalid alignment files fail properly.
@@ -350,9 +341,10 @@ class Test_read_phylip_alignment_flo(object):
             invalid_phylip_alignment (pytest.fixture): A parameterized pytest
                 fixture providing invalid phylip alignment filenames.
         """
+        print(invalid_phylip_alignment)
         with open(invalid_phylip_alignment) as in_phylip:
             with pytest.raises(dr.AlignmentIOError):
-                dr.read_phylip_alignment_flo(in_phylip)
+                print(dr.read_phylip_alignment_flo(in_phylip))
 
     # .....................................
     def test_file_valid(self, valid_phylip_alignment):
@@ -361,6 +353,9 @@ class Test_read_phylip_alignment_flo(object):
         Args:
             valid_phylip_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid phylip alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_phylip_alignment) as in_phylip:
             try:
@@ -368,11 +363,11 @@ class Test_read_phylip_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert i.seq is not None
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
     # .....................................
     def test_stringio_invalid(self, invalid_phylip_alignment):
@@ -402,6 +397,9 @@ class Test_read_phylip_alignment_flo(object):
         Args:
             valid_phylip_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid phylip alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_phylip_alignment) as in_phylip:
             phylip_stringio = StringIO()
@@ -413,17 +411,16 @@ class Test_read_phylip_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert i.seq is not None
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
 
-# .............................................................................
-class Test_read_table_continuous_alignment_flo(object):
-    """Test class for the read_table_continuous_alignment_flo method.
-    """
+# .....................................................................................
+class Test_read_table_continuous_alignment_flo:
+    """Test class for the read_table_continuous_alignment_flo method."""
     # .....................................
     def test_file_invalid(self, invalid_table_alignment):
         """Tests that the invalid alignment files fail properly.
@@ -443,6 +440,9 @@ class Test_read_table_continuous_alignment_flo(object):
         Args:
             valid_table_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid table alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_table_alignment) as in_table:
             try:
@@ -450,11 +450,11 @@ class Test_read_table_continuous_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)
 
     # .....................................
     def test_stringio_invalid(self, invalid_table_alignment):
@@ -484,6 +484,9 @@ class Test_read_table_continuous_alignment_flo(object):
         Args:
             valid_table_alignment (pytest.fixture): A parameterized pytest
                 fixture providing valid table alignment filenames.
+
+        Raises:
+            AssertionError: Raised if an exception is thrown when reading.
         """
         with open(valid_table_alignment) as in_table:
             table_stringio = StringIO()
@@ -494,8 +497,8 @@ class Test_read_table_continuous_alignment_flo(object):
                 assert len(sequence_list) > 0
                 for i in sequence_list:
                     assert isinstance(i, Sequence)
-                    assert isinstance(i.name, string_formats)
+                    assert isinstance(i.name, str)
                     assert len(i.cont_values) > 0
             except Exception as e:
                 print('Raised exception: {}'.format(str(e)))
-                assert False
+                raise AssertionError(e)

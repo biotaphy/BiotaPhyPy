@@ -15,7 +15,7 @@ Example
  ::
 
     #NEXUS
-    
+
     BEGIN TAXA;
         DIMENSIONS NTAX=3;
         TAXLABELS
@@ -24,7 +24,7 @@ Example
             C
       ;
     END;
-    
+
     BEGIN TREES;
         TREE 1 = (A,(B,C));
     END;

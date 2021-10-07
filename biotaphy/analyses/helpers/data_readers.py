@@ -6,7 +6,6 @@ Todo:
 import csv
 import json
 import os
-import sys
 
 import numpy as np
 
@@ -17,14 +16,13 @@ from biotaphy.analyses.helpers.sequence import Sequence
 
 # .............................................................................
 class AlignmentIOError(Exception):
-    """Wrapper class for alignment errors.
-    """
+    """Wrapper class for alignment errors."""
     pass
 
 
 # .............................................................................
 def create_sequence_list_from_dict(values_dict):
-    """Creates a list of sequences from a dictionary
+    """Creates a list of sequences from a dictionary.
 
     Args:
         values_dict (dict) : A dictionary of taxon name keys and a list of
@@ -37,9 +35,8 @@ def create_sequence_list_from_dict(values_dict):
                 "{taxon_name}" : [{values}]
             }
 
-
     Returns:
-        A list of Sequence objects and None for headers.
+        list: A list of Sequence objects and None for headers.
 
     Raises:
         AlignmentIOError: If a dictionary value is not a list.
@@ -86,7 +83,7 @@ def get_character_matrix_from_sequences_list(sequences, var_headers=None):
 
 # .............................................................................
 def load_alignment_from_filename(filename):
-    """Attempts to load an alignment from a file path by guessing schema
+    """Attempts to load an alignment from a file path by guessing schema.
 
     Args:
         filename (str): The file location containing the alignment
@@ -115,7 +112,7 @@ def load_alignment_from_filename(filename):
         ret = load_method(align_file)
     try:
         sequences, headers = ret
-    except:
+    except Exception:
         sequences = ret
         headers = None
     return sequences, headers
@@ -228,20 +225,21 @@ def read_phylip_alignment_flo(phylip_flo):
         AlignmentIOError: If there is a problem creating sequences.
     """
     seqlist = []
-    # first line is the number of taxa and num of sites
-    # we don't really even need to read this line,
-    # so let's just skip it
+    # First line is number of taxa and number of sites
     i = phylip_flo.readline()
+    num_taxa, num_sites = [int(v) for v in i.strip().split()]
+    cnt = 0
     for i in phylip_flo:
-        try:
-            if len(i) > 2:
-                spls = i.strip().split()
-                name = spls[0].strip()
-                seq = spls[1].strip()
-                tseq = Sequence(name=name, seq=seq)
-                seqlist.append(tseq)
-        except Exception as e:
-            raise AlignmentIOError(str(e))
+        cnt += 1
+        parts = i.strip().split()
+        if len(parts) != num_sites + 1:
+            # Incorrect number of sites
+            raise AlignmentIOError('Incorrect number of sites for row: {}'.format(cnt))
+        seqlist.append(Sequence(name=parts[0], seq=parts[1:]))
+    if cnt != num_taxa:
+        raise AlignmentIOError(
+            'Incorrect number of taxa.  Reported {} but found {}'.format(num_taxa, cnt)
+        )
     return seqlist
 
 

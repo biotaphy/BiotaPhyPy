@@ -1,10 +1,7 @@
 dendropy>=4.0.0
 scipy>=1.0.0
 numpy>=1.11.0
-coverage==4.5.4
-python-coveralls
-pytest
-pytest-cov>=2.4.0,<2.6
-pytest-pep8
 matplotlib
+rtree
+gdal
 git+https://github.com/lifemapper/lmpy.git#egg=lmpy

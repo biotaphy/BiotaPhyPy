@@ -1,11 +1,8 @@
-"""Module containing sequence class.
-"""
-import os
-import sys
+"""Module containing sequence class."""
 
 
 # .............................................................................
-class Sequence(object):
+class Sequence:
     """Barebones class for sequences.
 
     This is a barebones class for sequences.  These can be aligned or not and
@@ -80,6 +77,9 @@ class Sequence(object):
     # .....................................
     def get_fasta(self):
         """Get a fasta string.
+
+        Returns:
+            str - A fasta string for the sequence.
         """
         retstr = ">"
         retstr += self.name
@@ -90,6 +90,9 @@ class Sequence(object):
     # .....................................
     def get_fastq(self):
         """Get a fastq string.
+
+        Returns:
+            str - A fastq string for the sequence.
         """
         retstr = "@"
         retstr += self.name

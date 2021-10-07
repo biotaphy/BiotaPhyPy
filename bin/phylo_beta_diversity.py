@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Tool for computing beta diversity and phylo beta diversity.
 
-ARGS:
+Args:
 1) file location of the PAM (presence absence matrix)
 2) file location of the tree associsated with PAM
 3) phylo beta diversity family to use
@@ -16,7 +16,6 @@ Todo:
 """
 import argparse
 import os
-import numpy as np
 
 from lmpy import TreeWrapper
 
@@ -186,9 +185,8 @@ if __name__ == '__main__':
     # Test randomization:
     # List of lists: 0:JTU; 1:JNE; 2:JAC.
     print(res_names[5])
-    x = phylo_beta_diversity.calc_phylo_jac_distr(
-        pam, tree, obs=results[5], metric="jne", nrand=nrand)
-    print(x.data)
+    jac_distr = phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard(pam, tree)
+    print(jac_distr[-1])
     # print x[1].data[0]#[1][0]
     # print x[1].data[1][0]
     # for i in range(len(x)):

@@ -1,8 +1,5 @@
 """This module is used for testing ancestral state reconstruction.
 
-Notes:
-    * Uses pytest style testing.
-
 Todo:
     * Need a general load tree and alignment method so error handling is not in
         testing.
@@ -19,10 +16,9 @@ from biotaphy.analyses.ancestral_state import anc_dp
 import biotaphy.analyses.helpers.data_readers as data_readers
 
 
-# .............................................................................
-class Test_calculate_continuous_ancestral_states(object):
-    """Tests ancestral state reconstruction.
-    """
+# .....................................................................................
+class Test_calculate_continuous_ancestral_states:
+    """Tests ancestral state reconstruction."""
     # .....................................
     def test_package_invalid(self, invalid_ancestral_state_package):
         """Test calculate_continusous_ancestral_states with invalid data.
@@ -186,10 +182,9 @@ class Test_calculate_continuous_ancestral_states(object):
                         row))
 
 
-# .............................................................................
-class Test_ancestral_distribution(object):
-    """Tests ancestral distribution reconstruction.
-    """
+# .....................................................................................
+class Test_ancestral_distribution:
+    """Tests ancestral distribution reconstruction."""
     # .....................................
     def test_package_invalid(self, invalid_ancestral_distribution_package):
         """Test calculate_ancestral_distributions method with invalid data.
@@ -260,10 +255,10 @@ class Test_ancestral_distribution(object):
         """Tests the calculate_ancestral_distributions method.
 
         Args:
-            invalid_ancestral_distribution_package (pytest.fixture): A pytest
-                fixture that is parametrized to provide invalid ancestral
+            valid_ancestral_distribution_package (pytest.fixture): A pytest
+                fixture that is parametrized to provide valid ancestral
                 distributions, one at a time, so that there are multiple test
-                functions defined for each invalid package.
+                functions defined for each valid package.
 
         Raises:
             IOError: When the tree or alignment cannot be loaded for the

@@ -47,9 +47,9 @@ Example
 .. rubric :: Footnotes
 
 .. [#f1] http://www.nexml.org/
-.. [#f2] Rutger A. Vos, James P. Balhoff, Jason A. Caravas, Mark T. Holder, 
-           Hilmar Lapp, Wayne P. Maddison, Peter E. Midford, Anurag Priyam, 
-           Jeet Sukumaran, Xuhua Xia, Arlin Stoltzfus; NeXML: Rich, Extensible, 
-           and Verifiable Representation of Comparative Data and Metadata, 
-           Systematic Biology, Volume 61, Issue 4, 1 July 2012, Pages 675–689, 
+.. [#f2] Rutger A. Vos, James P. Balhoff, Jason A. Caravas, Mark T. Holder,
+           Hilmar Lapp, Wayne P. Maddison, Peter E. Midford, Anurag Priyam,
+           Jeet Sukumaran, Xuhua Xia, Arlin Stoltzfus; NeXML: Rich, Extensible,
+           and Verifiable Representation of Comparative Data and Metadata,
+           Systematic Biology, Volume 61, Issue 4, 1 July 2012, Pages 675–689,
            https://doi.org/10.1093/sysbio/sys025
