@@ -1,0 +1,21 @@
+:py:mod:`biotaphy`
+==================
+
+.. py:module:: biotaphy
+
+.. autoapi-nested-parse::
+
+   Biotaphy base module __init__.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   analyses/index.rst
+   client/index.rst
+
+

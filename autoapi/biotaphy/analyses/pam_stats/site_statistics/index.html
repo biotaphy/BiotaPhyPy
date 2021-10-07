@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biotaphy.analyses.pam_stats.site_statistics &mdash; Biotaphy BiotaPhyPy 1.3.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> Biotaphy BiotaPhyPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pages/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../analyses/analyses.html">Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pages/data_formats.html">Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pages/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Biotaphy BiotaPhyPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.analyses.pam_stats.site_statistics</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/biotaphy/analyses/pam_stats/site_statistics/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-biotaphy.analyses.pam_stats.site_statistics">
+<span id="biotaphy-analyses-pam-stats-site-statistics"></span><h1><a class="reference internal" href="#module-biotaphy.analyses.pam_stats.site_statistics" title="biotaphy.analyses.pam_stats.site_statistics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.analyses.pam_stats.site_statistics</span></code></a><a class="headerlink" href="#module-biotaphy.analyses.pam_stats.site_statistics" title="Permalink to this headline"></a></h1>
+<p>Module containing functions for computing site statistics.</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.calculate_tree_site_statistics" title="biotaphy.analyses.pam_stats.site_statistics.calculate_tree_site_statistics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_tree_site_statistics</span></code></a>(pam, tree)</p></td>
+<td><p>Calculate tree statistics for each site in a PAM.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.get_tip_lengths" title="biotaphy.analyses.pam_stats.site_statistics.get_tip_lengths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tip_lengths</span></code></a>(tree)</p></td>
+<td><p>Get the tip lengths in a tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.mean_node_height" title="biotaphy.analyses.pam_stats.site_statistics.mean_node_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_node_height</span></code></a>(tree)</p></td>
+<td><p>Get the mean node height for the tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.mean_tip_length" title="biotaphy.analyses.pam_stats.site_statistics.mean_tip_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_tip_length</span></code></a>(tree)</p></td>
+<td><p>Determine the mean tip length for the tips in a tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.median_node_height" title="biotaphy.analyses.pam_stats.site_statistics.median_node_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median_node_height</span></code></a>(tree)</p></td>
+<td><p>Get the median node height for the tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.median_tip_length" title="biotaphy.analyses.pam_stats.site_statistics.median_tip_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median_tip_length</span></code></a>(tree)</p></td>
+<td><p>Determine the median tip length for the tips in a tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_25" title="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_25"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_height_percentile_25</span></code></a>(tree)</p></td>
+<td><p>Determine the 25 percentile node height for a tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_2_5" title="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_2_5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_height_percentile_2_5</span></code></a>(tree)</p></td>
+<td><p>Determine the 2.5 percentile node height for a tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_75" title="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_75"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_height_percentile_75</span></code></a>(tree)</p></td>
+<td><p>Determine the 75 percentile node height for a tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_97_5" title="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_97_5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">node_height_percentile_97_5</span></code></a>(tree)</p></td>
+<td><p>Determine the 97.5 percentile node height for a tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_25" title="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_25"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tip_length_percentile_25</span></code></a>(tree)</p></td>
+<td><p>Determine the 25 percentile for tip length for the tips of the tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_2_5" title="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_2_5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tip_length_percentile_2_5</span></code></a>(tree)</p></td>
+<td><p>Determine the 2.5 percentile for tip length for the tips of the tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_75" title="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_75"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tip_length_percentile_75</span></code></a>(tree)</p></td>
+<td><p>Determine the 75 percentile for tip length for the tips of the tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_97_5" title="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_97_5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tip_length_percentile_97_5</span></code></a>(tree)</p></td>
+<td><p>Determine the 97.5 percentile for tip length for the tips of the tree.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.analyses.pam_stats.site_statistics.TOLERANCE" title="biotaphy.analyses.pam_stats.site_statistics.TOLERANCE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TOLERANCE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.TOLERANCE">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">TOLERANCE</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.005</span></em><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#TOLERANCE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.TOLERANCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.calculate_tree_site_statistics">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">calculate_tree_site_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#calculate_tree_site_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.calculate_tree_site_statistics" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate tree statistics for each site in a PAM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pam</strong> (<em>Matrix</em>) – A PAM to compute statistics for.</p></li>
+<li><p><strong>tree</strong> (<em>TreeWrapper</em>) – A corresponding tree to use for statistics.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix - A site by statistic matrix of tree pam statistics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.get_tip_lengths">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">get_tip_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#get_tip_lengths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.get_tip_lengths" title="Permalink to this definition"></a></dt>
+<dd><p>Get the tip lengths in a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object to get tip lengths from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tip lengths in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.mean_node_height">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">mean_node_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#mean_node_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.mean_node_height" title="Permalink to this definition"></a></dt>
+<dd><p>Get the mean node height for the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The mean height of the nodes in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.mean_tip_length">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">mean_tip_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#mean_tip_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.mean_tip_length" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the mean tip length for the tips in a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The mean tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.median_node_height">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">median_node_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#median_node_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.median_node_height" title="Permalink to this definition"></a></dt>
+<dd><p>Get the median node height for the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The median height of the nodes in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.median_tip_length">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">median_tip_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#median_tip_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.median_tip_length" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the median tip length for the tips in a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The median tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_25">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">node_height_percentile_25</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#node_height_percentile_25"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_25" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 25 percentile node height for a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 25 percentile node height for the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_2_5">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">node_height_percentile_2_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#node_height_percentile_2_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_2_5" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 2.5 percentile node height for a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 2.5 percentile node height for the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_75">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">node_height_percentile_75</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#node_height_percentile_75"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_75" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 75 percentile node height for a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 75 percentile node height for the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_97_5">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">node_height_percentile_97_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#node_height_percentile_97_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_97_5" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 97.5 percentile node height for a tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to measure node heights.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 97.5 percentile node height for the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_25">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">tip_length_percentile_25</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#tip_length_percentile_25"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_25" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 25 percentile for tip length for the tips of the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 25 percentile tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_2_5">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">tip_length_percentile_2_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#tip_length_percentile_2_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_2_5" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 2.5 percentile for tip length for the tips of the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 2.5 percentile tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_75">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">tip_length_percentile_75</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#tip_length_percentile_75"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_75" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 75 percentile for tip length for the tips of the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 75 percentile tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_97_5">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.pam_stats.site_statistics.</span></span><span class="sig-name descname"><span class="pre">tip_length_percentile_97_5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/analyses/pam_stats/site_statistics.html#tip_length_percentile_97_5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_97_5" title="Permalink to this definition"></a></dt>
+<dd><p>Determine the 97.5 percentile for tip length for the tips of the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>Tree</em>) – A tree object used to retrieve tip lengths.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 97.5 percentile tip length for the tips in the tree.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Biotaphy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

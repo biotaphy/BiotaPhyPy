@@ -1,0 +1,118 @@
+:py:mod:`biotaphy.client.ot_service_wrapper.open_tree`
+======================================================
+
+.. py:module:: biotaphy.client.ot_service_wrapper.open_tree
+
+.. autoapi-nested-parse::
+
+   Module for Open Tree of Life client.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names
+   biotaphy.client.ot_service_wrapper.open_tree.induced_subtree
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.client.ot_service_wrapper.open_tree.INDUCED_SUBTREE_BASE_URL
+   biotaphy.client.ot_service_wrapper.open_tree.MAX_NAMES_PER_REQUEST
+   biotaphy.client.ot_service_wrapper.open_tree.OTT_TAXON_INFO_URL
+   biotaphy.client.ot_service_wrapper.open_tree.PRODUCTION_SERVER
+
+
+.. py:data:: INDUCED_SUBTREE_BASE_URL
+   
+
+   
+
+.. py:class:: LABEL_FORMAT
+
+   Represents the label format constants used when calling induced subtree.
+
+   .. py:attribute:: ID
+      :annotation: = id
+
+      
+
+   .. py:attribute:: NAME
+      :annotation: = name
+
+      
+
+   .. py:attribute:: NAME_AND_ID
+      :annotation: = name_and_id
+
+      
+
+
+.. py:data:: MAX_NAMES_PER_REQUEST
+   :annotation: = 1000
+
+   
+
+.. py:data:: OTT_TAXON_INFO_URL
+   
+
+   
+
+.. py:data:: PRODUCTION_SERVER
+   :annotation: = https://api.opentreeoflife.org/v3
+
+   
+
+.. py:function:: get_info_for_names(names_list)
+
+   Get information from the OTL taxon match service for a list of names.
+
+   :param names_list: A list of taxon names to get
+                      information for.
+   :type names_list: :obj:`list` of :obj:`str`
+
+   :returns:
+
+             A dictionary where keys are the searched taxon names and the values are
+                 dictionaries of values from Open Tree.
+             list: A list of taxa that were not found.
+   :rtype: dict
+
+
+.. py:function:: induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME)
+
+   Retrieves a Newick tree containing the nodes represented by the ids.
+
+   Calls the Open Tree 'induced_subtree' service to retrieve a tree, in Newick
+   format, containing the nodes represented by the provided Open Tree IDs.
+
+   :param ott_ids: A list of Open Tree IDs.  These will be converted to
+                   integers in the request.
+   :type ott_ids: list
+   :param label_format: The label string format to use when creating the
+                        tree on the server. (see: LABEL_FORMAT)
+   :type label_format: str
+
+   :returns: A dictionary of the subtree response after JSON processing.
+   :rtype: dict
+
+

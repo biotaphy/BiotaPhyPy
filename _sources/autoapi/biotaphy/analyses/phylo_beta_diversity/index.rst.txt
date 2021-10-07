@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.analyses.phylo_beta_diversity`
+================================================
+
+.. py:module:: biotaphy.analyses.phylo_beta_diversity
+
+.. autoapi-nested-parse::
+
+   Phylogenetic beta diversity module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   phylo_beta_diversity/index.rst
+
+

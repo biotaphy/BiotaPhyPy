@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 1.3.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Biotaphy BiotaPhyPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../analyses/analyses.html">Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/data_formats.html">Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Biotaphy BiotaPhyPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>biotaphy.client.ot_service_wrapper.open_tree</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for biotaphy.client.ot_service_wrapper.open_tree</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Module for Open Tree of Life client.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">urlopen</span>
+
+
+<div class="viewcode-block" id="PRODUCTION_SERVER"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.PRODUCTION_SERVER">[docs]</a><span class="n">PRODUCTION_SERVER</span> <span class="o">=</span> <span class="s1">&#39;https://api.opentreeoflife.org/v3&#39;</span></div>
+<div class="viewcode-block" id="INDUCED_SUBTREE_BASE_URL"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.INDUCED_SUBTREE_BASE_URL">[docs]</a><span class="n">INDUCED_SUBTREE_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/tree_of_life/induced_subtree&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PRODUCTION_SERVER</span><span class="p">)</span></div>
+<div class="viewcode-block" id="OTT_TAXON_INFO_URL"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.OTT_TAXON_INFO_URL">[docs]</a><span class="n">OTT_TAXON_INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/tnrs/match_names&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PRODUCTION_SERVER</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MAX_NAMES_PER_REQUEST"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.MAX_NAMES_PER_REQUEST">[docs]</a><span class="n">MAX_NAMES_PER_REQUEST</span> <span class="o">=</span> <span class="mi">1000</span></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<div class="viewcode-block" id="LABEL_FORMAT"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT">[docs]</a><span class="k">class</span> <span class="nc">LABEL_FORMAT</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represents the label format constants used when calling induced subtree.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LABEL_FORMAT.NAME"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.NAME">[docs]</a>    <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span></div>
+<div class="viewcode-block" id="LABEL_FORMAT.ID"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.ID">[docs]</a>    <span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span></div>
+<div class="viewcode-block" id="LABEL_FORMAT.NAME_AND_ID"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.NAME_AND_ID">[docs]</a>    <span class="n">NAME_AND_ID</span> <span class="o">=</span> <span class="s1">&#39;name_and_id&#39;</span></div></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<div class="viewcode-block" id="get_info_for_names"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names">[docs]</a><span class="k">def</span> <span class="nf">get_info_for_names</span><span class="p">(</span><span class="n">names_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get information from the OTL taxon match service for a list of names.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        names_list (:obj:`list` of :obj:`str`): A list of taxon names to get</span>
+<span class="sd">            information for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A dictionary where keys are the searched taxon names and the values are</span>
+<span class="sd">            dictionaries of values from Open Tree.</span>
+<span class="sd">        list: A list of taxa that were not found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">taxa_info</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">not_found_taxa</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">names_list</span><span class="p">),</span> <span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">):</span>
+        <span class="n">request_body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">names_list</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">]}</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
+            <span class="n">OTT_TAXON_INFO_URL</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">),</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+            <span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">resp_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+        <span class="c1"># Add taxa that we didn&#39;t find to list</span>
+        <span class="n">not_found_taxa</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">resp_json</span><span class="p">[</span><span class="s1">&#39;unmatched_names&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resp_json</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]:</span>
+            <span class="n">taxon</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">cont</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;is_synonym&#39;</span><span class="p">]:</span>
+                        <span class="n">cont</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;ott_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;taxon&#39;</span><span class="p">][</span><span class="s1">&#39;ott_id&#39;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">tax_source</span> <span class="ow">in</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;taxon&#39;</span><span class="p">][</span><span class="s1">&#39;tax_sources&#39;</span><span class="p">]:</span>
+                        <span class="k">if</span> <span class="n">tax_source</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;gbif&#39;</span><span class="p">):</span>
+                            <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;gbif_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tax_source</span><span class="p">[</span><span class="mi">5</span><span class="p">:])</span>
+                    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;accepted_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;taxon&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;synonyms&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;taxon&#39;</span><span class="p">][</span><span class="s1">&#39;synonyms&#39;</span><span class="p">]</span>
+            <span class="n">taxa_info</span><span class="p">[</span><span class="n">taxon</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
+    <span class="k">return</span> <span class="n">taxa_info</span><span class="p">,</span> <span class="n">not_found_taxa</span></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<div class="viewcode-block" id="induced_subtree"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.induced_subtree">[docs]</a><span class="k">def</span> <span class="nf">induced_subtree</span><span class="p">(</span><span class="n">ott_ids</span><span class="p">,</span> <span class="n">label_format</span><span class="o">=</span><span class="n">LABEL_FORMAT</span><span class="o">.</span><span class="n">NAME</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves a Newick tree containing the nodes represented by the ids.</span>
+
+<span class="sd">    Calls the Open Tree &#39;induced_subtree&#39; service to retrieve a tree, in Newick</span>
+<span class="sd">    format, containing the nodes represented by the provided Open Tree IDs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ott_ids (list) : A list of Open Tree IDs.  These will be converted to</span>
+<span class="sd">            integers in the request.</span>
+<span class="sd">        label_format (str) : The label string format to use when creating the</span>
+<span class="sd">            tree on the server. (see: LABEL_FORMAT)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A dictionary of the subtree response after JSON processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ids need to be integers</span>
+    <span class="n">processed_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">ottid</span><span class="p">)</span> <span class="k">for</span> <span class="n">ottid</span> <span class="ow">in</span> <span class="n">ott_ids</span><span class="p">]</span>
+    <span class="n">request_body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;ott_ids&#39;</span><span class="p">:</span> <span class="n">processed_ids</span><span class="p">,</span>
+        <span class="s1">&#39;label_format&#39;</span><span class="p">:</span> <span class="n">label_format</span>
+    <span class="p">}</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+    <span class="p">}</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
+        <span class="n">INDUCED_SUBTREE_BASE_URL</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="n">resp_str</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp_str</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Biotaphy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

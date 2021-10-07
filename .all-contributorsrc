@@ -1,0 +1,80 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "cjgrady",
+      "name": "CJ Grady",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1719147?v=4",
+      "profile": "http://lifemapper.org",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "blackrim",
+      "name": "Stephen Smith",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/160553?v=4",
+      "profile": "http://blackrim.org",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hmarx",
+      "name": "Hannah E Marx",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2374443?v=4",
+      "profile": "http://hannahmarx.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "foxgiteeb",
+      "name": "foxgiteeb",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/35574990?v=4",
+      "profile": "https://github.com/foxgiteeb",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "brunkgr2",
+      "name": "brunkgr2",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/48328418?v=4",
+      "profile": "https://github.com/brunkgr2",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ryanafolk",
+      "name": "Ryan A. Folk",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15200892?v=4",
+      "profile": "http://ryanafolk.weebly.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "zzeppozz",
+      "name": "zzeppozz",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/555996?v=4",
+      "profile": "https://github.com/zzeppozz",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "BiotaPhyPy",
+  "projectOwner": "biotaphy",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

@@ -1,0 +1,24 @@
+:py:mod:`biotaphy.analyses`
+===========================
+
+.. py:module:: biotaphy.analyses
+
+.. autoapi-nested-parse::
+
+   Analyses module __init__.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   ancestral_state/index.rst
+   helpers/index.rst
+   pam_stats/index.rst
+   phylo_beta_diversity/index.rst
+   tools/index.rst
+
+

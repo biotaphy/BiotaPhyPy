@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.analyses.pam_stats`
+=====================================
+
+.. py:module:: biotaphy.analyses.pam_stats
+
+.. autoapi-nested-parse::
+
+   PAM stats module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   site_statistics/index.rst
+
+

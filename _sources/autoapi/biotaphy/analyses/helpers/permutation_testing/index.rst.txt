@@ -1,0 +1,87 @@
+:py:mod:`biotaphy.analyses.helpers.permutation_testing`
+=======================================================
+
+.. py:module:: biotaphy.analyses.helpers.permutation_testing
+
+.. autoapi-nested-parse::
+
+   Module containing functions for permutation testing.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.analyses.helpers.permutation_testing.compare_absolute_values
+   biotaphy.analyses.helpers.permutation_testing.compare_signed_values
+   biotaphy.analyses.helpers.permutation_testing.correct_p_values
+   biotaphy.analyses.helpers.permutation_testing.get_p_values
+
+
+
+.. py:function:: compare_absolute_values(obs, rand)
+
+   Compares the absolute value of the observed data and the random data.
+
+   :param obs (: obj: `Numpy array`): A numpy array of observed values
+   :param rand (: obj: `Numpy array`): A numpy array of random values
+
+   :returns: Indication if absolute(rand) is greater than absolute(obs).
+   :rtype: bool
+
+
+.. py:function:: compare_signed_values(obs, rand)
+
+   Compares the signed value of the observed data and the random data.
+
+   :param obs (: obj: `Numpy array`): A numpy array of observed values
+   :param rand (: obj: `Numpy array`): A numpy array of random values
+
+   :returns: Indication if rand is greater than obs.
+   :rtype: bool
+
+
+.. py:function:: correct_p_values(p_values_matrix, false_discovery_rate=0.05)
+
+   Perform P-value correction.
+
+   :param p_values_matrix (: obj: `Matrix`): A Matrix of p-values to correct
+   :param false_discovery_rate (: obj: `float`): An acceptable false discovery
+                                  rate (alpha) value to declare a cell significant
+
+   :returns: A matrix object of significant values.
+   :rtype: Matrix
+
+   .. todo::
+
+      * Enable other correction types
+      * Consider how metadata may be added
+      * Consider producing a matrix of the maximum FDR value that would mark
+          each cell as significant
+
+
+.. py:function:: get_p_values(observed_matrix, test_matrices, compare_func=compare_absolute_values)
+
+   Gets p-values by comparing the observed and random data.
+
+   :param observed_matrix (: obj: `Matrix`): A Matrix object with observed values
+   :param test_matrices (: obj: `list`): A list of Matrix objects with values
+                           obtained through permutations
+   :param compare_func (: obj: `function`): A function that, when given two
+                          values, returns True if the second meets the condition
+
+   :returns: An array of p-values.
+   :rtype: numpy.ndarray
+
+   .. todo::
+
+      * Take optional clip values
+      * Take optional number of permutations
+
+

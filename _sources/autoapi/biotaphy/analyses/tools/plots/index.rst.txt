@@ -1,0 +1,43 @@
+:py:mod:`biotaphy.analyses.tools.plots`
+=======================================
+
+.. py:module:: biotaphy.analyses.tools.plots
+
+.. autoapi-nested-parse::
+
+   Module containing tools for plotting tree nodes.
+
+   .. todo::
+
+      * Determine best path for this module.
+      * Determine a good way to pass plot options.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.analyses.tools.plots.create_distribution_plots
+
+
+
+.. py:function:: create_distribution_plots(lm_tree, node_matrix, output_directory)
+
+   Creates distribution plots for each of the nodes in the tree.
+
+   :param lm_tree: A Lifemapper tree object.
+   :type lm_tree: TreeWrapper
+   :param node_matrix: A Lifemapper Matrix object with rows matching the
+                       nodes in the provided tree.
+   :type node_matrix: Matrix
+   :param output_directory: A directory where the output plots should be
+                            written.
+   :type output_directory: str
+
+

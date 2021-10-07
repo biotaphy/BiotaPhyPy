@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biotaphy.analyses.pam_stats.site_statistics &mdash; Biotaphy BiotaPhyPy 1.3.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Biotaphy BiotaPhyPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../analyses/analyses.html">Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/data_formats.html">Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Biotaphy BiotaPhyPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>biotaphy.analyses.pam_stats.site_statistics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for biotaphy.analyses.pam_stats.site_statistics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module containing functions for computing site statistics.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">lmpy.statistics.pam_stats</span> <span class="k">import</span> <span class="n">PamStats</span><span class="p">,</span> <span class="n">TreeMetric</span>
+
+
+<div class="viewcode-block" id="TOLERANCE"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.TOLERANCE">[docs]</a><span class="n">TOLERANCE</span> <span class="o">=</span> <span class="mf">0.005</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<div class="viewcode-block" id="get_tip_lengths"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.get_tip_lengths">[docs]</a><span class="k">def</span> <span class="nf">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the tip lengths in a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object to get tip lengths from.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of tip lengths in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tip_lengths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">():</span>
+            <span class="n">tip_lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">edge_length</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tip_lengths</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="mean_node_height"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.mean_node_height">[docs]</a><span class="k">def</span> <span class="nf">mean_node_height</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the mean node height for the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The mean height of the nodes in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">node_heights</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="median_node_height"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.median_node_height">[docs]</a><span class="k">def</span> <span class="nf">median_node_height</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the median node height for the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The median height of the nodes in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">node_heights</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="node_height_percentile_2_5"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_2_5">[docs]</a><span class="k">def</span> <span class="nf">node_height_percentile_2_5</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 2.5 percentile node height for a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 2.5 percentile node height for the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">node_heights</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="node_height_percentile_25"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_25">[docs]</a><span class="k">def</span> <span class="nf">node_height_percentile_25</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 25 percentile node height for a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 25 percentile node height for the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">node_heights</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="node_height_percentile_75"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_75">[docs]</a><span class="k">def</span> <span class="nf">node_height_percentile_75</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 75 percentile node height for a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 75 percentile node height for the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">node_heights</span><span class="p">,</span> <span class="mi">75</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="node_height_percentile_97_5"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.node_height_percentile_97_5">[docs]</a><span class="k">def</span> <span class="nf">node_height_percentile_97_5</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 97.5 percentile node height for a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to measure node heights.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 97.5 percentile node height for the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node_heights</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">internal_node_ages</span><span class="p">(</span><span class="n">ultrametricity_precision</span><span class="o">=</span><span class="n">TOLERANCE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">node_heights</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="mean_tip_length"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.mean_tip_length">[docs]</a><span class="k">def</span> <span class="nf">mean_tip_length</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the mean tip length for the tips in a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The mean tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="median_tip_length"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.median_tip_length">[docs]</a><span class="k">def</span> <span class="nf">median_tip_length</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the median tip length for the tips in a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The median tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="tip_length_percentile_2_5"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_2_5">[docs]</a><span class="k">def</span> <span class="nf">tip_length_percentile_2_5</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 2.5 percentile for tip length for the tips of the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 2.5 percentile tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="tip_length_percentile_25"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_25">[docs]</a><span class="k">def</span> <span class="nf">tip_length_percentile_25</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 25 percentile for tip length for the tips of the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 25 percentile tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="tip_length_percentile_75"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_75">[docs]</a><span class="k">def</span> <span class="nf">tip_length_percentile_75</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 75 percentile for tip length for the tips of the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 75 percentile tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">,</span> <span class="mi">75</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<span class="nd">@TreeMetric</span>
+<div class="viewcode-block" id="tip_length_percentile_97_5"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.tip_length_percentile_97_5">[docs]</a><span class="k">def</span> <span class="nf">tip_length_percentile_97_5</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the 97.5 percentile for tip length for the tips of the tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A tree object used to retrieve tip lengths.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The 97.5 percentile tip length for the tips in the tree.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tip_lengths</span> <span class="o">=</span> <span class="n">get_tip_lengths</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tip_lengths</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<div class="viewcode-block" id="calculate_tree_site_statistics"><a class="viewcode-back" href="../../../../autoapi/biotaphy/analyses/pam_stats/site_statistics/index.html#biotaphy.analyses.pam_stats.site_statistics.calculate_tree_site_statistics">[docs]</a><span class="k">def</span> <span class="nf">calculate_tree_site_statistics</span><span class="p">(</span><span class="n">pam</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate tree statistics for each site in a PAM.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pam (Matrix): A PAM to compute statistics for.</span>
+<span class="sd">        tree (TreeWrapper): A corresponding tree to use for statistics.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Matrix - A site by statistic matrix of tree pam statistics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="n">PamStats</span><span class="p">(</span><span class="n">pam</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+    <span class="n">reg_metrics</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;Mean Node Height&#39;</span><span class="p">,</span> <span class="n">mean_node_height</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Median Node Height&#39;</span><span class="p">,</span> <span class="n">median_node_height</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Node Height 2.5th percentile&#39;</span><span class="p">,</span> <span class="n">node_height_percentile_2_5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Node Height 25th percentile&#39;</span><span class="p">,</span> <span class="n">node_height_percentile_2_5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Node Height 75th percentile&#39;</span><span class="p">,</span> <span class="n">node_height_percentile_75</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Node Height 97.5th percentile&#39;</span><span class="p">,</span> <span class="n">node_height_percentile_97_5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Mean Tip Length&#39;</span><span class="p">,</span> <span class="n">mean_tip_length</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Median Tip Length&#39;</span><span class="p">,</span> <span class="n">median_tip_length</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Tip Length 2.5th percentile&#39;</span><span class="p">,</span> <span class="n">tip_length_percentile_2_5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Tip Length 25th percentile&#39;</span><span class="p">,</span> <span class="n">tip_length_percentile_25</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Tip Length 75th percentile&#39;</span><span class="p">,</span> <span class="n">tip_length_percentile_75</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Tip Length 97.5th percentile&#39;</span><span class="p">,</span> <span class="n">tip_length_percentile_97_5</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">reg_metrics</span><span class="p">:</span>
+        <span class="n">ps</span><span class="o">.</span><span class="n">register_metric</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
+    <span class="n">site_stats_mtx</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">calculate_site_statistics</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">site_stats_mtx</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Biotaphy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

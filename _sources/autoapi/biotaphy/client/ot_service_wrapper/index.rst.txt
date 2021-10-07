@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.client.ot_service_wrapper`
+============================================
+
+.. py:module:: biotaphy.client.ot_service_wrapper
+
+.. autoapi-nested-parse::
+
+   Open Tree service wrapper module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   open_tree/index.rst
+
+

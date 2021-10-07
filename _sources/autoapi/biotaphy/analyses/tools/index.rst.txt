@@ -1,0 +1,21 @@
+:py:mod:`biotaphy.analyses.tools`
+=================================
+
+.. py:module:: biotaphy.analyses.tools
+
+.. autoapi-nested-parse::
+
+   Analyses tools module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   annotators/index.rst
+   plots/index.rst
+
+

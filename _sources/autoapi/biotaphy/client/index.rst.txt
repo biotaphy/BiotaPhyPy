@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.client`
+=========================
+
+.. py:module:: biotaphy.client
+
+.. autoapi-nested-parse::
+
+   Biotaphy client module __init__.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   ot_service_wrapper/index.rst
+
+
