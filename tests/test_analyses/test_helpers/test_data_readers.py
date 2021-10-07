@@ -341,9 +341,10 @@ class Test_read_phylip_alignment_flo:
             invalid_phylip_alignment (pytest.fixture): A parameterized pytest
                 fixture providing invalid phylip alignment filenames.
         """
+        print(invalid_phylip_alignment)
         with open(invalid_phylip_alignment) as in_phylip:
             with pytest.raises(dr.AlignmentIOError):
-                dr.read_phylip_alignment_flo(in_phylip)
+                print(dr.read_phylip_alignment_flo(in_phylip))
 
     # .....................................
     def test_file_valid(self, valid_phylip_alignment):

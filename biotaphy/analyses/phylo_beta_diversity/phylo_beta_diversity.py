@@ -28,7 +28,7 @@ def pdnew(pam, tree):
     nsamp = len(pam.get_row_headers())
 
     # Array to hold each sample's PD & RCH. col1 = PD; col2 = RCH.
-    PD_array = np.zeros((nsamp, 2), dtype=np.float)
+    PD_array = np.zeros((nsamp, 2), dtype=float)
 
     # This loop will calculate the PD value for each sample in 'pam'.
     for sample in range(nsamp):
@@ -151,7 +151,7 @@ def core_PD_calc(pam, tree):
     # Rows = all pairwise community comparisons. Cols = spp.
     com_tot_pair = np.zeros(
         (len(combin), len(pam.get_column_headers())),
-        dtype=np.float
+        dtype=float
         )
 
     # This loop will populate the pairwise PD_array.
@@ -202,7 +202,7 @@ def core_PD_calc(pam, tree):
     pd_combos = list(it.combinations(pd_sites, 2))
 
     # Array to hold metrics assessing PD contributions to beta diversity.
-    not_shared = np.zeros((len(pd_combos), 4), dtype=np.float)
+    not_shared = np.zeros((len(pd_combos), 4), dtype=float)
 
     # This loop will populate array. see Details.
     for pair in range(len(pd_combos)):
@@ -302,12 +302,12 @@ def calculate_phylo_beta_diversity_jaccard(pam, tree):
     # Note: For ease of development, use these numpy arrays for the
     #    computations.  They will be wrapped into a Matrix object when they are
     #    returned from the function.
-    beta_jtu_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_jtu_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    beta_jne_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_jne_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    beta_jac_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_jac_data = np.zeros((num_sites, num_sites), dtype=np.float)
+    beta_jtu_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_jtu_data = np.zeros((num_sites, num_sites), dtype=float)
+    beta_jne_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_jne_data = np.zeros((num_sites, num_sites), dtype=float)
+    beta_jac_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_jac_data = np.zeros((num_sites, num_sites), dtype=float)
 
     # TODO: Compute phylo beta diversity for jaccard index family
 
@@ -412,12 +412,12 @@ def calculate_phylo_beta_diversity_sorensen(pam, tree):
     # Note: For ease of development, use these numpy arrays for the
     #    computations.  They will be wrapped into a Matrix object when they are
     #    returned from the function.
-    beta_sim_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_sim_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    beta_sne_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_sne_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    beta_sor_data = np.zeros((num_sites, num_sites), dtype=np.float)
-    phylo_beta_sor_data = np.zeros((num_sites, num_sites), dtype=np.float)
+    beta_sim_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_sim_data = np.zeros((num_sites, num_sites), dtype=float)
+    beta_sne_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_sne_data = np.zeros((num_sites, num_sites), dtype=float)
+    beta_sor_data = np.zeros((num_sites, num_sites), dtype=float)
+    phylo_beta_sor_data = np.zeros((num_sites, num_sites), dtype=float)
 
     # TODO: Compute phylo beta diversity for sorensen index family
     core_calc = core_PD_calc(pam, tree)

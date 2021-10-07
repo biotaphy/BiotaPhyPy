@@ -125,39 +125,39 @@ class Test_individual_stats:
         """Simple test of mean_tip_length."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert mean_tip_length(tree) == 35
+        assert mean_tip_length(tree) == 32
 
     # ................................
     def test_median_tip_length(self):
         """Simple test of median_tip_length."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert median_tip_length(tree) == 35
+        assert median_tip_length(tree) == 30
 
     # ................................
     def test_tip_length_percentile_2_5(self):
         """Simple test of tip_length_percentile_2_5."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert tip_length_percentile_2_5(tree) == 20.75
+        assert tip_length_percentile_2_5(tree) == 20
 
     # ................................
     def test_tip_length_percentile_25(self):
         """Simple test of tip_length_percentile_25."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert tip_length_percentile_25(tree) == 27.5
+        assert tip_length_percentile_25(tree) == 20
 
     # ................................
     def test_tip_length_percentile_75(self):
         """Simple test of tip_length_percentile_75."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert tip_length_percentile_75(tree) == 42.5
+        assert tip_length_percentile_75(tree) == 40
 
     # ................................
     def test_tip_length_percentile_97_5(self):
         """Simple test of tip_length_percentile_97_5."""
         tree_str = '(A:50,(B:40,(C:30,(D:20,E:20):10):10):10);'
         tree = TreeWrapper.get(data=tree_str, schema='newick')
-        assert tip_length_percentile_97_5(tree) == 49.25
+        assert tip_length_percentile_97_5(tree) == 49

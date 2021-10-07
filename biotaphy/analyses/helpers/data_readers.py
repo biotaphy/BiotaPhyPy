@@ -225,20 +225,21 @@ def read_phylip_alignment_flo(phylip_flo):
         AlignmentIOError: If there is a problem creating sequences.
     """
     seqlist = []
-    # first line is the number of taxa and num of sites
-    # we don't really even need to read this line,
-    # so let's just skip it
+    # First line is number of taxa and number of sites
     i = phylip_flo.readline()
+    num_taxa, num_sites = [int(v) for v in i.strip().split()]
+    cnt = 0
     for i in phylip_flo:
-        try:
-            if len(i) > 2:
-                spls = i.strip().split()
-                name = spls[0].strip()
-                seq = spls[1].strip()
-                tseq = Sequence(name=name, seq=seq)
-                seqlist.append(tseq)
-        except Exception as e:
-            raise AlignmentIOError(str(e))
+        cnt += 1
+        parts = i.strip().split()
+        if len(parts) != num_sites + 1:
+            # Incorrect number of sites
+            raise AlignmentIOError('Incorrect number of sites for row: {}'.format(cnt))
+        seqlist.append(Sequence(name=parts[0], seq=parts[1:]))
+    if cnt != num_taxa:
+        raise AlignmentIOError(
+            'Incorrect number of taxa.  Reported {} but found {}'.format(num_taxa, cnt)
+        )
     return seqlist
 
 
