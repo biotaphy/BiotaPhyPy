@@ -109,44 +109,7 @@ class Test_get_tree_from_taxa:
 
 
 # .............................................................................
-#class Test_get_tree_from_gbif_ids:
-#    """Tests that a tree can be retrieved starting with a set of GBIF ids."""
-#    # ...........................
-#    def test_good_gbif_ids(self):
-#        """Tests that tree can be retrieved when input is set of GBIF ids."""
-#        gbif_ids = GBIF_ID_MAP.keys()
-#        id_map = open_tree.get_ottids_from_gbifids(gbif_ids)
-#        # Make sure we haven't lost any ids
-#        assert len(gbif_ids) == len(id_map.keys())
-#
-#        resp = open_tree.induced_subtree(
-#            id_map.keys(), label_format=open_tree.LABEL_FORMAT.ID)
-#
-#        newick = resp['newick']
-#
-#        tree = dendropy.Tree.get(data=newick, schema='newick')
-#
-#        # Number of labels in the tree plus the number of unmatched should
-#        #     be less than or equal the number of keys in id_map.  Less than if
-#        #     one of the ids matches somewhere other than a tiop
-#
-#        assert len(tree.taxon_namespace) + len(resp['unmatched_ott_ids']
-#                                               ) <= len(id_map.keys())
-#
-#        for taxon in tree.taxon_namespace:
-#            # Id map contains integers as of now, check to make sure each tip
-#            #     is in mapping
-#            # Taxon labels look like 'ott{ottid}'
-#            search_label = taxon.label.replace('ott', '')
-#            assert search_label in id_map.keys()
-#
-#        # Make sure any unmatched ids are in mapping
-#        for unmatched in resp['unmatched_ott_ids']:
-#            assert str(unmatched) in id_map.keys()
-
-
-# .............................................................................
-#class Test_induced_subtree(object):
+# class Test_induced_subtree(object):
 #    """Test that the induced subtree service returns the tree we expect."""
 #    # ...........................
 #    def test_all_bad_ottids(self):
