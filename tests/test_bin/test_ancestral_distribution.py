@@ -91,7 +91,7 @@ class Test_ancestral_distribution:
                     parts = line.strip().split(',')
                     layer = parts[1].lower()
                     values = np.array(
-                        [float(i) for i in parts[2:]], dtype=np.float)
+                        [float(i) for i in parts[2:]], dtype=float)
                     if layer == 'maximum_likelihood':
                         out_ml_results.append(values)
                     else:
@@ -112,7 +112,7 @@ class Test_ancestral_distribution:
                     parts = line.strip().split(',')
                     layer = parts[1].lower()
                     values = np.array(
-                        [float(i) for i in parts[2:]], dtype=np.float)
+                        [float(i) for i in parts[2:]], dtype=float)
                     if layer == 'maximum_likelihood':
                         test_ml_results.append(values)
                     else:
