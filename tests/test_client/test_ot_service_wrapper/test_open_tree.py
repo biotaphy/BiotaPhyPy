@@ -146,6 +146,20 @@ class Test_sanitize_names:
 
 
 # .............................................................................
+class Test_get_info_for_names:
+    """Test getting info for names."""
+    # .........................
+    def test_mixed(self):
+        """Test good and bad taxon names."""
+        bad_taxa = ['BBBBBAAAAADDDD', 'Bad taxon', 'Doesnot exist']
+        test_names = bad_taxa + TAXON_NAMES
+        _, unmatched_names = open_tree.get_info_for_names(test_names)
+        assert len(unmatched_names) == len(bad_taxa)
+        for tax in bad_taxa:
+            assert tax in unmatched_names
+
+
+# .............................................................................
 # class Test_induced_subtree(object):
 #    """Test that the induced subtree service returns the tree we expect."""
 #    # ...........................
