@@ -9,7 +9,7 @@ PRODUCTION_SERVER = 'https://api.opentreeoflife.org/v3'
 INDUCED_SUBTREE_BASE_URL = '{}/tree_of_life/induced_subtree'.format(PRODUCTION_SERVER)
 OTT_TAXON_INFO_URL = '{}/tnrs/match_names'.format(PRODUCTION_SERVER)
 
-MAX_NAMES_PER_REQUEST = 1000
+MAX_NAMES_PER_REQUEST = 250
 
 
 # .....................................................................................
@@ -18,6 +18,41 @@ class LABEL_FORMAT:
     NAME = 'name'
     ID = 'id'
     NAME_AND_ID = 'name_and_id'
+
+
+# .....................................................................................
+def sanitize_name(name):
+    """Quick and dirty sanitization of a name string.
+
+    Args:
+        name (str): A name string to sanitize.
+
+    Returns:
+        str: A sanitized search name.
+    """
+    parts = name.split(' ')
+    sanitized_string = parts[0]  # Genu
+
+    if len(parts) > 1:
+        # Check next element
+        if parts[1].lower() in ['cf.', 'cf']:
+            sanitized_string += ' cf. {}'.format(parts[2])
+        elif parts[1] == '×':  # Hybrid
+            sanitized_string += ' × {}'.format(parts[2])
+        elif parts[1].lower() in ['sp', 'sp.', 'spp', 'spp.']:  # Unpublished
+            sanitized_string = name
+        elif parts[1].startswith('(') or parts[1][0].isupper():  # Genus with author
+            pass
+        else:
+            # Get species name
+            sanitized_string += ' {}'.format(parts[1])
+            if len(parts) > 2:
+                if parts[2].lower() in ['subsp.', 'subsp']:  # Subspecies
+                    sanitized_string += ' subsp. {}'.format(parts[3])
+                elif parts[2].lower() in ['var.', 'var']:  # Variety
+                    sanitized_string += ' var. {}'.format(parts[3])
+
+    return sanitized_string
 
 
 # .....................................................................................
@@ -36,8 +71,19 @@ def get_info_for_names(names_list):
     taxa_info = {}
     not_found_taxa = []
     headers = {'Content-Type': 'application/json'}
-    for i in range(0, len(names_list), MAX_NAMES_PER_REQUEST):
-        request_body = {'names': names_list[i:i+MAX_NAMES_PER_REQUEST]}
+
+    names_lookup = {}
+    search_names = []
+    for name in names_list:
+        sanitized_name = sanitize_name(name)
+        search_names.append(sanitized_name)
+        names_lookup[sanitized_name] = name
+
+    for i in range(0, len(search_names), MAX_NAMES_PER_REQUEST):
+        request_body = {
+            'names': search_names[i:i+MAX_NAMES_PER_REQUEST],
+            'do_approximate_matching': True
+        }
         req = Request(
             OTT_TAXON_INFO_URL,
             data=json.dumps(request_body).encode('utf8'),
@@ -48,7 +94,7 @@ def get_info_for_names(names_list):
         # Add taxa that we didn't find to list
         not_found_taxa.extend(resp_json['unmatched_names'])
         for result in resp_json['results']:
-            taxon = result['name']
+            taxon = names_lookup[result['name']]  # Get the original search name
             vals = {}
             cont = True
             for match in result['matches']:

@@ -1,10 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Test module for Open Tree of Life client.
-
-Note:
-     * Assumes that dendropy is available for validating trees
-"""
+"""Test module for Open Tree of Life client."""
 import dendropy
 
 from biotaphy.client.ot_service_wrapper import open_tree
@@ -14,6 +10,37 @@ from biotaphy.client.ot_service_wrapper import open_tree
 # ....................................
 GOOD_OTT_IDS = [292466, 267845, 316878, 102710]
 BAD_OTT_IDS = [999999999, 8888888888, 7777777777]
+
+SANITIZE_NAMES_MAP = [
+    (
+        'Caspiomyzon hellenicus (Vladykov, Renaud, Kott & Economidis, 1982)',
+        'Caspiomyzon hellenicus'
+    ),
+    ('Caspiomyzon wagneri (Kessler, 1870)', 'Caspiomyzon wagneri'),
+    ('Entosphenus folletti Vladykov & Kott, 1976', 'Entosphenus folletti'),
+    ('Eudontomyzon danfordi Regan, 1911', 'Eudontomyzon danfordi'),
+    ('Eudontomyzon vladykovi Oliva & Zanandrea, 1959', 'Eudontomyzon vladykovi'),
+    (
+        'Lampetra alavariensis Mateus, Alves, Quintella & Almeida, 2013',
+        'Lampetra alavariensis'
+    ),
+    ('Lampetra hubbsi (Vladykov & Kott, 1976)', 'Lampetra hubbsi'),
+    ('Barbus cf. holotaenia', 'Barbus cf. holotaenia'),
+    ('Heuchera ×brizoides', 'Heuchera ×brizoides'),
+    ('Heuchera × brizoides', 'Heuchera × brizoides'),
+    ('Heuchera abramsii', 'Heuchera abramsii'),
+    ('Bacillus subtilis subsp. spizizenii', 'Bacillus subtilis subsp. spizizenii'),
+    ('Somegenus somespecies var. somevar', 'Somegenus somespecies var. somevar'),
+    ('Canis sp.', 'Canis sp.'),
+    ('Canis spp.', 'Canis spp.'),
+    ('Canis sp. A', 'Canis sp. A'),
+    ('Canis spp. A, B', 'Canis spp. A, B'),
+    ('Canis sp. A, B', 'Canis sp. A, B'),
+    ('Canis sp. 1', 'Canis sp. 1'),
+    ('Canis spp. 1, 2', 'Canis spp. 1, 2'),
+    ('Canis sp. 1, 2', 'Canis sp. 1, 2'),
+    ('Canis', 'Canis')
+]
 
 TAXON_NAMES = [
     'Heuchera abramsii',
@@ -106,6 +133,30 @@ class Test_get_tree_from_taxa:
             # Taxon labels look like 'ott{ottid}'
             search_label = taxon.label.replace('ott', '')
             assert int(search_label) in ott_ids
+
+
+# .............................................................................
+class Test_sanitize_names:
+    """Test that name strings are sanitized correctly."""
+    # .........................
+    def test_sanitation(self):
+        """Test name sanitation."""
+        for in_name, out_name in SANITIZE_NAMES_MAP:
+            assert open_tree.sanitize_name(in_name) == out_name
+
+
+# .............................................................................
+class Test_get_info_for_names:
+    """Test getting info for names."""
+    # .........................
+    def test_mixed(self):
+        """Test good and bad taxon names."""
+        bad_taxa = ['BBBBBAAAAADDDD', 'Bad taxon', 'Doesnot exist']
+        test_names = bad_taxa + TAXON_NAMES
+        _, unmatched_names = open_tree.get_info_for_names(test_names)
+        assert len(unmatched_names) == len(bad_taxa)
+        for tax in bad_taxa:
+            assert tax in unmatched_names
 
 
 # .............................................................................
