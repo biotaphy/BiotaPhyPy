@@ -28,6 +28,7 @@ Functions
 
    biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names
    biotaphy.client.ot_service_wrapper.open_tree.induced_subtree
+   biotaphy.client.ot_service_wrapper.open_tree.sanitize_name
 
 
 
@@ -68,7 +69,7 @@ Attributes
 
 
 .. py:data:: MAX_NAMES_PER_REQUEST
-   :annotation: = 1000
+   :annotation: = 250
 
    
 
@@ -114,5 +115,16 @@ Attributes
 
    :returns: A dictionary of the subtree response after JSON processing.
    :rtype: dict
+
+
+.. py:function:: sanitize_name(name)
+
+   Quick and dirty sanitization of a name string.
+
+   :param name: A name string to sanitize.
+   :type name: str
+
+   :returns: A sanitized search name.
+   :rtype: str
 
 

@@ -82,7 +82,7 @@
 <div class="viewcode-block" id="INDUCED_SUBTREE_BASE_URL"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.INDUCED_SUBTREE_BASE_URL">[docs]</a><span class="n">INDUCED_SUBTREE_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/tree_of_life/induced_subtree&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PRODUCTION_SERVER</span><span class="p">)</span></div>
 <div class="viewcode-block" id="OTT_TAXON_INFO_URL"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.OTT_TAXON_INFO_URL">[docs]</a><span class="n">OTT_TAXON_INFO_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/tnrs/match_names&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">PRODUCTION_SERVER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MAX_NAMES_PER_REQUEST"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.MAX_NAMES_PER_REQUEST">[docs]</a><span class="n">MAX_NAMES_PER_REQUEST</span> <span class="o">=</span> <span class="mi">1000</span></div>
+<div class="viewcode-block" id="MAX_NAMES_PER_REQUEST"><a class="viewcode-back" href="../../../../autoapi/biotaphy/client/ot_service_wrapper/open_tree/index.html#biotaphy.client.ot_service_wrapper.open_tree.MAX_NAMES_PER_REQUEST">[docs]</a><span class="n">MAX_NAMES_PER_REQUEST</span> <span class="o">=</span> <span class="mi">250</span></div>
 
 
 <span class="c1"># .....................................................................................</span>
@@ -91,6 +91,41 @@
 <div class="viewcode-block" id="LABEL_FORMAT.NAME"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.NAME">[docs]</a>    <span class="n">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span></div>
 <div class="viewcode-block" id="LABEL_FORMAT.ID"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.ID">[docs]</a>    <span class="n">ID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span></div>
 <div class="viewcode-block" id="LABEL_FORMAT.NAME_AND_ID"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.LABEL_FORMAT.NAME_AND_ID">[docs]</a>    <span class="n">NAME_AND_ID</span> <span class="o">=</span> <span class="s1">&#39;name_and_id&#39;</span></div></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<div class="viewcode-block" id="sanitize_name"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.sanitize_name">[docs]</a><span class="k">def</span> <span class="nf">sanitize_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Quick and dirty sanitization of a name string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): A name string to sanitize.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A sanitized search name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">sanitized_string</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Genu</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Check next element</span>
+        <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cf.&#39;</span><span class="p">,</span> <span class="s1">&#39;cf&#39;</span><span class="p">]:</span>
+            <span class="n">sanitized_string</span> <span class="o">+=</span> <span class="s1">&#39; cf. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;×&#39;</span><span class="p">:</span>  <span class="c1"># Hybrid</span>
+            <span class="n">sanitized_string</span> <span class="o">+=</span> <span class="s1">&#39; × </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;sp&#39;</span><span class="p">,</span> <span class="s1">&#39;sp.&#39;</span><span class="p">,</span> <span class="s1">&#39;spp&#39;</span><span class="p">,</span> <span class="s1">&#39;spp.&#39;</span><span class="p">]:</span>  <span class="c1"># Unpublished</span>
+            <span class="n">sanitized_string</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>  <span class="c1"># Genus with author</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Get species name</span>
+            <span class="n">sanitized_string</span> <span class="o">+=</span> <span class="s1">&#39; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;subsp.&#39;</span><span class="p">,</span> <span class="s1">&#39;subsp&#39;</span><span class="p">]:</span>  <span class="c1"># Subspecies</span>
+                    <span class="n">sanitized_string</span> <span class="o">+=</span> <span class="s1">&#39; subsp. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;var.&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">]:</span>  <span class="c1"># Variety</span>
+                    <span class="n">sanitized_string</span> <span class="o">+=</span> <span class="s1">&#39; var. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">sanitized_string</span></div>
 
 
 <span class="c1"># .....................................................................................</span>
@@ -109,8 +144,19 @@
     <span class="n">taxa_info</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">not_found_taxa</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">names_list</span><span class="p">),</span> <span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">):</span>
-        <span class="n">request_body</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">names_list</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">]}</span>
+
+    <span class="n">names_lookup</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">search_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+        <span class="n">sanitized_name</span> <span class="o">=</span> <span class="n">sanitize_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">search_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sanitized_name</span><span class="p">)</span>
+        <span class="n">names_lookup</span><span class="p">[</span><span class="n">sanitized_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">search_names</span><span class="p">),</span> <span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">):</span>
+        <span class="n">request_body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;names&#39;</span><span class="p">:</span> <span class="n">search_names</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">MAX_NAMES_PER_REQUEST</span><span class="p">],</span>
+            <span class="s1">&#39;do_approximate_matching&#39;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
         <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
             <span class="n">OTT_TAXON_INFO_URL</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">),</span>
@@ -121,7 +167,7 @@
         <span class="c1"># Add taxa that we didn&#39;t find to list</span>
         <span class="n">not_found_taxa</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">resp_json</span><span class="p">[</span><span class="s1">&#39;unmatched_names&#39;</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resp_json</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]:</span>
-            <span class="n">taxon</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="n">taxon</span> <span class="o">=</span> <span class="n">names_lookup</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]</span>  <span class="c1"># Get the original search name</span>
             <span class="n">vals</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">cont</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]:</span>
