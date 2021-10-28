@@ -107,7 +107,10 @@ def get_info_for_names(names_list):
                             vals['gbif_id'] = int(tax_source[5:])
                     vals['accepted_name'] = match['taxon']['name']
                     vals['synonyms'] = match['taxon']['synonyms']
-            taxa_info[taxon] = vals
+            if vals:
+                taxa_info[taxon] = vals
+            elif taxon not in not_found_taxa:
+                not_found_taxa.append(taxon)
     return taxa_info, not_found_taxa
 
 
