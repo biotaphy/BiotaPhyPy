@@ -10,7 +10,7 @@ with open('LICENSE', 'r', encoding='utf-8') as f:
 
 setup(
     name='biotaphypy',
-    version='1.3.0',
+    version='1.3.1',
     description='BiotaPhy Python Package',
     long_description=readme,
     author='Biotaphy Team',
