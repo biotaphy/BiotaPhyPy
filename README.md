@@ -18,14 +18,14 @@ of Kansas, and [The Open Tree of Life](https://tree.opentreeoflife.org/opentree)
 at The University of Michigan originally supported by NSF BIO Award #1458422.
 For project documentation, visit our [GitHub pages site](https://biotaphy.github.io/BiotaPhyPy/).
 
-![iDigBio](https://biotaphy.github.io/BiotaPhyPy/sphinx/_images/idigbio_logo.png)
-![Lifemapper](https://biotaphy.github.io/BiotaPhyPy/sphinx/_images/lm_logo.png)
-![Open Tree of Life](https://biotaphy.github.io/BiotaPhyPy/sphinx/_images/otl_logo.png)
+![iDigBio](https://biotaphy.github.io/BiotaPhyPy/_images/idigbio_logo.png)
+![Lifemapper](https://biotaphy.github.io/BiotaPhyPy/_images/lm_logo.png)
+![Open Tree of Life](https://biotaphy.github.io/BiotaPhyPy/_images/otl_logo.png)
 
 
 ## Install
 
-Installation help can be found at https://biotaphy.github.io/BiotaPhyPy/sphinx/pages/installation.html
+Installation help can be found at https://biotaphy.github.io/BiotaPhyPy/pages/installation.html
 
 ## Getting help
 
