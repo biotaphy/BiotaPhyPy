@@ -16,14 +16,16 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0, os.path.abspath('../..'))
 
+import biotaphy  # noqa: E402
+
 # -- Project information -----------------------------------------------------
 
 project = 'Biotaphy BiotaPhyPy'
-copyright = '2021, Biotaphy Team'
+copyright = '2022, Biotaphy Team'
 author = 'Biotaphy Team'
 
 # The full version, including alpha/beta/rc tags
-release = '1.3.1'
+release = biotaphy.__version__
 
 
 # -- General configuration ---------------------------------------------------
