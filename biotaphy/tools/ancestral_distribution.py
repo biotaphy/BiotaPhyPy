@@ -2,12 +2,10 @@
 """Tool for performing ancestral distribution computations.
 
 Todo:
-    * Rename without .py extension.
     * Constants.
     * Clean up help.
 """
 import argparse
-import os
 
 from lmpy import TreeWrapper
 
@@ -21,8 +19,13 @@ Generates ancestral distribution estimations based on the environmental
  distributions at the tips of the tree"""
 
 
-# .............................................................................
-if __name__ == '__main__':
+# .....................................................................................
+def cli():
+    """Command-line interface for the tool.
+
+    Raises:
+        ValueError: Raised if a column cannot be found for a label or bad format.
+    """
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -62,14 +65,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    # Check that input files exist
-    if not os.path.exists(args.in_tree_filename):
-        raise IOError(
-            'Input tree {} does not exist'.format(args.in_tree_filename))
-    if not os.path.exists(args.data_filename):
-        raise IOError(
-            'Input data file {} does not exist'.format(args.data_filename))
-
     # Read the tree
     tree = TreeWrapper.get(
         path=args.in_tree_filename, schema=args.in_tree_schema)
@@ -91,7 +86,7 @@ if __name__ == '__main__':
             sequences = data_readers.read_table_alignment_flo(in_file)
         headers = None
     else:
-        raise Exception('Unknown data format: {}'.format(args.data_format))
+        raise ValueError('Unknown data format: {}'.format(args.data_format))
 
     # Get the label annotation column, or None
     label_column = None
@@ -104,7 +99,7 @@ if __name__ == '__main__':
                 # Treat it as an integer
                 label_column = int(args.annotate_labels)
             except Exception:
-                raise Exception(
+                raise ValueError(
                     'Could not find column to use for labels.  '
                     'Check the name to make sure it matches or use column'
                     ' index.')
@@ -134,3 +129,8 @@ if __name__ == '__main__':
     if args.plot_directory is not None:
         tree_plots.create_distribution_plots(
             tree, results, args.plot_directory)
+
+
+# .....................................................................................
+if __name__ == '__main__':
+    cli()

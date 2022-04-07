@@ -1,4 +1,5 @@
 # BiotaPhyPy
+
 [![Latest release](https://img.shields.io/github/release/biotaphy/BiotaPhyPy.svg)](
 https://github.com/biotaphy/BiotaPhyPy/releases/latest)
 <!--
@@ -32,7 +33,6 @@ https://coveralls.io/github/biotaphy/BiotaPhyPy?branch=main)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 BiotaPhy Python library for API access and analysis
 
-
 The BiotaPhy Python repository is an open source project containing tools for accessing
 BiotaPhy project web service APIs and for analyzing data.  Analyses include phylo diversity
 for Presence Absence Matrices and Phylogenetic trees and ancestral character reconstruction.
@@ -47,10 +47,9 @@ For project documentation, visit our [GitHub pages site](https://biotaphy.github
 ![Lifemapper](https://biotaphy.github.io/BiotaPhyPy/_images/lm_logo.png)
 ![Open Tree of Life](https://biotaphy.github.io/BiotaPhyPy/_images/otl_logo.png)
 
-
 ## Install
 
-Installation help can be found at https://biotaphy.github.io/BiotaPhyPy/pages/installation.html
+Installation help can be found at [https://biotaphy.github.io/BiotaPhyPy/pages/installation.html]
 
 ## Getting help
 
@@ -77,7 +76,9 @@ A this time, the easiest way to get help is to [file a bug report](https://githu
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](
+https://github.com/all-contributors/all-contributors
+) specification. Contributions of any kind welcome!
 
 ## Contributing
 
