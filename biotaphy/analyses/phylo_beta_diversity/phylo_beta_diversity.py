@@ -253,8 +253,8 @@ def get_species_index_lookup(pam):
     Returns:
         A dictionary of species keys with matrix index values.
     """
-    return dict(
-        [(sp, idx) for (idx, sp) in enumerate(pam.get_column_headers())])
+    return {
+        sp: idx for (idx, sp) in enumerate(pam.get_column_headers())}
 
 
 # .............................................................................
