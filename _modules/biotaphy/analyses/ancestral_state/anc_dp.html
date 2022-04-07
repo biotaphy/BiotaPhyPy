@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.analyses.ancestral_state.anc_dp &mdash; Biotaphy BiotaPhyPy 1.3.1 documentation</title>
+  <title>biotaphy.analyses.ancestral_state.anc_dp &mdash; Biotaphy BiotaPhyPy 1.3.1.post0.dev20 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -61,6 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../../biotaphy.html">biotaphy</a> &raquo;</li>
       <li>biotaphy.analyses.ancestral_state.anc_dp</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -208,8 +209,8 @@
 
     <span class="n">tip_col_headers</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">get_column_headers</span><span class="p">()</span>
     <span class="n">tip_row_headers</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">get_row_headers</span><span class="p">()</span>
-    <span class="n">tip_lookup</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span>
-        <span class="p">(</span><span class="n">tip_row_headers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tip_count</span><span class="p">)])</span>
+    <span class="n">tip_lookup</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">tip_row_headers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">):</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tip_count</span><span class="p">)}</span>
 
     <span class="c1"># Get the number of internal nodes in the tree</span>
     <span class="n">internal_node_count</span> <span class="o">=</span> <span class="n">num_nodes</span> <span class="o">-</span> <span class="n">tip_count</span>
@@ -308,7 +309,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Biotaphy Team.</p>
+    <p>&#169; Copyright 2022, Biotaphy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

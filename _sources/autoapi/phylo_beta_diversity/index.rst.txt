@@ -1,0 +1,72 @@
+:py:mod:`phylo_beta_diversity`
+==============================
+
+.. py:module:: phylo_beta_diversity
+
+.. autoapi-nested-parse::
+
+   Tool for computing beta diversity and phylo beta diversity.
+
+   Args:
+   1) file location of the PAM (presence absence matrix)
+   2) file location of the tree associsated with PAM
+   3) phylo beta diversity family to use
+   4) file location to write output
+   5) (optional) the number of permuatations to perform
+   6) (optional) alpha value to determine significance (defaul = 0.05)
+
+   .. todo::
+
+      * Constants.
+      * Clean up help.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   phylo_beta_diversity.cli
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   phylo_beta_diversity.DESCRIPTION
+
+
+.. py:data:: DESCRIPTION
+   :annotation: = Multiline-String
+
+    .. raw:: html
+
+        <details><summary>Show Value</summary>
+
+    .. code-block:: text
+        :linenos:
+
+        
+        Computes phylogenetic & ecological beta diversity components for Sorensen and
+        Jaccard Indices.
+
+    .. raw:: html
+
+        </details>
+
+   
+
+.. py:function:: cli()
+
+   Command line interface for the tool.
+
+   :raises ValueError: Raised for unknown format or missing family.
+
+

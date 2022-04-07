@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ancestral_distribution &mdash; Biotaphy BiotaPhyPy 1.3.1.post0.dev20 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Biotaphy BiotaPhyPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analyses/analyses.html">Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/data_formats.html">Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Biotaphy BiotaPhyPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>ancestral_distribution</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ancestral_distribution</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;Tool for performing ancestral distribution computations.</span>
+
+<span class="sd">Todo:</span>
+<span class="sd">    * Constants.</span>
+<span class="sd">    * Clean up help.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">from</span> <span class="nn">lmpy</span> <span class="k">import</span> <span class="n">TreeWrapper</span>
+
+<span class="kn">from</span> <span class="nn">biotaphy.analyses.ancestral_state</span> <span class="k">import</span> <span class="n">anc_dp</span>
+<span class="kn">import</span> <span class="nn">biotaphy.analyses.tools.annotators</span> <span class="k">as</span> <span class="nn">annotators</span>
+<span class="kn">import</span> <span class="nn">biotaphy.analyses.tools.plots</span> <span class="k">as</span> <span class="nn">tree_plots</span>
+<span class="kn">from</span> <span class="nn">biotaphy.analyses.helpers</span> <span class="k">import</span> <span class="n">data_readers</span>
+
+<div class="viewcode-block" id="DESCRIPTION"><a class="viewcode-back" href="../autoapi/ancestral_distribution/index.html#ancestral_distribution.DESCRIPTION">[docs]</a><span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Generates ancestral distribution estimations based on the environmental</span>
+<span class="s2"> distributions at the tips of the tree&quot;&quot;&quot;</span></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<div class="viewcode-block" id="cli"><a class="viewcode-back" href="../autoapi/ancestral_distribution/index.html#ancestral_distribution.cli">[docs]</a><span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Command-line interface for the tool.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if a column cannot be found for a label or bad format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">DESCRIPTION</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;in_tree_filename&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to the tree file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;in_tree_schema&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The format of the tree&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;newick&#39;</span><span class="p">,</span> <span class="s1">&#39;nexml&#39;</span><span class="p">,</span> <span class="s1">&#39;nexus&#39;</span><span class="p">])</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;data_filename&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to file with character state data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;data_format&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The format of the character data&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;phylip&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Outputs</span>
+    <span class="c1"># Annotated tree or trees</span>
+    <span class="c1"># Plots</span>
+    <span class="c1"># Matrix csv</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;out_tree_filename&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to write the resulting annotated tree&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;out_tree_schema&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The format to use when writing the tree&#39;</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;newick&#39;</span><span class="p">,</span> <span class="s1">&#39;nexml&#39;</span><span class="p">,</span> <span class="s1">&#39;nexus&#39;</span><span class="p">])</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;--annotate_labels&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If provided, annotate the tree labels with this data column&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--plot_directory&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If provided, write distribution plots to this directory&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;--out_csv_filename&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;If provided, write the output character matrix CSV &#39;</span>
+             <span class="s1">&#39;to this file location&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="c1"># Read the tree</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">TreeWrapper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">in_tree_filename</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">in_tree_schema</span><span class="p">)</span>
+
+    <span class="c1"># Read data</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+            <span class="n">sequences</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_csv_alignment_flo</span><span class="p">(</span>
+                <span class="n">in_file</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+            <span class="n">sequences</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_json_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;phylip&#39;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+            <span class="n">sequences</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_phylip_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;table&#39;</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+            <span class="n">sequences</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_table_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown data format: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_format</span><span class="p">))</span>
+
+    <span class="c1"># Get the label annotation column, or None</span>
+    <span class="n">label_column</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Try looking for the string</span>
+            <span class="n">label_column</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Treat it as an integer</span>
+                <span class="n">label_column</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s1">&#39;Could not find column to use for labels.  &#39;</span>
+                    <span class="s1">&#39;Check the name to make sure it matches or use column&#39;</span>
+                    <span class="s1">&#39; index.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get character matrix</span>
+    <span class="n">char_mtx</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">get_character_matrix_from_sequences_list</span><span class="p">(</span>
+        <span class="n">sequences</span><span class="p">,</span> <span class="n">var_headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="c1"># Run analysis</span>
+    <span class="n">tree</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">anc_dp</span><span class="o">.</span><span class="n">calculate_ancestral_distributions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">char_mtx</span><span class="p">)</span>
+
+    <span class="c1"># Should we annotate the tree labels?</span>
+    <span class="k">if</span> <span class="n">label_column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">annotators</span><span class="o">.</span><span class="n">annotate_tree_with_label</span><span class="p">(</span>
+            <span class="n">tree</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">label_column</span><span class="o">=</span><span class="n">label_column</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Annotate tree</span>
+        <span class="n">annotators</span><span class="o">.</span><span class="n">add_all_annotations</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Write the tree</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">out_tree_filename</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">out_tree_schema</span><span class="p">)</span>
+
+    <span class="c1"># CSV</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">out_csv_filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out_csv_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_csv_f</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="n">out_csv_f</span><span class="p">)</span>
+    <span class="c1"># Plots</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">plot_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tree_plots</span><span class="o">.</span><span class="n">create_distribution_plots</span><span class="p">(</span>
+            <span class="n">tree</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">plot_directory</span><span class="p">)</span></div>
+
+
+<span class="c1"># .....................................................................................</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">cli</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Biotaphy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

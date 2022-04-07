@@ -7,5 +7,7 @@ This page contains auto-generated API reference documentation [#f1]_.
    :titlesonly:
 
    /autoapi/biotaphy/index
+   /autoapi/ancestral_distribution/index
+   /autoapi/phylo_beta_diversity/index
 
 .. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_

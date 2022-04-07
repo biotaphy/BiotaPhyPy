@@ -1,0 +1,63 @@
+:py:mod:`ancestral_distribution`
+================================
+
+.. py:module:: ancestral_distribution
+
+.. autoapi-nested-parse::
+
+   Tool for performing ancestral distribution computations.
+
+   .. todo::
+
+      * Constants.
+      * Clean up help.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   ancestral_distribution.cli
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   ancestral_distribution.DESCRIPTION
+
+
+.. py:data:: DESCRIPTION
+   :annotation: = Multiline-String
+
+    .. raw:: html
+
+        <details><summary>Show Value</summary>
+
+    .. code-block:: text
+        :linenos:
+
+        Generates ancestral distribution estimations based on the environmental
+         distributions at the tips of the tree
+
+    .. raw:: html
+
+        </details>
+
+   
+
+.. py:function:: cli()
+
+   Command-line interface for the tool.
+
+   :raises ValueError: Raised if a column cannot be found for a label or bad format.
+
+
