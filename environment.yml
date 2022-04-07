@@ -2,12 +2,12 @@ name: biotaphy
 channels:
   - conda-forge
 dependencies:
+  - numpy
   - gdal
   - libspatialindex
   - rtree
   - matplotlib
   - sphinx-autoapi
-  - numpy
   - scipy
   - defusedxml
   - coverage
