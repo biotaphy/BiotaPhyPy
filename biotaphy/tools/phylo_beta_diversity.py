@@ -28,7 +28,11 @@ Jaccard Indices."""
 
 # .....................................................................................
 def cli():
-    """Command line interface for the tool."""
+    """Command line interface for the tool.
+
+    Raises:
+        ValueError: Raised for unknown format or missing family.
+    """
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -91,14 +95,6 @@ def cli():
         nrand = int(args.number_permutations)
     print(nrand)
 
-    # Check that input files exist
-    if not os.path.exists(args.in_tree_filename):
-        raise IOError(
-            'Input tree {} does not exist'.format(args.in_tree_filename))
-    if not os.path.exists(args.pam_filename):
-        raise IOError(
-            'Input data file {} does not exist'.format(args.pam_filename))
-
     # Read data
     if args.data_format == 'csv':
         with open(args.pam_filename) as in_file:
@@ -117,7 +113,7 @@ def cli():
             sequences = data_readers.read_table_alignment_flo(in_file)
         headers = None
     else:
-        raise Exception('Unknown data format: {}'.format(args.data_format))
+        raise ValueError('Unknown data format: {}'.format(args.data_format))
 
     # Get the label annotation column, or None
     # label_column = None
@@ -158,7 +154,7 @@ def cli():
             'beta_sim', 'phylo_beta_sim', 'beta_sne', 'phylo_beta_sne',
             'beta_sor', 'phylo_beta_sor']
     else:
-        raise Exception('Could not find family name')
+        raise ValueError('Could not find family name')
 
     # Should we annotate the tree labels?
     # if label_column is not None:
@@ -201,4 +197,3 @@ def cli():
 # .....................................................................................
 if __name__ == '__main__':
     cli()
-
