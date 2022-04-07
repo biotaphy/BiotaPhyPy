@@ -1,22 +1,17 @@
 """This module tests the ancestral_distribution executable script."""
+"""
 import numpy as np
 import os
 import subprocess
 import sys
 
 import lmpy
+"""
 
-
-# .............................................................................
-class Test_ancestral_distribution:
-    """Test ancestral distribution reconstruction."""
-    base_dir = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)), '../..')
-    script_path = os.path.join(base_dir, 'bin/ancestral_distribution.py')
-
-    # .....................................
-    def test_package_valid(self, valid_ancestral_distribution_package, tmpdir):
-        """Tests the calculate_ancestral_distributions method.
+"""
+# .....................................................................................
+def test_package_valid(monkeypatch, valid_ancestral_distribution_package, tmpdir):
+        ""Tests the calculate_ancestral_distributions method.
 
         Args:
             valid_ancestral_distribution_package (pytest.fixture): A pytest
@@ -31,7 +26,7 @@ class Test_ancestral_distribution:
                 specified file extension.
             Exception: When a specified successful result value cannot be
                 found.
-        """
+        ""
         # Get the data files
         (tree_filename, alignment_filename, results_filename
          ) = valid_ancestral_distribution_package
@@ -136,3 +131,4 @@ class Test_ancestral_distribution:
                 raise Exception(
                     'Could not find {}, {} in results'.format(
                         ml_row, std_err_row))
+"""
