@@ -1,22 +1,21 @@
-## How to contribute to Biotaphy BiotaPhyPy
+# How to contribute to Biotaphy BiotaPhyPy
 
-#### You found a bug
+## You found a bug
 
 * Check that it hasn't already be reported by searching our GitHub issues [Issues](https://github.com/biotaphy/BiotaPhyPy/issues).
 
 * If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/biotaphy/BiotaPhyPy/issues/new?assignees=cjgrady&template=bug_report.md). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
-
-#### You wrote a patch for a bug
+## You wrote a patch for a bug
 
 * Open a new GitHub pull request with the patch.
 
-* Ensure the pull request description clearly describes the problem and solution. Include the relevant issue number if applicable.
+* Ensure the pull request description clearly describes the problem and solution.
+  Include the relevant issue number if applicable.
 
 * Before submitting, check that your patch follows our coding and testing conventions
 
-
-#### You want to add a new analysis
+## You want to add a new analysis
 
 * [Submit a new GitHub issue](https://github.com/biotaphy/BiotaPhyPy/issues/new?assignees=&template=feature_request.md) and suggest your analysis.  We want to make sure that it fits before you spend time coding it.
 
@@ -24,8 +23,7 @@
 
 * Submit a pull request
 
-
-#### Coding conventions
+## Coding conventions
 
 * We Use [PEP8](https://www.python.org/dev/peps/pep-0008/)
 
@@ -33,29 +31,15 @@
 
 * We use [pytest](https://docs.pytest.org/en/latest/) style tests
 
-* Use pytest with coverage and pep8 to determine if test code is adequate.  At this time, we support Python 2.7 and multiple versions of Python 3.
+* Use pytest with coverage and pep8 to determine if test code is adequate.
 
 ```
-$ py.test tests/ --pep8 biotaphy -v --cov biotaphy --cov-report term-missing
-
-$ py.test-3 tests/ --pep8 biotaphy -v --cov biotaphy --cov-report term-missing
+pytest --cov biotaphy --cov-report=term-missing
 ```
 
-#### You want to update documentation
+## You want to update documentation
 
 * Update the documentation in a new branch
-
-* If you update in-line documentation, make sure to rebuild the API doc RST files
-
-```
-$ sphinx-apidoc -o ./_sphinx_config/source ./biotaphy/
-```
-
-* If you edit any RST docs (or update API docs), rebuild the html pages
-
-```
-$ sphinx-build -b html ./_sphinx_config/ ./docs/sphinx/
-```
 
 * Open and submit a new pull request for your updates
 
