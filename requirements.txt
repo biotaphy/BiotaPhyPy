@@ -4,4 +4,4 @@ numpy>=1.11.0
 matplotlib
 rtree
 gdal
-git+https://github.com/lifemapper/lmpy.git#egg=lmpy
+specify-lmpy
