@@ -1,0 +1,19 @@
+name: biotaphy
+channels:
+  - conda-forge
+dependencies:
+  - gdal
+  - libspatialindex
+  - rtree
+  - sphinx-autoapi
+  - numpy
+  - defusedxml
+  - coverage
+  - coveralls
+  - pytest
+  - pytest-cov
+  - pip=21.3.1
+  - pip:
+    - sphinx-rtd-theme
+    - dendropy
+    - specify-lmpy
