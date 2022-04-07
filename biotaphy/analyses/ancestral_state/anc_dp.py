@@ -135,8 +135,8 @@ def calculate_continuous_ancestral_states(
 
     tip_col_headers = char_mtx.get_column_headers()
     tip_row_headers = char_mtx.get_row_headers()
-    tip_lookup = dict([
-        (tip_row_headers[i].replace('_', ' '), i) for i in range(tip_count)])
+    tip_lookup = {
+        tip_row_headers[i].replace('_', ' '): i for i in range(tip_count)}
 
     # Get the number of internal nodes in the tree
     internal_node_count = num_nodes - tip_count
