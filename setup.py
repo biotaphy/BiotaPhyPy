@@ -22,10 +22,13 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests', 'docs', 'sample_data')),
     install_requires=[
+        'defusedxml',
+        'gdal',
         'dendropy>=4.0.0',
         'matplotlib',
         'numpy>=1.11.0',
         'scipy>=1.0.0',
+        'rtree',
         'specify-lmpy>=3.1.1',
     ]
 )
