@@ -10,7 +10,6 @@ Args:
 6) (optional) alpha value to determine significance (defaul = 0.05)
 
 Todo:
-    * Rename without .py extension.
     * Constants.
     * Clean up help.
 """
@@ -27,8 +26,9 @@ Computes phylogenetic & ecological beta diversity components for Sorensen and
 Jaccard Indices."""
 
 
-# .............................................................................
-if __name__ == '__main__':
+# .....................................................................................
+def cli():
+    """Command line interface for the tool."""
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -196,3 +196,9 @@ if __name__ == '__main__':
     # if args.plot_directory is not None:
     #     tree_plots.create_distribution_plots(
     #         tree, results, args.plot_directory)
+
+
+# .....................................................................................
+if __name__ == '__main__':
+    cli()
+

@@ -2,7 +2,6 @@
 """Tool for performing ancestral distribution computations.
 
 Todo:
-    * Rename without .py extension.
     * Constants.
     * Clean up help.
 """
@@ -21,8 +20,9 @@ Generates ancestral distribution estimations based on the environmental
  distributions at the tips of the tree"""
 
 
-# .............................................................................
-if __name__ == '__main__':
+# .....................................................................................
+def cli():
+    """Command-line interface for the tool."""
     parser = argparse.ArgumentParser(description=DESCRIPTION)
 
     parser.add_argument(
@@ -134,3 +134,9 @@ if __name__ == '__main__':
     if args.plot_directory is not None:
         tree_plots.create_distribution_plots(
             tree, results, args.plot_directory)
+
+
+# .....................................................................................
+if __name__ == '__main__':
+    cli()
+
