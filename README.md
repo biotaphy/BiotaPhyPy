@@ -12,7 +12,7 @@ https://pypi.python.org/pypi/biotaphypy/)
 [![License Badge](https://img.shields.io/github/license/biotaphy/BiotaPhyPy.svg)](
 https://github.com/biotaphy/BiotaPhyPy/blob/main/LICENSE)
 
-[![Build Status](https://github.com/biotaphy/BiotaPhyPy/workflows/PyTest/badge.svg)](
+[![Build Status](https://github.com/biotaphy/BiotaPhyPy/workflows/PyTest with Conda/badge.svg)](
 https://github.com/biotaphy/BiotaPhyPy/actions)
 [![GitHub issues](https://img.shields.io/github/issues/biotaphy/BiotaPhyPy.svg)](
 https://GitHub.com/biotaphy/BiotaPhyPy/issues/)
