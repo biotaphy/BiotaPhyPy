@@ -1,7 +1,7 @@
-:py:mod:`ancestral_distribution`
-================================
+:py:mod:`biotaphy.tools.ancestral_distribution`
+===============================================
 
-.. py:module:: ancestral_distribution
+.. py:module:: biotaphy.tools.ancestral_distribution
 
 .. autoapi-nested-parse::
 
@@ -23,7 +23,7 @@ Functions
 
 .. autoapisummary::
 
-   ancestral_distribution.cli
+   biotaphy.tools.ancestral_distribution.cli
 
 
 
@@ -32,7 +32,7 @@ Attributes
 
 .. autoapisummary::
 
-   ancestral_distribution.DESCRIPTION
+   biotaphy.tools.ancestral_distribution.DESCRIPTION
 
 
 .. py:data:: DESCRIPTION

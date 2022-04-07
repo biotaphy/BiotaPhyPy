@@ -1,7 +1,7 @@
-:py:mod:`phylo_beta_diversity`
-==============================
+:py:mod:`biotaphy.tools.phylo_beta_diversity`
+=============================================
 
-.. py:module:: phylo_beta_diversity
+.. py:module:: biotaphy.tools.phylo_beta_diversity
 
 .. autoapi-nested-parse::
 
@@ -31,7 +31,7 @@ Functions
 
 .. autoapisummary::
 
-   phylo_beta_diversity.cli
+   biotaphy.tools.phylo_beta_diversity.cli
 
 
 
@@ -40,7 +40,7 @@ Attributes
 
 .. autoapisummary::
 
-   phylo_beta_diversity.DESCRIPTION
+   biotaphy.tools.phylo_beta_diversity.DESCRIPTION
 
 
 .. py:data:: DESCRIPTION

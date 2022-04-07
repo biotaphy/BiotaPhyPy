@@ -1,0 +1,21 @@
+:py:mod:`biotaphy.tools`
+========================
+
+.. py:module:: biotaphy.tools
+
+.. autoapi-nested-parse::
+
+   Tools module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   ancestral_distribution/index.rst
+   phylo_beta_diversity/index.rst
+
+
