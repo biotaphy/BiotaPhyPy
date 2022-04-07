@@ -1,7 +1,32 @@
 # BiotaPhyPy
-[![Latest release](https://img.shields.io/github/release/biotaphy/BiotaPhyPy.svg)](https://github.com/biotaphy/BiotaPhyPy/releases/latest)
-[![Build Status](https://travis-ci.com/biotaphy/BiotaPhyPy.svg?branch=master)](https://travis-ci.com/biotaphy/BiotaPhyPy) [![Coverage Status](https://coveralls.io/repos/github/biotaphy/BiotaPhyPy/badge.svg?branch=master)](https://coveralls.io/github/biotaphy/BiotaPhyPy?branch=master)
-[![License Badge](https://img.shields.io/github/license/biotaphy/BiotaPhyPy.svg)](https://github.com/biotaphy/BiotaPhyPy/blob/master/LICENSE)
+[![Latest release](https://img.shields.io/github/release/biotaphy/BiotaPhyPy.svg)](
+https://github.com/biotaphy/BiotaPhyPy/releases/latest)
+<!--
+[![PyPI version](https://badge.fury.io/py/biotaphypy.svg)](
+https://badge.fury.io/py/biotaphypy)
+[![Python Versions](https://img.shields.io/pypi/pyversions/biotaphypy)](
+https://img.shields.io/pypi/pyversions/biotaphypy)
+[![PyPI download month](https://img.shields.io/pypi/dm/biotaphypy.svg)](
+https://pypi.python.org/pypi/biotaphypy/)
+-->
+[![License Badge](https://img.shields.io/github/license/biotaphy/BiotaPhyPy.svg)](
+https://github.com/biotaphy/BiotaPhyPy/blob/main/LICENSE)
+
+[![Build Status](https://github.com/biotaphy/BiotaPhyPy/workflows/PyTest with Conda/badge.svg)](
+https://github.com/biotaphy/BiotaPhyPy/actions)
+[![GitHub issues](https://img.shields.io/github/issues/biotaphy/BiotaPhyPy.svg)](
+https://GitHub.com/biotaphy/BiotaPhyPy/issues/)
+[![Average time to resolve an issue](
+http://isitmaintained.com/badge/resolution/biotaphy/BiotaPhyPy.svg)](
+http://isitmaintained.com/project/biotaphy/BiotaPhyPy "Average time to resolve an issue")
+[![Coverage Status](
+https://coveralls.io/repos/github/biotaphy/BiotaPhyPy/badge.svg?branch=main)](
+https://coveralls.io/github/biotaphy/BiotaPhyPy?branch=main)
+
+[![Documentation Status](https://readthedocs.org/projects/biotaphypy/badge/?version=latest)](http://biotaphy.readthedocs.io/?badge=latest)
+
+[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -13,7 +38,7 @@ BiotaPhy project web service APIs and for analyzing data.  Analyses include phyl
 for Presence Absence Matrices and Phylogenetic trees and ancestral character reconstruction.
 
 BiotaPhy is a collaboration between [iDigBio](https://idigbio.org) at The
-University of Florida, [Lifemapper](http://lifemapper.org) at The University
+University of Florida, [Lifemapper](https://lifemapper.org) at The University
 of Kansas, and [The Open Tree of Life](https://tree.opentreeoflife.org/opentree)
 at The University of Michigan originally supported by NSF BIO Award #1458422.
 For project documentation, visit our [GitHub pages site](https://biotaphy.github.io/BiotaPhyPy/).
