@@ -11,7 +11,7 @@ with open('LICENSE', 'r', encoding='utf-8') as f:
     license = f.read()
 
 setup(
-    name='biotaphypy',
+    name='biotaphy',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     description='BiotaPhy Python Package',
@@ -26,6 +26,6 @@ setup(
         'matplotlib',
         'numpy>=1.11.0',
         'scipy>=1.0.0',
-        'specify-lmpy>=3.1.0',
+        'specify-lmpy>=3.1.1',
     ]
 )
