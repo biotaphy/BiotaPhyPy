@@ -76,8 +76,185 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
 </section>
-<section id="biotaphy-analyses-phylo-beta-diversity-phylo-beta-diversity-module">
-<h2>biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity module<a class="headerlink" href="#biotaphy-analyses-phylo-beta-diversity-phylo-beta-diversity-module" title="Permalink to this headline"></a></h2>
+<section id="module-biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity">
+<span id="biotaphy-analyses-phylo-beta-diversity-phylo-beta-diversity-module"></span><h2>biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity module<a class="headerlink" href="#module-biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity" title="Permalink to this headline"></a></h2>
+<p>Module containing code for calculating phylogenetic beta diversity.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Numpy and Scipy may have the methods needed for these computations.  Feel</dt><dd><p>free to take advantage of those to libraries as they are already
+dependencies.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">calculate_phylo_beta_diversity_jaccard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#calculate_phylo_beta_diversity_jaccard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates phylogenetic beta diversity for the jaccard index family.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pam</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code>) – A Lifemapper Matrix object with presence absence
+values (site rows by species columns).</p></li>
+<li><p><strong>tree</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeWrapper</span></code>) – A TreeWrapper object for a wrapped Dendropy
+phylogenetic tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Phylogenetic beta diversity matrics (species by species)</dt><dd><ul class="simple">
+<li><p>beta_jtu: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_jtu: ADD DESCRIPTION</p></li>
+<li><p>beta_jne: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_jne: ADD DESCRIPTION</p></li>
+<li><p>beta_jac: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_jac: ADD DESCRIPTION</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>It looks like the scipy.spatial.distance.jaccard method may be useful</dt><dd><p>here.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.calculate_phylo_beta_diversity_sorensen">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">calculate_phylo_beta_diversity_sorensen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#calculate_phylo_beta_diversity_sorensen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.calculate_phylo_beta_diversity_sorensen" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates phylogenetic beta diversity for the sorensen index family.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pam</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code>) – A Lifemapper Matrix object with presence absence
+values.</p></li>
+<li><p><strong>tree</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeWrapper</span></code>) – A TreeWrapper object for a wrapped Dendropy
+phylogenetic tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Phylogenetic beta diversity matrics (species by species)</dt><dd><ul class="simple">
+<li><p>beta_sim: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_sim: ADD DESCRIPTION</p></li>
+<li><p>beta_sne: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_sne: ADD DESCRIPTION</p></li>
+<li><p>beta_sor: ADD DESCRIPTION</p></li>
+<li><p>phylo_beta_sor: ADD DESCRIPTION</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_Beta_calc">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">core_Beta_calc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#core_Beta_calc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_Beta_calc" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an array of core metrics to asses beta diversity components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>tree</em>) – obj:’Matrix’): A Lifemapper Matrix object with presence absence values.</p></li>
+<li><p><strong>(</strong> – obj:’TreeWrapper’): A TreeWrapper object for a wrapped Dendropy
+phylogenetic tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of arrays, see Details.</p>
+</dd>
+</dl>
+<dl>
+<dt>Details:</dt><dd><p>In general, the metrics returned represent different contributions
+to beta diversity arising from how communities are combined together.
+Metrics:</p>
+<blockquote>
+<div><p>shared_array: spp shared in each pairwise comm. combinations.
+not_shared_array: spp. not shared btwn pairwise comm. combinations.
+sum_not_shared:
+max_not_shared:
+min_not_shared:</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_PD_calc">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">core_PD_calc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#core_PD_calc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_PD_calc" title="Permalink to this definition"></a></dt>
+<dd><p>Creates array of core metrics to asses components of beta diversity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>tree</em>) – obj:’Matrix’): A Lifemapper Matrix object with presence absence values.</p></li>
+<li><p><strong>(</strong> – obj:’TreeWrapper’): A TreeWrapper object for a wrapped Dendropy
+phylogenetic tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix object. Cols=core metrics; Rows=Pairwise comparisons.</p>
+</dd>
+</dl>
+<dl>
+<dt>Details:</dt><dd><p>In general, the metrics returned represent different contributions to
+PD arising from how communities are combined together.
+Metrics:</p>
+<blockquote>
+<div><p>min_not_shared: smallest dist. from ind. samples to their combo.
+max_not_shared: largest dist. from ind. samples to their combo.
+sum_not_shared: total addition to PD from both comm.
+shared: combined contribution to PD that comm. make jointly.</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.get_species_index_lookup">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">get_species_index_lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#get_species_index_lookup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.get_species_index_lookup" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a lookup dictionary for species in a matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pam</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code>) – A Lifemapper Matrix object with presence absence
+values.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of species keys with matrix index values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.pdnew">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.</span></span><span class="sig-name descname"><span class="pre">pdnew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/phylo_beta_diversity/phylo_beta_diversity.html#pdnew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.pdnew" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a lookup dictionary for PD of sites in a matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pam</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code>) – A Lifemapper Matrix object with presence absence values.</p></li>
+<li><p><strong>tree</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeWrapper</span></code>) – A TreeWrapper object for a wrapped Dendropy
+phylogenetic tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Matrix object w/ PD values &amp; spp. rch for each community in sample.
+Col1 = PD; Col2 = SR; Rows = Indvidual samples from pam.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-biotaphy.analyses.phylo_beta_diversity">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biotaphy.analyses.phylo_beta_diversity" title="Permalink to this headline"></a></h2>

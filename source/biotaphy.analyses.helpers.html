@@ -76,11 +76,290 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
 </section>
-<section id="biotaphy-analyses-helpers-data-readers-module">
-<h2>biotaphy.analyses.helpers.data_readers module<a class="headerlink" href="#biotaphy-analyses-helpers-data-readers-module" title="Permalink to this headline"></a></h2>
+<section id="module-biotaphy.analyses.helpers.data_readers">
+<span id="biotaphy-analyses-helpers-data-readers-module"></span><h2>biotaphy.analyses.helpers.data_readers module<a class="headerlink" href="#module-biotaphy.analyses.helpers.data_readers" title="Permalink to this headline"></a></h2>
+<p>Module containing tools for reading alignment files in various formats.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.AlignmentIOError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">AlignmentIOError</span></span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#AlignmentIOError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Wrapper class for alignment errors.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.create_sequence_list_from_dict">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">create_sequence_list_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#create_sequence_list_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.create_sequence_list_from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a list of sequences from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values_dict</strong> (<em>dict</em>) – A dictionary of taxon name keys and a list of
+values for each value.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>The dictionary should have structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;</span><span class="si">{taxon_name}</span><span class="s2">&quot;</span> <span class="p">:</span> <span class="p">[{</span><span class="n">values</span><span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of Sequence objects and None for headers.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="biotaphy.analyses.helpers.data_readers.AlignmentIOError"><strong>AlignmentIOError</strong></a> – If a dictionary value is not a list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.get_character_matrix_from_sequences_list">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">get_character_matrix_from_sequences_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#get_character_matrix_from_sequences_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.get_character_matrix_from_sequences_list" title="Permalink to this definition"></a></dt>
+<dd><p>Converts a list of sequences into a character matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequence</span></code>) – A list of Sequence objects
+to be converted.</p></li>
+<li><p><strong>var_headers</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of headers, optional) – If provided, uses these
+as variable headers for the columns in the matrix.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A matrix of sequence data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.load_alignment_from_filename">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">load_alignment_from_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#load_alignment_from_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.load_alignment_from_filename" title="Permalink to this definition"></a></dt>
+<dd><p>Attempts to load an alignment from a file path by guessing schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The file location containing the alignment</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Raised with the method needed to load the alignment
+    cannot be determined.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Containing a list of sequences and headers</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.read_csv_alignment_flo">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">read_csv_alignment_flo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_flo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#read_csv_alignment_flo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.read_csv_alignment_flo" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a CSV file-like object and return a list of sequences and headers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>csv_flo</strong> (<em>file-like</em>) – A file-like object with CSV alignment data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of Sequence objects and headers.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="biotaphy.analyses.helpers.data_readers.AlignmentIOError"><strong>AlignmentIOError</strong></a> – If the number of columns is inconsistent across the
+    sequences.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.read_json_alignment_flo">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">read_json_alignment_flo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_flo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#read_json_alignment_flo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.read_json_alignment_flo" title="Permalink to this definition"></a></dt>
+<dd><p>Read a JSON file-like object and return a list of sequences and headers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>json_flo</strong> (<em>file-like</em>) – A file-like object with JSON alignment data.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>File should have structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;headers&quot;</span> <span class="p">:</span> <span class="p">[{</span><span class="n">header_names</span><span class="p">}],</span>
+    <span class="s2">&quot;values&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;</span><span class="si">{taxon_name}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;values&quot;</span> <span class="p">:</span> <span class="p">[{</span><span class="n">values</span><span class="p">}]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of Sequence objects and headers.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="biotaphy.analyses.helpers.data_readers.AlignmentIOError"><strong>AlignmentIOError</strong></a> – If headers are provided but they are not a list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.read_phylip_alignment_flo">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">read_phylip_alignment_flo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phylip_flo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#read_phylip_alignment_flo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.read_phylip_alignment_flo" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a phylip alignment file-like object and return the sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phylip_flo</strong> (<em>file-like</em>) – The phylip file-like object.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>We assume that the phylip files are extended and not strict (in terms</dt><dd><p>of how many characters for taxon names).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>The phylip file is in the format::</dt><dd><p>numoftaxa numofsites
+seqlabel sequence
+seqlabel sequence</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of Sequence objects.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="biotaphy.analyses.helpers.data_readers.AlignmentIOError"><strong>AlignmentIOError</strong></a> – If there is a problem creating sequences.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.data_readers.read_table_alignment_flo">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.data_readers.</span></span><span class="sig-name descname"><span class="pre">read_table_alignment_flo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_flo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/data_readers.html#read_table_alignment_flo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.data_readers.read_table_alignment_flo" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a table from a file-like object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table_flo</strong> (<em>file-like</em>) – A file-like object containing table data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of Sequence objects.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#biotaphy.analyses.helpers.data_readers.AlignmentIOError" title="biotaphy.analyses.helpers.data_readers.AlignmentIOError"><strong>AlignmentIOError</strong></a> – If there is a problem creating sequences.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="biotaphy-analyses-helpers-permutation-testing-module">
-<h2>biotaphy.analyses.helpers.permutation_testing module<a class="headerlink" href="#biotaphy-analyses-helpers-permutation-testing-module" title="Permalink to this headline"></a></h2>
+<section id="module-biotaphy.analyses.helpers.permutation_testing">
+<span id="biotaphy-analyses-helpers-permutation-testing-module"></span><h2>biotaphy.analyses.helpers.permutation_testing module<a class="headerlink" href="#module-biotaphy.analyses.helpers.permutation_testing" title="Permalink to this headline"></a></h2>
+<p>Module containing functions for permutation testing.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.compare_absolute_values">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">compare_absolute_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#compare_absolute_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.compare_absolute_values" title="Permalink to this definition"></a></dt>
+<dd><p>Compares the absolute value of the observed data and the random data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>rand</em>) – obj: <cite>Numpy array</cite>): A numpy array of observed values</p></li>
+<li><p><strong>(</strong> – obj: <cite>Numpy array</cite>): A numpy array of random values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Indication if absolute(rand) is greater than absolute(obs).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.compare_signed_values">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">compare_signed_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#compare_signed_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.compare_signed_values" title="Permalink to this definition"></a></dt>
+<dd><p>Compares the signed value of the observed data and the random data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>rand</em>) – obj: <cite>Numpy array</cite>): A numpy array of observed values</p></li>
+<li><p><strong>(</strong> – obj: <cite>Numpy array</cite>): A numpy array of random values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Indication if rand is greater than obs.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.correct_p_values">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">correct_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_discovery_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#correct_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.correct_p_values" title="Permalink to this definition"></a></dt>
+<dd><p>Perform P-value correction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>false_discovery_rate</em>) – obj: <cite>Matrix</cite>): A Matrix of p-values to correct</p></li>
+<li><p><strong>(</strong> – obj: <cite>float</cite>): An acceptable false discovery
+rate (alpha) value to declare a cell significant</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A matrix object of significant values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.get_p_values">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">get_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observed_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_matrices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compare_func=&lt;function</span> <span class="pre">compare_absolute_values&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#get_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.get_p_values" title="Permalink to this definition"></a></dt>
+<dd><p>Gets p-values by comparing the observed and random data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong> (<em>compare_func</em>) – obj: <cite>Matrix</cite>): A Matrix object with observed values</p></li>
+<li><p><strong>(</strong> – obj: <cite>list</cite>): A list of Matrix objects with values
+obtained through permutations</p></li>
+<li><p><strong>(</strong> – obj: <cite>function</cite>): A function that, when given two
+values, returns True if the second meets the condition</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An array of p-values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-biotaphy.analyses.helpers.sequence">
 <span id="biotaphy-analyses-helpers-sequence-module"></span><h2>biotaphy.analyses.helpers.sequence module<a class="headerlink" href="#module-biotaphy.analyses.helpers.sequence" title="Permalink to this headline"></a></h2>
