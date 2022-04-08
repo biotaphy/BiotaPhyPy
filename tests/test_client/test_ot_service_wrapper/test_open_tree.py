@@ -114,7 +114,8 @@ class Test_get_tree_from_taxa:
     # ...........................
     def test_good_taxa(self):
         """Tests that a tree can be retrieved starting with good taxon names."""
-        taxa_info, unmatched_names = open_tree.get_info_for_names(TAXON_NAMES)
+        taxa_info = open_tree.resolve_names_otol(TAXON_NAMES)
+        unmatched_names = [tax for tax in taxa_info.keys() if taxa_info[tax] is None]
         assert len(unmatched_names) == 0
         ott_ids = [tax['ott_id'] for tax in taxa_info.values()]
         assert len(ott_ids) == len(TAXON_NAMES)
@@ -135,7 +136,7 @@ class Test_get_tree_from_taxa:
             assert int(search_label) in ott_ids
 
 
-# .............................................................................
+# .....................................................................................
 class Test_sanitize_names:
     """Test that name strings are sanitized correctly."""
     # .........................
@@ -145,15 +146,16 @@ class Test_sanitize_names:
             assert open_tree.sanitize_name(in_name) == out_name
 
 
-# .............................................................................
-class Test_get_info_for_names:
+# .....................................................................................
+class Test_resolve_names_otol:
     """Test getting info for names."""
     # .........................
     def test_mixed(self):
         """Test good and bad taxon names."""
         bad_taxa = ['BBBBBAAAAADDDD', 'Bad taxon', 'Doesnot exist']
         test_names = bad_taxa + TAXON_NAMES
-        _, unmatched_names = open_tree.get_info_for_names(test_names)
+        tax_info = open_tree.resolve_names_otol(test_names)
+        unmatched_names = [tax for tax in tax_info.keys() if tax_info[tax] is None]
         assert len(unmatched_names) == len(bad_taxa)
         for tax in bad_taxa:
             assert tax in unmatched_names

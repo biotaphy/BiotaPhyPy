@@ -56,7 +56,7 @@ def sanitize_name(name):
 
 
 # .....................................................................................
-def get_info_for_names(names_list):
+def resolve_names_otol(names_list):
     """Get information from the OTL taxon match service for a list of names.
 
     Args:
@@ -66,7 +66,6 @@ def get_info_for_names(names_list):
     Returns:
         dict: A dictionary where keys are the searched taxon names and the values are
             dictionaries of values from Open Tree.
-        list: A list of taxa that were not found.
     """
     taxa_info = {}
     not_found_taxa = []
@@ -111,7 +110,9 @@ def get_info_for_names(names_list):
                 taxa_info[taxon] = vals
             elif taxon not in not_found_taxa:  # pragma: no cover
                 not_found_taxa.append(taxon)
-    return taxa_info, not_found_taxa
+    for tax in not_found_taxa:
+        taxa_info[tax] = None
+    return taxa_info
 
 
 # .....................................................................................
