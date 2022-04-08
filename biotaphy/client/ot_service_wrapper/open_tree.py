@@ -42,7 +42,7 @@ def sanitize_name(name):
         elif parts[1].lower() in ['sp', 'sp.', 'spp', 'spp.']:  # Unpublished
             sanitized_string = name
         elif parts[1].startswith('(') or parts[1][0].isupper():  # Genus with author
-            pass
+            pass  # pragma: no cover
         else:
             # Get species name
             sanitized_string += ' {}'.format(parts[1])
@@ -109,7 +109,7 @@ def get_info_for_names(names_list):
                     vals['synonyms'] = match['taxon']['synonyms']
             if vals:
                 taxa_info[taxon] = vals
-            elif taxon not in not_found_taxa:
+            elif taxon not in not_found_taxa:  # pragma: no cover
                 not_found_taxa.append(taxon)
     return taxa_info, not_found_taxa
 

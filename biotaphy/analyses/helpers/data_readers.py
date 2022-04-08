@@ -236,7 +236,7 @@ def read_phylip_alignment_flo(phylip_flo):
             # Incorrect number of sites
             raise AlignmentIOError('Incorrect number of sites for row: {}'.format(cnt))
         seqlist.append(Sequence(name=parts[0], seq=parts[1:]))
-    if cnt != num_taxa:
+    if cnt != num_taxa:  # pragma: no cover
         raise AlignmentIOError(
             'Incorrect number of taxa.  Reported {} but found {}'.format(num_taxa, cnt)
         )

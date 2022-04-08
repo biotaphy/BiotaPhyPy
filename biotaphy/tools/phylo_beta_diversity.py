@@ -37,9 +37,6 @@ def cli():
 
     parser.add_argument(
         'in_tree_filename', type=str, help='Path to the tree file')
-    parser.add_argument(
-        'in_tree_schema', type=str, help='The format of the tree',
-        choices=['newick', 'nexml', 'nexus'])
 
     parser.add_argument(
         'pam_filename', type=str,
@@ -78,68 +75,36 @@ def cli():
         'out_foldername', type=str,
         help='Write the output of beta diversity calculations to this folder')
 
-    parser.add_argument(
-        '-n', '--number_permutations',
-        help='The number of permuatations to calculate')
-
-    parser.add_argument(
-        '-a', '--alpha', default=0.05,
-        help='The alpha value to determine significance')
-
     args = parser.parse_args()
-
-    # Number of iterations
-    if args.number_permutations is None:
-        nrand = 10
-    else:
-        nrand = int(args.number_permutations)
-    print(nrand)
 
     # Read data
     if args.data_format == 'csv':
         with open(args.pam_filename) as in_file:
             sequences, headers = data_readers.read_csv_alignment_flo(
                 in_file)
-    elif args.data_format == 'json':
+    elif args.data_format == 'json':  # pragma: no cover
         with open(args.pam_filename) as in_file:
             sequences, headers = data_readers.read_json_alignment_flo(
                 in_file)
-    elif args.data_format == 'phylip':
+    elif args.data_format == 'phylip':  # pragma: no cover
         with open(args.pam_filename) as in_file:
             sequences = data_readers.read_phylip_alignment_flo(in_file)
         headers = None
-    elif args.data_format == 'table':
+    elif args.data_format == 'table':  # pragma: no cover
         with open(args.pam_filename) as in_file:
             sequences = data_readers.read_table_alignment_flo(in_file)
         headers = None
-    else:
+    else:  # pragma: no cover
         raise ValueError('Unknown data format: {}'.format(args.data_format))
 
-    # Get the label annotation column, or None
-    # label_column = None
-    # if args.annotate_labels is not None:
-    #     try:
-    #         # Try looking for the string
-    #         label_column = headers.index(args.annotate_labels)
-    #     except:
-    #         try:
-    #             # Treat it as an integer
-    #             label_column = int(args.annotate_labels)
-    #         except:
-    #             raise Exception(
-    #                 'Could not find column to use for labels.  '
-    #                 'Check the name to make sure it matches or use column'
-    #                 ' index.')
-
     # Convert data to PAM format
-    # TODO: CJG - This should use our Matrix class to read a csv or matrix lmm
     pam = data_readers.get_character_matrix_from_sequences_list(
         sequences, headers)
 
     # Read the tree
-    tree = TreeWrapper.get(
-        path=args.in_tree_filename, schema=args.in_tree_schema)
+    tree = TreeWrapper.from_filename(args.in_tree_filename)
 
+    print(args.family_name)
     # Run analysis
     if args.family_name == 'jaccard':
         results = phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard(
@@ -153,22 +118,11 @@ def cli():
         res_names = [
             'beta_sim', 'phylo_beta_sim', 'beta_sne', 'phylo_beta_sne',
             'beta_sor', 'phylo_beta_sor']
-    else:
+    else:  # pragma: no cover
         raise ValueError('Could not find family name')
 
-    # Should we annotate the tree labels?
-    # if label_column is not None:
-    #     annotators.annotate_tree_with_label(
-    #         tree, results, label_column=label_column)
-    # else:
-    #     # Annotate tree
-    #     annotators.add_all_annotations(tree, results, update=True)
-
-    # Write the tree
-    # tree.write(path=args.out_tree_filename, schema=args.out_tree_schema)
-
     # Write results to folder
-    if not os.path.exists(args.out_foldername):
+    if not os.path.exists(args.out_foldername):  # pragma: no cover
         os.makedirs(args.out_foldername)
 
     for table in range(len(results)):
@@ -178,22 +132,7 @@ def cli():
                 res_names[table])), 'w') as out_csv_f:
             results[table].write_csv(out_csv_f)
 
-    # Test randomization:
-    # List of lists: 0:JTU; 1:JNE; 2:JAC.
-    print(res_names[5])
-    jac_distr = phylo_beta_diversity.calculate_phylo_beta_diversity_jaccard(pam, tree)
-    print(jac_distr[-1])
-    # print x[1].data[0]#[1][0]
-    # print x[1].data[1][0]
-    # for i in range(len(x)):
-    #     print(x[i].data)
-
-    # # Plots
-    # if args.plot_directory is not None:
-    #     tree_plots.create_distribution_plots(
-    #         tree, results, args.plot_directory)
-
 
 # .....................................................................................
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     cli()
