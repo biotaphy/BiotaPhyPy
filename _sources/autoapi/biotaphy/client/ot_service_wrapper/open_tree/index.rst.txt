@@ -26,8 +26,8 @@ Functions
 
 .. autoapisummary::
 
-   biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names
    biotaphy.client.ot_service_wrapper.open_tree.induced_subtree
+   biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol
    biotaphy.client.ot_service_wrapper.open_tree.sanitize_name
 
 
@@ -83,22 +83,6 @@ Attributes
 
    
 
-.. py:function:: get_info_for_names(names_list)
-
-   Get information from the OTL taxon match service for a list of names.
-
-   :param names_list: A list of taxon names to get
-                      information for.
-   :type names_list: :obj:`list` of :obj:`str`
-
-   :returns:
-
-             A dictionary where keys are the searched taxon names and the values are
-                 dictionaries of values from Open Tree.
-             list: A list of taxa that were not found.
-   :rtype: dict
-
-
 .. py:function:: induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME)
 
    Retrieves a Newick tree containing the nodes represented by the ids.
@@ -114,6 +98,21 @@ Attributes
    :type label_format: str
 
    :returns: A dictionary of the subtree response after JSON processing.
+   :rtype: dict
+
+
+.. py:function:: resolve_names_otol(names_list)
+
+   Get information from the OTL taxon match service for a list of names.
+
+   :param names_list: A list of taxon names to get
+                      information for.
+   :type names_list: :obj:`list` of :obj:`str`
+
+   :returns:
+
+             A dictionary where keys are the searched taxon names and the values are
+                 dictionaries of values from Open Tree.
    :rtype: dict
 
 

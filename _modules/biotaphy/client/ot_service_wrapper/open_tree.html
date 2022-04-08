@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev6 documentation</title>
+  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev8 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -130,7 +130,7 @@
 
 
 <span class="c1"># .....................................................................................</span>
-<div class="viewcode-block" id="get_info_for_names"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names">[docs]</a><span class="k">def</span> <span class="nf">get_info_for_names</span><span class="p">(</span><span class="n">names_list</span><span class="p">):</span>
+<div class="viewcode-block" id="resolve_names_otol"><a class="viewcode-back" href="../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol">[docs]</a><span class="k">def</span> <span class="nf">resolve_names_otol</span><span class="p">(</span><span class="n">names_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get information from the OTL taxon match service for a list of names.</span>
 
 <span class="sd">    Args:</span>
@@ -140,7 +140,6 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary where keys are the searched taxon names and the values are</span>
 <span class="sd">            dictionaries of values from Open Tree.</span>
-<span class="sd">        list: A list of taxa that were not found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">taxa_info</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">not_found_taxa</span> <span class="o">=</span> <span class="p">[]</span>
@@ -185,7 +184,9 @@
                 <span class="n">taxa_info</span><span class="p">[</span><span class="n">taxon</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
             <span class="k">elif</span> <span class="n">taxon</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">not_found_taxa</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
                 <span class="n">not_found_taxa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">taxa_info</span><span class="p">,</span> <span class="n">not_found_taxa</span></div>
+    <span class="k">for</span> <span class="n">tax</span> <span class="ow">in</span> <span class="n">not_found_taxa</span><span class="p">:</span>
+        <span class="n">taxa_info</span><span class="p">[</span><span class="n">tax</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">taxa_info</span></div>
 
 
 <span class="c1"># .....................................................................................</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev6 documentation</title>
+  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev8 documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
@@ -98,11 +98,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names" title="biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_info_for_names</span></code></a>(names_list)</p></td>
-<td><p>Get information from the OTL taxon match service for a list of names.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.induced_subtree" title="biotaphy.client.ot_service_wrapper.open_tree.induced_subtree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">induced_subtree</span></code></a>(ott_ids, label_format=LABEL_FORMAT.NAME)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.induced_subtree" title="biotaphy.client.ot_service_wrapper.open_tree.induced_subtree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">induced_subtree</span></code></a>(ott_ids, label_format=LABEL_FORMAT.NAME)</p></td>
 <td><p>Retrieves a Newick tree containing the nodes represented by the ids.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol" title="biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_names_otol</span></code></a>(names_list)</p></td>
+<td><p>Get information from the OTL taxon match service for a list of names.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../../../../source/biotaphy.client.ot_service_wrapper.html#biotaphy.client.ot_service_wrapper.open_tree.sanitize_name" title="biotaphy.client.ot_service_wrapper.open_tree.sanitize_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sanitize_name</span></code></a>(name)</p></td>
 <td><p>Quick and dirty sanitization of a name string.</p></td>
@@ -174,29 +174,6 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.client.ot_service_wrapper.open_tree.</span></span><span class="sig-name descname"><span class="pre">get_info_for_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/client/ot_service_wrapper/open_tree.html#get_info_for_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.client.ot_service_wrapper.open_tree.get_info_for_names" title="Permalink to this definition"></a></dt>
-<dd><p>Get information from the OTL taxon match service for a list of names.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>names_list</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A list of taxon names to get
-information for.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A dictionary where keys are the searched taxon names and the values are</dt><dd><p>dictionaries of values from Open Tree.</p>
-</dd>
-</dl>
-<p>list: A list of taxa that were not found.</p>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="biotaphy.client.ot_service_wrapper.open_tree.induced_subtree">
 <span class="sig-prename descclassname"><span class="pre">biotaphy.client.ot_service_wrapper.open_tree.</span></span><span class="sig-name descname"><span class="pre">induced_subtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ott_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">LABEL_FORMAT.NAME</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/client/ot_service_wrapper/open_tree.html#induced_subtree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.client.ot_service_wrapper.open_tree.induced_subtree" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves a Newick tree containing the nodes represented by the ids.</p>
@@ -213,6 +190,28 @@ tree on the server. (see: LABEL_FORMAT)</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A dictionary of the subtree response after JSON processing.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.client.ot_service_wrapper.open_tree.</span></span><span class="sig-name descname"><span class="pre">resolve_names_otol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/biotaphy/client/ot_service_wrapper/open_tree.html#resolve_names_otol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.client.ot_service_wrapper.open_tree.resolve_names_otol" title="Permalink to this definition"></a></dt>
+<dd><p>Get information from the OTL taxon match service for a list of names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>names_list</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A list of taxon names to get
+information for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A dictionary where keys are the searched taxon names and the values are</dt><dd><p>dictionaries of values from Open Tree.</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
