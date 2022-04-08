@@ -1,0 +1,53 @@
+:py:mod:`biotaphy.common.annotators`
+====================================
+
+.. py:module:: biotaphy.common.annotators
+
+.. autoapi-nested-parse::
+
+   Module containing tools for annotating trees with ancestral trait data.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.common.annotators.add_all_annotations
+   biotaphy.common.annotators.annotate_tree_with_label
+
+
+
+.. py:function:: add_all_annotations(lm_tree, node_matrix, update=False)
+
+   Adds all annotations from the node matrix to the tree.
+
+   :param lm_tree: A Lifemapper tree object.
+   :type lm_tree: TreeWrapper
+   :param node_matrix: A Lifemapper Matrix object with rows matching the
+                       nodes in the provided tree.
+   :type node_matrix: Matrix
+   :param update: Should any existing annotations be
+                  updated.  Defaults to False.
+   :type update: :obj:`bool`, optional
+
+
+.. py:function:: annotate_tree_with_label(lm_tree, node_matrix, label_column=0)
+
+   Annotates the tree by changing the label of each node.
+
+   :param lm_tree: A Lifemapper tree object.
+   :type lm_tree: TreeWrapper
+   :param node_matrix: A Lifemapper Matrix object with rows matching
+                       the nodes in the provided tree.
+   :type node_matrix: Matrix
+   :param label_column: The column in the matrix to use
+                        for node labels.  Defaults to 0.
+   :type label_column: :obj:`int`, optional
+
+

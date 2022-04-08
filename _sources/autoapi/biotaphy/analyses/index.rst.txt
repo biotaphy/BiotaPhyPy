@@ -9,16 +9,14 @@
 
 
 
-Subpackages
------------
+Submodules
+----------
 .. toctree::
    :titlesonly:
-   :maxdepth: 3
+   :maxdepth: 1
 
-   ancestral_state/index.rst
-   helpers/index.rst
-   pam_stats/index.rst
+   anc_dp/index.rst
    phylo_beta_diversity/index.rst
-   tools/index.rst
+   site_statistics/index.rst
 
 

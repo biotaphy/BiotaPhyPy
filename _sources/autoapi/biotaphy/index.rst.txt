@@ -17,6 +17,7 @@ Subpackages
 
    analyses/index.rst
    client/index.rst
+   common/index.rst
    tools/index.rst
 
 

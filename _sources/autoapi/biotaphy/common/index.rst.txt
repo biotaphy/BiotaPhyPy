@@ -1,0 +1,23 @@
+:py:mod:`biotaphy.common`
+=========================
+
+.. py:module:: biotaphy.common
+
+.. autoapi-nested-parse::
+
+   Common module __init__.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   annotators/index.rst
+   data_readers/index.rst
+   plots/index.rst
+   sequence/index.rst
+
+

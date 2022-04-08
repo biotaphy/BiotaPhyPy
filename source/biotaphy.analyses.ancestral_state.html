@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.analyses.ancestral_state package &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev8 documentation</title>
+  <title>biotaphy.analyses.ancestral_state package &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev10 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -76,82 +76,11 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
 </section>
-<section id="module-biotaphy.analyses.ancestral_state.anc_dp">
-<span id="biotaphy-analyses-ancestral-state-anc-dp-module"></span><h2>biotaphy.analyses.ancestral_state.anc_dp module<a class="headerlink" href="#module-biotaphy.analyses.ancestral_state.anc_dp" title="Permalink to this headline"></a></h2>
-<p>Module containing code for calculating ancestral states.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.ancestral_state.anc_dp.calculate_ancestral_distributions">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.ancestral_state.anc_dp.</span></span><span class="sig-name descname"><span class="pre">calculate_ancestral_distributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_mtx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/ancestral_state/anc_dp.html#calculate_ancestral_distributions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.ancestral_state.anc_dp.calculate_ancestral_distributions" title="Permalink to this definition"></a></dt>
-<dd><p>Calculates ancestral distributions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tree</strong> (<em>Tree</em>) – A dendropy tree or TreeWrapper object.</p></li>
-<li><p><strong>char_mtx</strong> (<em>Matrix</em>) – A Matrix object with character information.  Each
-row should represent a tip in the tree and each column should be a
-bin to calculate ancestral distribution.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>rows: nodes / tips in the tree</p></li>
-<li><p>columns: character variables</p></li>
-<li><dl class="simple">
-<dt>depth: first is the calculated value, second layer is standard</dt><dd><p>error if desired</p>
-</dd>
-</dl>
-</li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>A matrix of character data with the following dimensions</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.ancestral_state.anc_dp.calculate_continuous_ancestral_states">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.ancestral_state.anc_dp.</span></span><span class="sig-name descname"><span class="pre">calculate_continuous_ancestral_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_mtx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_to_one</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calc_std_err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/ancestral_state/anc_dp.html#calculate_continuous_ancestral_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.ancestral_state.anc_dp.calculate_continuous_ancestral_states" title="Permalink to this definition"></a></dt>
-<dd><p>Calculates the continuous ancestral states for the nodes in a tree.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tree</strong> (<em>Tree</em>) – A dendropy tree or TreeWrapper object.</p></li>
-<li><p><strong>char_mtx</strong> (<em>Matrix</em>) – A Matrix object with character information.  Each
-row should represent a tip in the tree and each column should be a
-variable to calculate ancestral state for.</p></li>
-<li><p><strong>calc_std_err</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, optional) – If True, calculate standard error
-for each variable.  Defaults to False.</p></li>
-<li><p><strong>sum_to_one</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>, optional) – If True, standardize the character
-matrix so that the values in a row sum to one. Defaults to False.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Raised if none of the tree tips were found in the character data.</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p>rows: nodes / tips in the tree</p></li>
-<li><p>columns: character variables</p></li>
-<li><dl class="simple">
-<dt>depth: first is the calculated value, second layer is standard</dt><dd><p>error if desired</p>
-</dd>
-</dl>
-</li>
-</ul>
-</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>A matrix of character data with the following dimensions</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="biotaphy-analyses-ancestral-state-anc-dp-module">
+<h2>biotaphy.analyses.ancestral_state.anc_dp module<a class="headerlink" href="#biotaphy-analyses-ancestral-state-anc-dp-module" title="Permalink to this headline"></a></h2>
 </section>
-<section id="module-biotaphy.analyses.ancestral_state">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biotaphy.analyses.ancestral_state" title="Permalink to this headline"></a></h2>
-<p>Ancestral state module __init__.</p>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
 </section>
 </section>
 

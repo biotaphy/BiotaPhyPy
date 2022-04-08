@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biotaphy.analyses.anc_dp &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev10 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Biotaphy BiotaPhyPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analyses/analyses.html">Analyses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/data_formats.html">Data Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Biotaphy BiotaPhyPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../biotaphy.html">biotaphy</a> &raquo;</li>
+      <li>biotaphy.analyses.anc_dp</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for biotaphy.analyses.anc_dp</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module containing code for calculating ancestral states.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+
+<span class="kn">from</span> <span class="nn">lmpy</span> <span class="k">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">TreeWrapper</span>
+
+
+<span class="c1"># .............................................................................</span>
+<div class="viewcode-block" id="_get_node_label"><a class="viewcode-back" href="../../../autoapi/biotaphy/analyses/anc_dp/index.html#biotaphy.analyses.anc_dp._get_node_label">[docs]</a><span class="k">def</span> <span class="nf">_get_node_label</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the node label or taxon label if node is a tip.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        node (Node): A tree node to get the label for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The node label or taxon label.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">label</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">taxon</span><span class="o">.</span><span class="n">label</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<div class="viewcode-block" id="calculate_ancestral_distributions"><a class="viewcode-back" href="../../../autoapi/biotaphy/analyses/anc_dp/index.html#biotaphy.analyses.anc_dp.calculate_ancestral_distributions">[docs]</a><span class="k">def</span> <span class="nf">calculate_ancestral_distributions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">char_mtx</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates ancestral distributions.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A dendropy tree or TreeWrapper object.</span>
+<span class="sd">        char_mtx (Matrix): A Matrix object with character information.  Each</span>
+<span class="sd">            row should represent a tip in the tree and each column should be a</span>
+<span class="sd">            bin to calculate ancestral distribution.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A matrix of character data with the following dimensions:</span>
+<span class="sd">            * rows: nodes / tips in the tree</span>
+<span class="sd">            * columns: character variables</span>
+<span class="sd">            * depth: first is the calculated value, second layer is standard</span>
+<span class="sd">                error if desired</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">calculate_continuous_ancestral_states</span><span class="p">(</span>
+        <span class="n">tree</span><span class="p">,</span> <span class="n">char_mtx</span><span class="p">,</span>
+        <span class="n">sum_to_one</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">calc_std_err</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span></div>
+
+
+<span class="c1"># .............................................................................</span>
+<div class="viewcode-block" id="calculate_continuous_ancestral_states"><a class="viewcode-back" href="../../../autoapi/biotaphy/analyses/anc_dp/index.html#biotaphy.analyses.anc_dp.calculate_continuous_ancestral_states">[docs]</a><span class="k">def</span> <span class="nf">calculate_continuous_ancestral_states</span><span class="p">(</span>
+        <span class="n">tree</span><span class="p">,</span>
+        <span class="n">char_mtx</span><span class="p">,</span>
+        <span class="n">sum_to_one</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">calc_std_err</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the continuous ancestral states for the nodes in a tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tree (Tree): A dendropy tree or TreeWrapper object.</span>
+<span class="sd">        char_mtx (Matrix): A Matrix object with character information.  Each</span>
+<span class="sd">            row should represent a tip in the tree and each column should be a</span>
+<span class="sd">            variable to calculate ancestral state for.</span>
+<span class="sd">        calc_std_err (:obj:`bool`, optional): If True, calculate standard error</span>
+<span class="sd">            for each variable.  Defaults to False.</span>
+<span class="sd">        sum_to_one (:obj:`bool`, optional): If True, standardize the character</span>
+<span class="sd">            matrix so that the values in a row sum to one. Defaults to False.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if none of the tree tips were found in the character data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A matrix of character data with the following dimensions:</span>
+<span class="sd">            * rows: nodes / tips in the tree</span>
+<span class="sd">            * columns: character variables</span>
+<span class="sd">            * depth: first is the calculated value, second layer is standard</span>
+<span class="sd">                error if desired</span>
+
+<span class="sd">    Todo:</span>
+<span class="sd">        * Add function for consistent label handling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Wrap tree if dendropy tree</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">TreeWrapper</span><span class="p">):</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">TreeWrapper</span><span class="o">.</span><span class="n">from_base_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+
+    <span class="c1"># Assign labels to nodes that don&#39;t have them</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">add_node_labels</span><span class="p">()</span>
+
+    <span class="c1"># Synchronize tree and character data</span>
+    <span class="c1"># Prune tree</span>
+    <span class="n">prune_taxa</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">keep_taxon_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">init_row_headers</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">get_row_headers</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">taxon</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">taxon_namespace</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">taxon</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">init_row_headers</span><span class="p">:</span>
+            <span class="n">prune_taxa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">taxon</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s1">&#39;Could not find </span><span class="si">{}</span><span class="s1"> in character matrix, pruning&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keep_taxon_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keep_taxon_labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;None of the tree tips were found in the character data&#39;</span><span class="p">)</span>
+
+    <span class="n">tree</span><span class="o">.</span><span class="n">prune_taxa</span><span class="p">(</span><span class="n">prune_taxa</span><span class="p">)</span>
+    <span class="n">tree</span><span class="o">.</span><span class="n">purge_taxon_namespace</span><span class="p">()</span>
+
+    <span class="c1"># Prune character data</span>
+    <span class="n">keep_rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">init_row_headers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">keep_taxon_labels</span><span class="p">:</span>
+            <span class="n">keep_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not find </span><span class="si">{}</span><span class="s1"> in tree tips, pruning&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">char_mtx</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">keep_rows</span><span class="p">)</span>
+
+    <span class="c1"># Standardize character matrix if requested</span>
+    <span class="n">tip_count</span><span class="p">,</span> <span class="n">num_vars</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">if</span> <span class="n">sum_to_one</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tip_count</span><span class="p">):</span>
+            <span class="n">sc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">char_mtx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_vars</span><span class="p">):</span>
+                <span class="n">char_mtx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="n">sc</span>
+
+    <span class="c1"># Initialize data matrix</span>
+    <span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">data_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">num_vars</span><span class="p">,</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">calc_std_err</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="c1"># Initialize headers</span>
+    <span class="n">row_headers</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">tip_col_headers</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">get_column_headers</span><span class="p">()</span>
+    <span class="n">tip_row_headers</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="o">.</span><span class="n">get_row_headers</span><span class="p">()</span>
+    <span class="n">tip_lookup</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">tip_row_headers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">):</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tip_count</span><span class="p">)}</span>
+
+    <span class="c1"># Get the number of internal nodes in the tree</span>
+    <span class="n">internal_node_count</span> <span class="o">=</span> <span class="n">num_nodes</span> <span class="o">-</span> <span class="n">tip_count</span>
+    <span class="c1"># Loop through the tree and set the matrix index for each node</span>
+    <span class="c1"># Also set data values</span>
+    <span class="n">node_headers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">node_i</span> <span class="o">=</span> <span class="n">tip_count</span>
+    <span class="n">tip_i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">node_index_lookup</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">_get_node_label</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Tip</span>
+            <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">tip_i</span>
+            <span class="n">row_headers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">tip_i</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">char_mtx</span><span class="p">[</span><span class="n">tip_lookup</span><span class="p">[</span><span class="n">label</span><span class="p">]]</span>
+            <span class="n">tip_i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_i</span>
+            <span class="n">node_headers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+            <span class="c1"># Internal node</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">node_i</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_vars</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">node_i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Row headers should be extended with node headers</span>
+    <span class="n">row_headers</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node_headers</span><span class="p">)</span>
+
+    <span class="c1"># For each variable</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_vars</span><span class="p">):</span>
+        <span class="c1"># Compute the ML estimate of the root</span>
+        <span class="n">full_mcp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">internal_node_count</span><span class="p">,</span> <span class="n">internal_node_count</span><span class="p">),</span>
+                            <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">full_vcp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">internal_node_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">postorder_edge_iter</span><span class="p">():</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">head_node</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">node_num_i</span> <span class="o">=</span> <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">_get_node_label</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">-</span> <span class="n">tip_count</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">():</span>
+                    <span class="n">tbl</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="n">j</span><span class="o">.</span><span class="n">edge_length</span>
+                    <span class="n">full_mcp</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">][</span><span class="n">node_num_i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tbl</span>
+                    <span class="n">node_num_j</span> <span class="o">=</span> <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">_get_node_label</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span>
+
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">full_vcp</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">node_num_j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">tbl</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">node_num_j</span> <span class="o">-=</span> <span class="n">tip_count</span>
+                        <span class="n">full_mcp</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">][</span><span class="n">node_num_j</span><span class="p">]</span> <span class="o">-=</span> <span class="n">tbl</span>
+                        <span class="n">full_mcp</span><span class="p">[</span><span class="n">node_num_j</span><span class="p">][</span><span class="n">node_num_i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">tbl</span>
+                        <span class="n">full_mcp</span><span class="p">[</span><span class="n">node_num_j</span><span class="p">][</span><span class="n">node_num_j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tbl</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cho_factor</span><span class="p">(</span><span class="n">full_mcp</span><span class="p">)</span>
+
+        <span class="c1"># these are the ML estimates for the ancestral states</span>
+        <span class="n">ml_est</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cho_solve</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">full_vcp</span><span class="p">)</span>
+        <span class="n">sos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">postorder_edge_iter</span><span class="p">():</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">head_node</span>
+            <span class="n">node_num_i</span> <span class="o">=</span> <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">_get_node_label</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ml_est</span><span class="p">[</span><span class="n">node_num_i</span> <span class="o">-</span> <span class="n">tip_count</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">calc_std_err</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">child_nodes</span><span class="p">():</span>
+                        <span class="n">node_num_j</span> <span class="o">=</span> <span class="n">node_index_lookup</span><span class="p">[</span><span class="n">_get_node_label</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span>
+                        <span class="n">temp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">node_num_j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                        <span class="n">sos</span> <span class="o">+=</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">temp</span> <span class="o">/</span> <span class="n">j</span><span class="o">.</span><span class="n">edge_length</span>
+
+                    <span class="c1"># nni is node_num_i adjusted for only nodes</span>
+                    <span class="n">nni</span> <span class="o">=</span> <span class="n">node_num_i</span> <span class="o">-</span> <span class="n">tip_count</span>
+                    <span class="n">qpq</span> <span class="o">=</span> <span class="n">full_mcp</span><span class="p">[</span><span class="n">nni</span><span class="p">][</span><span class="n">nni</span><span class="p">]</span>
+                    <span class="n">tm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">full_mcp</span><span class="p">,</span> <span class="p">(</span><span class="n">nni</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">tm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">tm1</span><span class="p">,</span> <span class="p">(</span><span class="n">nni</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">b</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cho_factor</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span>
+                    <span class="n">sol</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cho_solve</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">tm1</span><span class="p">[:,</span> <span class="n">nni</span><span class="p">])</span>
+                    <span class="n">temp_std_err</span> <span class="o">=</span> <span class="n">qpq</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">tm1</span><span class="p">[:,</span> <span class="n">nni</span><span class="p">],</span> <span class="n">sol</span><span class="p">)</span>
+                    <span class="n">data</span><span class="p">[</span><span class="n">node_num_i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">sos</span> <span class="o">/</span> <span class="p">(</span>
+                        <span class="p">(</span><span class="n">internal_node_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">temp_std_err</span><span class="p">))</span>
+
+    <span class="n">depth_headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;maximum_likelihood&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">calc_std_err</span><span class="p">:</span>
+        <span class="n">depth_headers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;standard_error&#39;</span><span class="p">)</span>
+
+    <span class="n">mtx_headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="n">row_headers</span><span class="p">,</span>
+        <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="n">tip_col_headers</span><span class="p">,</span>
+        <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="n">depth_headers</span>
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">tree</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">mtx_headers</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Biotaphy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
