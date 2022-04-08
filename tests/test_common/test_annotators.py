@@ -3,7 +3,7 @@ import numpy as np
 
 from lmpy import Matrix, TreeWrapper
 
-import biotaphy.analyses.tools.annotators as annotators
+import biotaphy.common.annotators as annotators
 
 
 # .............................................................................

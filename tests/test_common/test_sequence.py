@@ -1,5 +1,5 @@
 """This module tests the sequence module."""
-from biotaphy.analyses.helpers import sequence
+from biotaphy.common import sequence
 
 
 # .............................................................................

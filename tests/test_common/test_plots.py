@@ -9,7 +9,7 @@ import numpy as np
 
 from lmpy import Matrix, TreeWrapper
 
-from biotaphy.analyses.tools.plots import create_distribution_plots
+from biotaphy.common.plots import create_distribution_plots
 
 
 # .............................................................................

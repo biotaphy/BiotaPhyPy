@@ -5,8 +5,8 @@ import pytest
 
 from lmpy import Matrix
 
-import biotaphy.analyses.helpers.data_readers as dr
-from biotaphy.analyses.helpers.sequence import Sequence
+import biotaphy.common.data_readers as dr
+from biotaphy.common.sequence import Sequence
 
 
 # .....................................................................................

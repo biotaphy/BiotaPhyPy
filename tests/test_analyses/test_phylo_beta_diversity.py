@@ -3,7 +3,7 @@ import numpy as np
 
 from lmpy import Matrix, TreeWrapper
 
-from biotaphy.analyses.phylo_beta_diversity import phylo_beta_diversity as pbd
+import biotaphy.analyses.phylo_beta_diversity as pbd
 
 
 # .............................................................................
