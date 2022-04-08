@@ -70,14 +70,14 @@ def cli():
         path=args.in_tree_filename, schema=args.in_tree_schema)
 
     # Read data
-    if args.data_format == 'csv':
+    if args.data_format == 'csv':  # pragma: no cover
         with open(args.data_filename) as in_file:
             sequences, headers = data_readers.read_csv_alignment_flo(
                 in_file)
-    elif args.data_format == 'json':
+    elif args.data_format == 'json':  # pragma: no cover
         with open(args.data_filename) as in_file:
             sequences, headers = data_readers.read_json_alignment_flo(in_file)
-    elif args.data_format == 'phylip':
+    elif args.data_format == 'phylip':  # pragma: no cover
         with open(args.data_filename) as in_file:
             sequences = data_readers.read_phylip_alignment_flo(in_file)
         headers = None
@@ -85,12 +85,12 @@ def cli():
         with open(args.data_filename) as in_file:
             sequences = data_readers.read_table_alignment_flo(in_file)
         headers = None
-    else:
+    else:  # pragma: no cover
         raise ValueError('Unknown data format: {}'.format(args.data_format))
 
     # Get the label annotation column, or None
     label_column = None
-    if args.annotate_labels is not None:
+    if args.annotate_labels is not None:  # pragma: no cover
         try:
             # Try looking for the string
             label_column = headers.index(args.annotate_labels)
@@ -111,7 +111,7 @@ def cli():
     tree, results = anc_dp.calculate_ancestral_distributions(tree, char_mtx)
 
     # Should we annotate the tree labels?
-    if label_column is not None:
+    if label_column is not None:  # pragma: no cover
         annotators.annotate_tree_with_label(
             tree, results, label_column=label_column)
     else:
@@ -126,11 +126,11 @@ def cli():
         with open(args.out_csv_filename, 'w') as out_csv_f:
             results.write_csv(out_csv_f)
     # Plots
-    if args.plot_directory is not None:
+    if args.plot_directory is not None:  # pragma: no cover
         tree_plots.create_distribution_plots(
             tree, results, args.plot_directory)
 
 
 # .....................................................................................
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     cli()
