@@ -11,7 +11,7 @@ import numpy as np
 
 from lmpy import Matrix
 
-from biotaphy.analyses.helpers.sequence import Sequence
+from biotaphy.common.sequence import Sequence
 
 
 # .............................................................................

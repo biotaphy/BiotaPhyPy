@@ -18,8 +18,8 @@ import os
 
 from lmpy import TreeWrapper
 
-from biotaphy.analyses.helpers import data_readers
-from biotaphy.analyses.phylo_beta_diversity import phylo_beta_diversity
+from biotaphy.common import data_readers
+from biotaphy.analyses import phylo_beta_diversity
 
 DESCRIPTION = """
 Computes phylogenetic & ecological beta diversity components for Sorensen and
