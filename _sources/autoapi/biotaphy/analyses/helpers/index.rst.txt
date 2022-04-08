@@ -16,7 +16,6 @@ Submodules
    :maxdepth: 1
 
    data_readers/index.rst
-   permutation_testing/index.rst
    sequence/index.rst
 
 

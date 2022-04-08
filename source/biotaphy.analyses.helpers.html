@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.analyses.helpers package &mdash; Biotaphy BiotaPhyPy 2.0.0a1 documentation</title>
+  <title>biotaphy.analyses.helpers package &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev6 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -273,93 +273,8 @@ seqlabel sequence</p>
 </dd></dl>
 
 </section>
-<section id="module-biotaphy.analyses.helpers.permutation_testing">
-<span id="biotaphy-analyses-helpers-permutation-testing-module"></span><h2>biotaphy.analyses.helpers.permutation_testing module<a class="headerlink" href="#module-biotaphy.analyses.helpers.permutation_testing" title="Permalink to this headline"></a></h2>
-<p>Module containing functions for permutation testing.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.compare_absolute_values">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">compare_absolute_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#compare_absolute_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.compare_absolute_values" title="Permalink to this definition"></a></dt>
-<dd><p>Compares the absolute value of the observed data and the random data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>rand</em>) – obj: <cite>Numpy array</cite>): A numpy array of observed values</p></li>
-<li><p><strong>(</strong> – obj: <cite>Numpy array</cite>): A numpy array of random values</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Indication if absolute(rand) is greater than absolute(obs).</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.compare_signed_values">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">compare_signed_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#compare_signed_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.compare_signed_values" title="Permalink to this definition"></a></dt>
-<dd><p>Compares the signed value of the observed data and the random data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>rand</em>) – obj: <cite>Numpy array</cite>): A numpy array of observed values</p></li>
-<li><p><strong>(</strong> – obj: <cite>Numpy array</cite>): A numpy array of random values</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Indication if rand is greater than obs.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.correct_p_values">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">correct_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_discovery_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#correct_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.correct_p_values" title="Permalink to this definition"></a></dt>
-<dd><p>Perform P-value correction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>false_discovery_rate</em>) – obj: <cite>Matrix</cite>): A Matrix of p-values to correct</p></li>
-<li><p><strong>(</strong> – obj: <cite>float</cite>): An acceptable false discovery
-rate (alpha) value to declare a cell significant</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A matrix object of significant values.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Matrix</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.analyses.helpers.permutation_testing.get_p_values">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.analyses.helpers.permutation_testing.</span></span><span class="sig-name descname"><span class="pre">get_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observed_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_matrices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compare_func=&lt;function</span> <span class="pre">compare_absolute_values&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotaphy/analyses/helpers/permutation_testing.html#get_p_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.analyses.helpers.permutation_testing.get_p_values" title="Permalink to this definition"></a></dt>
-<dd><p>Gets p-values by comparing the observed and random data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong> (<em>compare_func</em>) – obj: <cite>Matrix</cite>): A Matrix object with observed values</p></li>
-<li><p><strong>(</strong> – obj: <cite>list</cite>): A list of Matrix objects with values
-obtained through permutations</p></li>
-<li><p><strong>(</strong> – obj: <cite>function</cite>): A function that, when given two
-values, returns True if the second meets the condition</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An array of p-values.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>numpy.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="biotaphy-analyses-helpers-permutation-testing-module">
+<h2>biotaphy.analyses.helpers.permutation_testing module<a class="headerlink" href="#biotaphy-analyses-helpers-permutation-testing-module" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-biotaphy.analyses.helpers.sequence">
 <span id="biotaphy-analyses-helpers-sequence-module"></span><h2>biotaphy.analyses.helpers.sequence module<a class="headerlink" href="#module-biotaphy.analyses.helpers.sequence" title="Permalink to this headline"></a></h2>

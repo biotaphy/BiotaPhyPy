@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.tools.ancestral_distribution &mdash; Biotaphy BiotaPhyPy 2.0.0a1 documentation</title>
+  <title>biotaphy.tools.ancestral_distribution &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev6 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -144,14 +144,14 @@
         <span class="n">path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">in_tree_filename</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">in_tree_schema</span><span class="p">)</span>
 
     <span class="c1"># Read data</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
             <span class="n">sequences</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_csv_alignment_flo</span><span class="p">(</span>
                 <span class="n">in_file</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
             <span class="n">sequences</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_json_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;phylip&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;phylip&#39;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
             <span class="n">sequences</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_phylip_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
         <span class="n">headers</span> <span class="o">=</span> <span class="kc">None</span>
@@ -159,12 +159,12 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
             <span class="n">sequences</span> <span class="o">=</span> <span class="n">data_readers</span><span class="o">.</span><span class="n">read_table_alignment_flo</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
         <span class="n">headers</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unknown data format: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_format</span><span class="p">))</span>
 
     <span class="c1"># Get the label annotation column, or None</span>
     <span class="n">label_column</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Try looking for the string</span>
             <span class="n">label_column</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">annotate_labels</span><span class="p">)</span>
@@ -185,7 +185,7 @@
     <span class="n">tree</span><span class="p">,</span> <span class="n">results</span> <span class="o">=</span> <span class="n">anc_dp</span><span class="o">.</span><span class="n">calculate_ancestral_distributions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">char_mtx</span><span class="p">)</span>
 
     <span class="c1"># Should we annotate the tree labels?</span>
-    <span class="k">if</span> <span class="n">label_column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">label_column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">annotators</span><span class="o">.</span><span class="n">annotate_tree_with_label</span><span class="p">(</span>
             <span class="n">tree</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">label_column</span><span class="o">=</span><span class="n">label_column</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -200,13 +200,13 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out_csv_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_csv_f</span><span class="p">:</span>
             <span class="n">results</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="n">out_csv_f</span><span class="p">)</span>
     <span class="c1"># Plots</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">plot_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">plot_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">tree_plots</span><span class="o">.</span><span class="n">create_distribution_plots</span><span class="p">(</span>
             <span class="n">tree</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">plot_directory</span><span class="p">)</span></div>
 
 
 <span class="c1"># .....................................................................................</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
     <span class="n">cli</span><span class="p">()</span>
 </pre></div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.analyses.helpers.data_readers &mdash; Biotaphy BiotaPhyPy 2.0.0a1 documentation</title>
+  <title>biotaphy.analyses.helpers.data_readers &mdash; Biotaphy BiotaPhyPy 2.0.0a1.post0.dev6 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -310,7 +310,7 @@
             <span class="c1"># Incorrect number of sites</span>
             <span class="k">raise</span> <span class="n">AlignmentIOError</span><span class="p">(</span><span class="s1">&#39;Incorrect number of sites for row: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cnt</span><span class="p">))</span>
         <span class="n">seqlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sequence</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">seq</span><span class="o">=</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
-    <span class="k">if</span> <span class="n">cnt</span> <span class="o">!=</span> <span class="n">num_taxa</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cnt</span> <span class="o">!=</span> <span class="n">num_taxa</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">raise</span> <span class="n">AlignmentIOError</span><span class="p">(</span>
             <span class="s1">&#39;Incorrect number of taxa.  Reported </span><span class="si">{}</span><span class="s1"> but found </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_taxa</span><span class="p">,</span> <span class="n">cnt</span><span class="p">)</span>
         <span class="p">)</span>

@@ -28,7 +28,6 @@ Functions
    biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.calculate_phylo_beta_diversity_sorensen
    biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_Beta_calc
    biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.core_PD_calc
-   biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.get_species_index_lookup
    biotaphy.analyses.phylo_beta_diversity.phylo_beta_diversity.pdnew
 
 
@@ -131,17 +130,6 @@ Functions
            max_not_shared: largest dist. from ind. samples to their combo.
            sum_not_shared: total addition to PD from both comm.
            shared: combined contribution to PD that comm. make jointly.
-
-
-.. py:function:: get_species_index_lookup(pam)
-
-   Creates a lookup dictionary for species in a matrix.
-
-   :param pam: A Lifemapper Matrix object with presence absence
-               values.
-   :type pam: :obj:`Matrix`
-
-   :returns: A dictionary of species keys with matrix index values.
 
 
 .. py:function:: pdnew(pam, tree)
