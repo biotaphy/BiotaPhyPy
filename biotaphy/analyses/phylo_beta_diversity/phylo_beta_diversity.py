@@ -243,21 +243,6 @@ def core_PD_calc(pam, tree):
 
 
 # .............................................................................
-def get_species_index_lookup(pam):
-    """Creates a lookup dictionary for species in a matrix.
-
-    Args:
-        pam (:obj:`Matrix`): A Lifemapper Matrix object with presence absence
-            values.
-
-    Returns:
-        A dictionary of species keys with matrix index values.
-    """
-    return {
-        sp: idx for (idx, sp) in enumerate(pam.get_column_headers())}
-
-
-# .............................................................................
 def calculate_phylo_beta_diversity_jaccard(pam, tree):
     """Calculates phylogenetic beta diversity for the jaccard index family.
 
