@@ -41,7 +41,11 @@ def cli():
     parser = build_parser()
     args = parser.parse_args()
     species_list = SpeciesList.from_file(args.species_list_filename)
-    ott_ids = resolve_names_otol(species_list)
+    tax_info = resolve_names_otol(species_list)
+    ott_ids = []
+    for tax in tax_info:
+        if 'ott_id' in tax.keys() and tax['ott_id'] is not None:
+            ott_ids.append(tax['ott_id'])
     tree_str = induced_subtree(ott_ids)
     raise Exception(tree_str)
     tree = TreeWrapper(data=tree_str, schema='newick')
