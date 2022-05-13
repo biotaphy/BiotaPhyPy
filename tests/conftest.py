@@ -12,6 +12,7 @@ ALIGNMENTS_DIR = 'alignments'
 ANC_STATE_PACKAGES_DIR = 'ancestral_state_packages'
 ANC_DIST_PACKAGES_DIR = 'ancestral_distribution_packages'
 PHYLO_BETA_DIV_PACKAGES_DIR = 'phylo_beta_diversity'
+SPECIES_LISTS_PATH = 'species_lists'
 TREES_DIR = 'trees'
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -43,6 +44,15 @@ class SampleDataFiles(object):
         return glob.iglob(
             self._get_glob_string(ALIGNMENTS_PATH, is_valid,
                                   self._get_format_extension(fmt)))
+
+    # .....................................
+    def get_species_lists(self):
+        """Get a list of available species lists.
+
+        Returns:
+            list: A list of species list filenames.
+        """
+        return glob.glob(os.path.join(SAMPLE_DATA_PATH, SPECIES_LISTS_PATH, '*.txt'))
 
     # .....................................
     def get_ancestral_distribution_packages(self, is_valid):
@@ -299,7 +309,8 @@ def pytest_generate_tests(metafunc):
         ('valid_phylip_alignment', df.get_alignments('phylip', True)),
         ('valid_phylo_beta_diversity_package',
          df.get_phylo_beta_diversity_packages(True)),
-        ('valid_table_alignment', df.get_alignments('table', True))
+        ('valid_table_alignment', df.get_alignments('table', True)),
+        ('valid_species_list_filename', df.get_species_lists())
     ]
     for fixture_name, fixture_values in fixture_tuples:
         if fixture_name in metafunc.fixturenames:
