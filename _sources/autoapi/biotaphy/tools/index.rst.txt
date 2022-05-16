@@ -16,6 +16,7 @@ Submodules
    :maxdepth: 1
 
    ancestral_distribution/index.rst
+   get_tree/index.rst
    phylo_beta_diversity/index.rst
 
 

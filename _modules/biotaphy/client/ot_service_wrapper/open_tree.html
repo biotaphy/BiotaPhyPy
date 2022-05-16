@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.1.post0.dev10 documentation</title>
+  <title>biotaphy.client.ot_service_wrapper.open_tree &mdash; Biotaphy BiotaPhyPy 2.0.1.post0.dev17 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -218,10 +218,11 @@
     <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span>
         <span class="n">INDUCED_SUBTREE_BASE_URL</span><span class="p">,</span>
         <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request_body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
-        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+    <span class="p">)</span>
 
     <span class="n">resp_str</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp_str</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">resp_str</span><span class="p">)[</span><span class="s1">&#39;newick&#39;</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

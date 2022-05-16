@@ -1,0 +1,51 @@
+:py:mod:`biotaphy.tools.get_tree`
+=================================
+
+.. py:module:: biotaphy.tools.get_tree
+
+.. autoapi-nested-parse::
+
+   This tool gets a tree from Open Tree from a species list.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.tools.get_tree.build_parser
+   biotaphy.tools.get_tree.cli
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   biotaphy.tools.get_tree.DESCRIPTION
+
+
+.. py:data:: DESCRIPTION
+   :annotation: = Tool to get a tree for a list of species.
+
+   
+
+.. py:function:: build_parser()
+
+   Get an argparse.ArgumentParser for the tool.
+
+   :returns: An ArgumentParser for this tool.
+   :rtype: argparse.ArgumentParser
+
+
+.. py:function:: cli()
+
+   A command-line interface for the tool.
+
+

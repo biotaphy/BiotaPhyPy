@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>biotaphy.common.plots &mdash; Biotaphy BiotaPhyPy 2.0.1.post0.dev17 documentation</title>
+  <title>biotaphy.tools.get_tree &mdash; Biotaphy BiotaPhyPy 2.0.1.post0.dev17 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -61,9 +61,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.common.plots</span></code></li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.tools.get_tree</span></code></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/autoapi/biotaphy/common/plots/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/autoapi/biotaphy/tools/get_tree/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -71,9 +71,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-biotaphy.common.plots">
-<span id="biotaphy-common-plots"></span><h1><a class="reference internal" href="#module-biotaphy.common.plots" title="biotaphy.common.plots"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.common.plots</span></code></a><a class="headerlink" href="#module-biotaphy.common.plots" title="Permalink to this headline"></a></h1>
-<p>Module containing tools for plotting tree nodes.</p>
+  <section id="module-biotaphy.tools.get_tree">
+<span id="biotaphy-tools-get-tree"></span><h1><a class="reference internal" href="#module-biotaphy.tools.get_tree" title="biotaphy.tools.get_tree"><code class="xref py py-mod docutils literal notranslate"><span class="pre">biotaphy.tools.get_tree</span></code></a><a class="headerlink" href="#module-biotaphy.tools.get_tree" title="Permalink to this headline"></a></h1>
+<p>This tool gets a tree from Open Tree from a species list.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
 <section id="functions">
@@ -84,26 +84,51 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.common.plots.create_distribution_plots" title="biotaphy.common.plots.create_distribution_plots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_distribution_plots</span></code></a>(lm_tree, node_matrix, output_directory)</p></td>
-<td><p>Creates distribution plots for each of the nodes in the tree.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.tools.get_tree.build_parser" title="biotaphy.tools.get_tree.build_parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_parser</span></code></a>()</p></td>
+<td><p>Get an argparse.ArgumentParser for the tool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#biotaphy.tools.get_tree.cli" title="biotaphy.tools.get_tree.cli"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cli</span></code></a>()</p></td>
+<td><p>A command-line interface for the tool.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#biotaphy.tools.get_tree.DESCRIPTION" title="biotaphy.tools.get_tree.DESCRIPTION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTION</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="biotaphy.tools.get_tree.DESCRIPTION">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.tools.get_tree.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTION</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">Tool</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">a</span> <span class="pre">tree</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">species.</span></em><a class="reference internal" href="../../../../_modules/biotaphy/tools/get_tree.html#DESCRIPTION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.tools.get_tree.DESCRIPTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
-<dt class="sig sig-object py" id="biotaphy.common.plots.create_distribution_plots">
-<span class="sig-prename descclassname"><span class="pre">biotaphy.common.plots.</span></span><span class="sig-name descname"><span class="pre">create_distribution_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lm_tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/biotaphy/common/plots.html#create_distribution_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.common.plots.create_distribution_plots" title="Permalink to this definition"></a></dt>
-<dd><p>Creates distribution plots for each of the nodes in the tree.</p>
+<dt class="sig sig-object py" id="biotaphy.tools.get_tree.build_parser">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.tools.get_tree.</span></span><span class="sig-name descname"><span class="pre">build_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/biotaphy/tools/get_tree.html#build_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.tools.get_tree.build_parser" title="Permalink to this definition"></a></dt>
+<dd><p>Get an argparse.ArgumentParser for the tool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>lm_tree</strong> (<em>TreeWrapper</em>) – A Lifemapper tree object.</p></li>
-<li><p><strong>node_matrix</strong> (<em>Matrix</em>) – A Lifemapper Matrix object with rows matching the
-nodes in the provided tree.</p></li>
-<li><p><strong>output_directory</strong> (<em>str</em>) – A directory where the output plots should be
-written.</p></li>
-</ul>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An ArgumentParser for this tool.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>argparse.ArgumentParser</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotaphy.tools.get_tree.cli">
+<span class="sig-prename descclassname"><span class="pre">biotaphy.tools.get_tree.</span></span><span class="sig-name descname"><span class="pre">cli</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/biotaphy/tools/get_tree.html#cli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotaphy.tools.get_tree.cli" title="Permalink to this definition"></a></dt>
+<dd><p>A command-line interface for the tool.</p>
 </dd></dl>
 
 </section>
