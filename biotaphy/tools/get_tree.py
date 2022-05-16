@@ -43,11 +43,11 @@ def cli():
     species_list = SpeciesList.from_file(args.species_list_filename)
     tax_info = resolve_names_otol(species_list)
     ott_ids = []
-    for tax in tax_info:
-        if 'ott_id' in tax.keys() and tax['ott_id'] is not None:
+    for tax in tax_info.values():
+        if tax is not None and 'ott_id' in tax.keys() and tax['ott_id'] is not None:
             ott_ids.append(tax['ott_id'])
     tree_str = induced_subtree(ott_ids)
-    tree = TreeWrapper(data=tree_str, schema='newick')
+    tree = TreeWrapper.get(data=tree_str, schema='newick')
     tree.write(path=args.tree_filename, schema=args.tree_schema)
 
 
