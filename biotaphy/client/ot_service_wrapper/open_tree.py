@@ -148,4 +148,4 @@ def induced_subtree(ott_ids, label_format=LABEL_FORMAT.NAME):
     )
 
     resp_str = urlopen(req).read().decode('utf-8')
-    return json.loads(resp_str)
+    return json.loads(resp_str)['newick']

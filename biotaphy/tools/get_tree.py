@@ -47,7 +47,6 @@ def cli():
         if 'ott_id' in tax.keys() and tax['ott_id'] is not None:
             ott_ids.append(tax['ott_id'])
     tree_str = induced_subtree(ott_ids)
-    raise Exception(tree_str)
     tree = TreeWrapper(data=tree_str, schema='newick')
     tree.write(path=args.tree_filename, schema=args.tree_schema)
 
