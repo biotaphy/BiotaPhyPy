@@ -119,10 +119,9 @@ class Test_get_tree_from_taxa:
         assert len(unmatched_names) == 0
         ott_ids = [tax['ott_id'] for tax in taxa_info.values()]
         assert len(ott_ids) == len(TAXON_NAMES)
-        resp = open_tree.induced_subtree(
+        newick = open_tree.induced_subtree(
             ott_ids, label_format=open_tree.LABEL_FORMAT.ID
         )
-        newick = resp['newick']
 
         tree = dendropy.Tree.get(data=newick, schema='newick')
 
