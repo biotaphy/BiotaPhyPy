@@ -4,4 +4,4 @@ numpy>=1.11.0
 matplotlib
 rtree
 gdal
-specify-lmpy>=3.1.14
+specify-lmpy>=3.1.19
