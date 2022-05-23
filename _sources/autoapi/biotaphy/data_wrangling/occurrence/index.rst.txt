@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.data_wrangling.occurrence`
+============================================
+
+.. py:module:: biotaphy.data_wrangling.occurrence
+
+.. autoapi-nested-parse::
+
+   Occurrence data wrangling module __init__ file.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   accepted_name_data_wrangler/index.rst
+
+

@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.data_wrangling.matrix`
+========================================
+
+.. py:module:: biotaphy.data_wrangling.matrix
+
+.. autoapi-nested-parse::
+
+   Matrix data wrangling module __init__.py file.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   accepted_name_data_wrangler/index.rst
+
+

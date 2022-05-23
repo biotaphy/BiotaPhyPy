@@ -1,0 +1,20 @@
+:py:mod:`biotaphy.data_wrangling.species_list`
+==============================================
+
+.. py:module:: biotaphy.data_wrangling.species_list
+
+.. autoapi-nested-parse::
+
+   Species list data wrangling module __init__ file.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   accepted_name_data_wrangler/index.rst
+
+
